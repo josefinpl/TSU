@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TUSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Access">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="nchar" MaxLength="50" />
+          <Property Name="Zipcode" Type="int" />
+          <Property Name="City" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Authority">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" />
+          <Property Name="Description" Type="nchar" MaxLength="50" />
+          <Property Name="Open" Type="time" Precision="7" />
+          <Property Name="Close" Type="time" Precision="7" />
+          <Property Name="Address_Id" Type="int" />
+          <Property Name="Category_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="AuthorityNumber">
+          <Key>
+            <PropertyRef Name="Authority_Id" />
+            <PropertyRef Name="Number_Id" />
+          </Key>
+          <Property Name="Authority_Id" Type="int" Nullable="false" />
+          <Property Name="Number_Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Number">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nchar" MaxLength="20" />
+          <Property Name="Password" Type="nchar" MaxLength="50" />
+          <Property Name="Firstname" Type="nchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nchar" MaxLength="50" />
+          <Property Name="Email" Type="nchar" MaxLength="50" />
+          <Property Name="Number" Type="nchar" MaxLength="20" />
+          <Property Name="Access_Id" Type="int" />
+          <Property Name="Address_Id" Type="int" />
+        </EntityType>
+        <Association Name="FK_Authority_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Authority" Type="Self.Authority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authority">
+              <PropertyRef Name="Address_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authority_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Authority" Type="Self.Authority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authority">
+              <PropertyRef Name="Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuthorityNumber_Authority">
+          <End Role="Authority" Type="Self.Authority" Multiplicity="1" />
+          <End Role="AuthorityNumber" Type="Self.AuthorityNumber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authority">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorityNumber">
+              <PropertyRef Name="Authority_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuthorityNumber_Number">
+          <End Role="Number" Type="Self.Number" Multiplicity="1" />
+          <End Role="AuthorityNumber" Type="Self.AuthorityNumber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Number">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorityNumber">
+              <PropertyRef Name="Number_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Access">
+          <End Role="Access" Type="Self.Access" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Access">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Access_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Address_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TUSModelStoreContainer">
+          <EntitySet Name="Access" EntityType="Self.Access" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Authority" EntityType="Self.Authority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuthorityNumber" EntityType="Self.AuthorityNumber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Number" EntityType="Self.Number" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Authority_Address" Association="Self.FK_Authority_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Authority" EntitySet="Authority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authority_Category" Association="Self.FK_Authority_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Authority" EntitySet="Authority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuthorityNumber_Authority" Association="Self.FK_AuthorityNumber_Authority">
+            <End Role="Authority" EntitySet="Authority" />
+            <End Role="AuthorityNumber" EntitySet="AuthorityNumber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuthorityNumber_Number" Association="Self.FK_AuthorityNumber_Number">
+            <End Role="Number" EntitySet="Number" />
+            <End Role="AuthorityNumber" EntitySet="AuthorityNumber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Access" Association="Self.FK_User_Access">
+            <End Role="Access" EntitySet="Access" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Address" Association="Self.FK_User_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TUSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Access">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Access" FromRole="Access" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Zipcode" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Authority" Relationship="Self.FK_Authority_Address" FromRole="Address" ToRole="Authority" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Address" FromRole="Address" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Authority">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Open" Type="Time" Precision="7" />
+          <Property Name="Close" Type="Time" Precision="7" />
+          <Property Name="Address_Id" Type="Int32" />
+          <Property Name="Category_Id" Type="Int32" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_Authority_Address" FromRole="Authority" ToRole="Address" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Authority_Category" FromRole="Authority" ToRole="Category" />
+          <NavigationProperty Name="AuthorityNumber" Relationship="Self.FK_AuthorityNumber_Authority" FromRole="Authority" ToRole="AuthorityNumber" />
+        </EntityType>
+        <EntityType Name="AuthorityNumber">
+          <Key>
+            <PropertyRef Name="Authority_Id" />
+            <PropertyRef Name="Number_Id" />
+          </Key>
+          <Property Name="Authority_Id" Type="Int32" Nullable="false" />
+          <Property Name="Number_Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Authority" Relationship="Self.FK_AuthorityNumber_Authority" FromRole="AuthorityNumber" ToRole="Authority" />
+          <NavigationProperty Name="Number" Relationship="Self.FK_AuthorityNumber_Number" FromRole="AuthorityNumber" ToRole="Number" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Authority" Relationship="Self.FK_Authority_Category" FromRole="Category" ToRole="Authority" />
+        </EntityType>
+        <EntityType Name="Number">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number1" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="AuthorityNumber" Relationship="Self.FK_AuthorityNumber_Number" FromRole="Number" ToRole="AuthorityNumber" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Number" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Access_Id" Type="Int32" />
+          <Property Name="Address_Id" Type="Int32" />
+          <NavigationProperty Name="Access" Relationship="Self.FK_User_Access" FromRole="User" ToRole="Access" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_User_Address" FromRole="User" ToRole="Address" />
+        </EntityType>
+        <Association Name="FK_User_Access">
+          <End Role="Access" Type="Self.Access" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Access">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Access_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authority_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Authority" Type="Self.Authority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authority">
+              <PropertyRef Name="Address_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Address_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authority_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Authority" Type="Self.Authority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authority">
+              <PropertyRef Name="Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuthorityNumber_Authority">
+          <End Role="Authority" Type="Self.Authority" Multiplicity="1" />
+          <End Role="AuthorityNumber" Type="Self.AuthorityNumber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authority">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorityNumber">
+              <PropertyRef Name="Authority_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuthorityNumber_Number">
+          <End Role="Number" Type="Self.Number" Multiplicity="1" />
+          <End Role="AuthorityNumber" Type="Self.AuthorityNumber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Number">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorityNumber">
+              <PropertyRef Name="Number_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TUSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Access" EntityType="Self.Access" />
+          <EntitySet Name="Address" EntityType="Self.Address" />
+          <EntitySet Name="Authority" EntityType="Self.Authority" />
+          <EntitySet Name="AuthorityNumber" EntityType="Self.AuthorityNumber" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Number" EntityType="Self.Number" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_User_Access" Association="Self.FK_User_Access">
+            <End Role="Access" EntitySet="Access" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authority_Address" Association="Self.FK_Authority_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Authority" EntitySet="Authority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Address" Association="Self.FK_User_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authority_Category" Association="Self.FK_Authority_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Authority" EntitySet="Authority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuthorityNumber_Authority" Association="Self.FK_AuthorityNumber_Authority">
+            <End Role="Authority" EntitySet="Authority" />
+            <End Role="AuthorityNumber" EntitySet="AuthorityNumber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuthorityNumber_Number" Association="Self.FK_AuthorityNumber_Number">
+            <End Role="Number" EntitySet="Number" />
+            <End Role="AuthorityNumber" EntitySet="AuthorityNumber" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TUSModelStoreContainer" CdmEntityContainer="TUSEntities">
+          <EntitySetMapping Name="Access">
+            <EntityTypeMapping TypeName="TUSModel.Access">
+              <MappingFragment StoreEntitySet="Access">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Address">
+            <EntityTypeMapping TypeName="TUSModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address1" ColumnName="Address" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authority">
+            <EntityTypeMapping TypeName="TUSModel.Authority">
+              <MappingFragment StoreEntitySet="Authority">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Open" ColumnName="Open" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="Address_Id" ColumnName="Address_Id" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuthorityNumber">
+            <EntityTypeMapping TypeName="TUSModel.AuthorityNumber">
+              <MappingFragment StoreEntitySet="AuthorityNumber">
+                <ScalarProperty Name="Authority_Id" ColumnName="Authority_Id" />
+                <ScalarProperty Name="Number_Id" ColumnName="Number_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="TUSModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Number">
+            <EntityTypeMapping TypeName="TUSModel.Number">
+              <MappingFragment StoreEntitySet="Number">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Number1" ColumnName="Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="TUSModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Access_Id" ColumnName="Access_Id" />
+                <ScalarProperty Name="Address_Id" ColumnName="Address_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
