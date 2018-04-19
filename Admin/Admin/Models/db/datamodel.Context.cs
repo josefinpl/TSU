@@ -13,10 +13,10 @@ namespace Admin.Models.db
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TUSEntities : DbContext
+    public partial class tusjoseEntities : DbContext
     {
-        public TUSEntities()
-            : base("name=TUSEntities")
+        public tusjoseEntities()
+            : base("name=tusjoseEntities")
         {
         }
     
@@ -28,8 +28,10 @@ namespace Admin.Models.db
         public virtual DbSet<Access> Access { get; set; }
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Authority> Authority { get; set; }
+        public virtual DbSet<AuthorityHour> AuthorityHour { get; set; }
         public virtual DbSet<AuthorityNumber> AuthorityNumber { get; set; }
         public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Hour> Hour { get; set; }
         public virtual DbSet<Number> Number { get; set; }
         public virtual DbSet<User> User { get; set; }
     }

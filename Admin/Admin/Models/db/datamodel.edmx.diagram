@@ -4,20 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a322b443944d443b8c4c782594422313" Name="Diagram1">
-        <EntityTypeShape EntityType="TUSModel.Access" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TUSModel.Address" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TUSModel.Authority" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TUSModel.AuthorityNumber" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TUSModel.Category" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TUSModel.Number" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TUSModel.User" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
-        <AssociationConnector Association="TUSModel.FK_User_Access" ManuallyRouted="false" />
-        <AssociationConnector Association="TUSModel.FK_Authority_Address" ManuallyRouted="false" />
-        <AssociationConnector Association="TUSModel.FK_User_Address" ManuallyRouted="false" />
-        <AssociationConnector Association="TUSModel.FK_Authority_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="TUSModel.FK_AuthorityNumber_Authority" ManuallyRouted="false" />
-        <AssociationConnector Association="TUSModel.FK_AuthorityNumber_Number" ManuallyRouted="false" />
+      <Diagram DiagramId="19b61b4cad0f457e8da87b21e6bf71a1" Name="Diagram1">
+        <EntityTypeShape EntityType="tusjoseModel.Access" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.Address" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.Authority" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.AuthorityHour" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.AuthorityNumber" Width="1.5" PointX="8.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.Category" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.Hour" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.Number" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.User" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="tusjoseModel.FK_User_Access" ManuallyRouted="false" />
+        <AssociationConnector Association="tusjoseModel.FK_Authority_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="tusjoseModel.FK_User_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="tusjoseModel.FK_Authority_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="tusjoseModel.FK_AuthorityHour_Authority" ManuallyRouted="false" />
+        <AssociationConnector Association="tusjoseModel.FK_AuthorityNumber_Authority" ManuallyRouted="false" />
+        <AssociationConnector Association="tusjoseModel.FK_AuthorityHour_Hour" ManuallyRouted="false" />
+        <AssociationConnector Association="tusjoseModel.FK_AuthorityNumber_Number" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

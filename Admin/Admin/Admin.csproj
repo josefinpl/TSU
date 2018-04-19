@@ -167,6 +167,9 @@
     <Compile Include="Models\db\Authority.cs">
       <DependentUpon>datamodel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\db\AuthorityHour.cs">
+      <DependentUpon>datamodel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\db\AuthorityNumber.cs">
       <DependentUpon>datamodel.tt</DependentUpon>
     </Compile>
@@ -188,6 +191,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>datamodel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\db\Hour.cs">
+      <DependentUpon>datamodel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\db\Number.cs">
       <DependentUpon>datamodel.tt</DependentUpon>
     </Compile>
@@ -206,8 +212,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\db\datamodel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>datamodel.Context.cs</LastGenOutput>
       <DependentUpon>datamodel.edmx</DependentUpon>
+      <LastGenOutput>datamodel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\db\datamodel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TUSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="tusjoseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Access">
           <Key>
             <PropertyRef Name="Id" />
@@ -28,10 +28,17 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" />
           <Property Name="Description" Type="nchar" MaxLength="50" />
-          <Property Name="Open" Type="time" Precision="7" />
-          <Property Name="Close" Type="time" Precision="7" />
           <Property Name="Address_Id" Type="int" />
           <Property Name="Category_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="AuthorityHour">
+          <Key>
+            <PropertyRef Name="Authority_Id" />
+            <PropertyRef Name="Hour_Id" />
+          </Key>
+          <Property Name="Authority_Id" Type="int" Nullable="false" />
+          <Property Name="Hour_Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="AuthorityNumber">
           <Key>
@@ -48,6 +55,14 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Hour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Open" Type="time" Precision="7" />
+          <Property Name="Close" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="Number">
           <Key>
@@ -91,6 +106,30 @@
             </Principal>
             <Dependent Role="Authority">
               <PropertyRef Name="Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuthorityHour_Authority">
+          <End Role="Authority" Type="Self.Authority" Multiplicity="1" />
+          <End Role="AuthorityHour" Type="Self.AuthorityHour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authority">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorityHour">
+              <PropertyRef Name="Authority_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuthorityHour_Hour">
+          <End Role="Hour" Type="Self.Hour" Multiplicity="1" />
+          <End Role="AuthorityHour" Type="Self.AuthorityHour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorityHour">
+              <PropertyRef Name="Hour_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -142,12 +181,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TUSModelStoreContainer">
+        <EntityContainer Name="tusjoseModelStoreContainer">
           <EntitySet Name="Access" EntityType="Self.Access" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Authority" EntityType="Self.Authority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuthorityHour" EntityType="Self.AuthorityHour" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AuthorityNumber" EntityType="Self.AuthorityNumber" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hour" EntityType="Self.Hour" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Number" EntityType="Self.Number" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Authority_Address" Association="Self.FK_Authority_Address">
@@ -157,6 +198,14 @@
           <AssociationSet Name="FK_Authority_Category" Association="Self.FK_Authority_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Authority" EntitySet="Authority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuthorityHour_Authority" Association="Self.FK_AuthorityHour_Authority">
+            <End Role="Authority" EntitySet="Authority" />
+            <End Role="AuthorityHour" EntitySet="AuthorityHour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuthorityHour_Hour" Association="Self.FK_AuthorityHour_Hour">
+            <End Role="Hour" EntitySet="Hour" />
+            <End Role="AuthorityHour" EntitySet="AuthorityHour" />
           </AssociationSet>
           <AssociationSet Name="FK_AuthorityNumber_Authority" Association="Self.FK_AuthorityNumber_Authority">
             <End Role="Authority" EntitySet="Authority" />
@@ -179,7 +228,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TUSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="tusjoseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Access">
           <Key>
             <PropertyRef Name="Id" />
@@ -206,13 +255,23 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Open" Type="Time" Precision="7" />
-          <Property Name="Close" Type="Time" Precision="7" />
           <Property Name="Address_Id" Type="Int32" />
           <Property Name="Category_Id" Type="Int32" />
           <NavigationProperty Name="Address" Relationship="Self.FK_Authority_Address" FromRole="Authority" ToRole="Address" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Authority_Category" FromRole="Authority" ToRole="Category" />
+          <NavigationProperty Name="AuthorityHour" Relationship="Self.FK_AuthorityHour_Authority" FromRole="Authority" ToRole="AuthorityHour" />
           <NavigationProperty Name="AuthorityNumber" Relationship="Self.FK_AuthorityNumber_Authority" FromRole="Authority" ToRole="AuthorityNumber" />
+        </EntityType>
+        <EntityType Name="AuthorityHour">
+          <Key>
+            <PropertyRef Name="Authority_Id" />
+            <PropertyRef Name="Hour_Id" />
+          </Key>
+          <Property Name="Authority_Id" Type="Int32" Nullable="false" />
+          <Property Name="Hour_Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Authority" Relationship="Self.FK_AuthorityHour_Authority" FromRole="AuthorityHour" ToRole="Authority" />
+          <NavigationProperty Name="Hour" Relationship="Self.FK_AuthorityHour_Hour" FromRole="AuthorityHour" ToRole="Hour" />
         </EntityType>
         <EntityType Name="AuthorityNumber">
           <Key>
@@ -232,6 +291,15 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Authority" Relationship="Self.FK_Authority_Category" FromRole="Category" ToRole="Authority" />
+        </EntityType>
+        <EntityType Name="Hour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Open" Type="Time" Precision="7" />
+          <Property Name="Close" Type="Time" Precision="7" />
+          <NavigationProperty Name="AuthorityHour" Relationship="Self.FK_AuthorityHour_Hour" FromRole="Hour" ToRole="AuthorityHour" />
         </EntityType>
         <EntityType Name="Number">
           <Key>
@@ -305,6 +373,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AuthorityHour_Authority">
+          <End Role="Authority" Type="Self.Authority" Multiplicity="1" />
+          <End Role="AuthorityHour" Type="Self.AuthorityHour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authority">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorityHour">
+              <PropertyRef Name="Authority_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AuthorityNumber_Authority">
           <End Role="Authority" Type="Self.Authority" Multiplicity="1" />
           <End Role="AuthorityNumber" Type="Self.AuthorityNumber" Multiplicity="*" />
@@ -314,6 +394,18 @@
             </Principal>
             <Dependent Role="AuthorityNumber">
               <PropertyRef Name="Authority_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuthorityHour_Hour">
+          <End Role="Hour" Type="Self.Hour" Multiplicity="1" />
+          <End Role="AuthorityHour" Type="Self.AuthorityHour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorityHour">
+              <PropertyRef Name="Hour_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -329,12 +421,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TUSEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="tusjoseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Access" EntityType="Self.Access" />
           <EntitySet Name="Address" EntityType="Self.Address" />
           <EntitySet Name="Authority" EntityType="Self.Authority" />
+          <EntitySet Name="AuthorityHour" EntityType="Self.AuthorityHour" />
           <EntitySet Name="AuthorityNumber" EntityType="Self.AuthorityNumber" />
           <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Hour" EntityType="Self.Hour" />
           <EntitySet Name="Number" EntityType="Self.Number" />
           <EntitySet Name="User" EntityType="Self.User" />
           <AssociationSet Name="FK_User_Access" Association="Self.FK_User_Access">
@@ -353,9 +447,17 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Authority" EntitySet="Authority" />
           </AssociationSet>
+          <AssociationSet Name="FK_AuthorityHour_Authority" Association="Self.FK_AuthorityHour_Authority">
+            <End Role="Authority" EntitySet="Authority" />
+            <End Role="AuthorityHour" EntitySet="AuthorityHour" />
+          </AssociationSet>
           <AssociationSet Name="FK_AuthorityNumber_Authority" Association="Self.FK_AuthorityNumber_Authority">
             <End Role="Authority" EntitySet="Authority" />
             <End Role="AuthorityNumber" EntitySet="AuthorityNumber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuthorityHour_Hour" Association="Self.FK_AuthorityHour_Hour">
+            <End Role="Hour" EntitySet="Hour" />
+            <End Role="AuthorityHour" EntitySet="AuthorityHour" />
           </AssociationSet>
           <AssociationSet Name="FK_AuthorityNumber_Number" Association="Self.FK_AuthorityNumber_Number">
             <End Role="Number" EntitySet="Number" />
@@ -367,9 +469,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TUSModelStoreContainer" CdmEntityContainer="TUSEntities">
+        <EntityContainerMapping StorageEntityContainer="tusjoseModelStoreContainer" CdmEntityContainer="tusjoseEntities">
           <EntitySetMapping Name="Access">
-            <EntityTypeMapping TypeName="TUSModel.Access">
+            <EntityTypeMapping TypeName="tusjoseModel.Access">
               <MappingFragment StoreEntitySet="Access">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -377,7 +479,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Address">
-            <EntityTypeMapping TypeName="TUSModel.Address">
+            <EntityTypeMapping TypeName="tusjoseModel.Address">
               <MappingFragment StoreEntitySet="Address">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Address1" ColumnName="Address" />
@@ -387,20 +489,27 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Authority">
-            <EntityTypeMapping TypeName="TUSModel.Authority">
+            <EntityTypeMapping TypeName="tusjoseModel.Authority">
               <MappingFragment StoreEntitySet="Authority">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Open" ColumnName="Open" />
-                <ScalarProperty Name="Close" ColumnName="Close" />
                 <ScalarProperty Name="Address_Id" ColumnName="Address_Id" />
                 <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AuthorityHour">
+            <EntityTypeMapping TypeName="tusjoseModel.AuthorityHour">
+              <MappingFragment StoreEntitySet="AuthorityHour">
+                <ScalarProperty Name="Authority_Id" ColumnName="Authority_Id" />
+                <ScalarProperty Name="Hour_Id" ColumnName="Hour_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AuthorityNumber">
-            <EntityTypeMapping TypeName="TUSModel.AuthorityNumber">
+            <EntityTypeMapping TypeName="tusjoseModel.AuthorityNumber">
               <MappingFragment StoreEntitySet="AuthorityNumber">
                 <ScalarProperty Name="Authority_Id" ColumnName="Authority_Id" />
                 <ScalarProperty Name="Number_Id" ColumnName="Number_Id" />
@@ -409,15 +518,24 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="TUSModel.Category">
+            <EntityTypeMapping TypeName="tusjoseModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Hour">
+            <EntityTypeMapping TypeName="tusjoseModel.Hour">
+              <MappingFragment StoreEntitySet="Hour">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Open" ColumnName="Open" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Number">
-            <EntityTypeMapping TypeName="TUSModel.Number">
+            <EntityTypeMapping TypeName="tusjoseModel.Number">
               <MappingFragment StoreEntitySet="Number">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Number1" ColumnName="Number" />
@@ -425,7 +543,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="TUSModel.User">
+            <EntityTypeMapping TypeName="tusjoseModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Username" ColumnName="Username" />

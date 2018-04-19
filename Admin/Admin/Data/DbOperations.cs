@@ -10,7 +10,7 @@ namespace Admin.Data
 {
     public class DbOperations
     {
-        private TUSEntities db = new TUSEntities();
+        private tusjoseEntities db = new tusjoseEntities();
 
         public UserVM GetUser(int? id)
         {

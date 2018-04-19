@@ -12,26 +12,19 @@ namespace Admin.Models.db
     using System;
     using System.Collections.Generic;
     
-    public partial class Authority
+    public partial class Hour
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Authority()
+        public Hour()
         {
             this.AuthorityHour = new HashSet<AuthorityHour>();
-            this.AuthorityNumber = new HashSet<AuthorityNumber>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public Nullable<int> Address_Id { get; set; }
-        public Nullable<int> Category_Id { get; set; }
+        public Nullable<System.TimeSpan> Open { get; set; }
+        public Nullable<System.TimeSpan> Close { get; set; }
     
-        public virtual Address Address { get; set; }
-        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AuthorityHour> AuthorityHour { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AuthorityNumber> AuthorityNumber { get; set; }
     }
 }
