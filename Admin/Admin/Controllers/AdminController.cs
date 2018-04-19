@@ -30,6 +30,14 @@ namespace Admin.Controllers
 
             return View(model);
         }
+
+        public ActionResult Show(int id)
+        {
+            var imagedata = db.Authority.Where(x => x.Id == id).Single();
+
+            return File(imagedata.Logo, "image/jpg");
+        }
+
         [HttpPost, ActionName("DeleteAuthority")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
@@ -83,10 +91,31 @@ namespace Admin.Controllers
             ViewBag.Category = new SelectList(db.Category, "Id", "Name", id);
             return View(dbo.GetAuthority(id));
         }
+        //[HttpPost]
+        //public ActionResult EditAuthority(AuthorityVM authority, HttpPostedFileBase image1)
+        //{
+        //    if (image1 != null)
+        //    {
+        //        authority.Logo = new byte[image1.ContentLength];
+        //        image1.InputStream.Read(authority.Logo, 0, image1.ContentLength);
+        //    }
+
+        //    Authority a = new Authority
+        //    {
+        //        Id = authority.Id,
+        //        Logo = authority.Logo
+        //    };
+
+        //    db.Authority.Add(a);
+        //    db.SaveChanges();
+
+        //    return View(authority);
+
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAuthority(AuthorityVM authority)
+        public ActionResult EditAuthority(AuthorityVM authority, HttpPostedFileBase image1)
         {
             //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
             //{
@@ -94,12 +123,19 @@ namespace Admin.Controllers
             //    return RedirectToAction("Index", "Home");
             //}
 
-           Authority a = new Authority
+            if (image1 != null)
+            {
+                authority.Logo = new byte[image1.ContentLength];
+                image1.InputStream.Read(authority.Logo, 0, image1.ContentLength);
+            }
+
+            Authority a = new Authority
             {
                 Id = authority.Id,
                 Name = authority.Name,
-                Description = authority.Description,
+                Description = authority.Description.Trim(),
                 Category_Id = authority.Category_Id,
+                Logo = authority.Logo,
                 Address_Id = dbo.SetAddress(authority)
             };
 

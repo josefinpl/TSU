@@ -26,6 +26,7 @@ namespace Admin.Models.db
         public string Description { get; set; }
         public Nullable<int> Address_Id { get; set; }
         public Nullable<int> Category_Id { get; set; }
+        public byte[] Logo { get; set; }
     
         public virtual Address Address { get; set; }
         public virtual Category Category { get; set; }

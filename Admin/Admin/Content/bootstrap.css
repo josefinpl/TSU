@@ -162,9 +162,11 @@ button,
 input,
 select,
 textarea {
-  margin: 0;
-  font-family: inherit;
-  font-size: 100%;
+    margin: 0;
+    font-family: inherit;
+    width: 650px;
+    height: 65px;
+    font-size: 100%;
 }
 
 button,

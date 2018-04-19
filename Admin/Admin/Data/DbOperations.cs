@@ -60,6 +60,7 @@ namespace Admin.Data
 
         public int SetAddress(AuthorityVM model)
         {
+           
             Address a = new Address
             {
                 Address1 = model.StreetAddress,
@@ -68,9 +69,11 @@ namespace Admin.Data
             };
 
             bool exists = false;
-            foreach (var item in GetAllAddresses())
+            var addresses = GetAllAddresses();
+
+            foreach (var item in addresses)
             {
-                if (a.Address1.Trim() == item.Address1.Trim()
+               if (a.Address1.Trim() == item.Address1.Trim()
                     && a.Zipcode == item.Zipcode)
                 {
                     exists = true;
