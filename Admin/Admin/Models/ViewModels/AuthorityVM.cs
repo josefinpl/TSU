@@ -12,6 +12,7 @@ namespace Admin.Models.ViewModels
         public int Id { get; set; }
         [DisplayName("Namn")]
         public string Name { get; set; }
+        [DisplayName("Beskrivning")]
         public string Description { get; set; }
         public Nullable<int> Address_Id { get; set; }
         public Nullable<int> Category_Id { get; set; }
