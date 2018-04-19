@@ -12,51 +12,44 @@ namespace Admin.Data
     {
         private tusjoseEntities db = new tusjoseEntities();
 
-        public UserVM GetUser(int? id)
+        public AuthorityVM GetAuthority(int? id)
         {
-            var user = db.User.Where(x => x.Id == id).Select(x => new UserVM
+            var authority = db.Authority.Where(x => x.Id == id).Select(x => new AuthorityVM
             {
                 Id = x.Id,
-                Username = x.Username,
-                Password = x.Password,
-                Firstname = x.Firstname,
-                Lastname = x.Lastname,
-                Email = x.Email,
-                Number = x.Number,
-                Access_Id = x.Access_Id,
-                AccessName = x.Access.Name,
+                Name = x.Name,
+                Description = x.Description,
                 StreetAddress = x.Address.Address1,
                 Zipcode = x.Address.Zipcode,
                 City = x.Address.City,
+                CategoryName = x.Category.Name
             }).Single();
 
-            return user;
+            return authority;
         }
 
-        public void DeleteUser(int id)
+        public void DeleteAuthority(int id)
         {
-            var user = db.User.Where(x => x.Id == id).Single();
-            db.User.Remove(user);
+            var authority = db.Authority.Where(x => x.Id == id).Single();
+            db.Authority.Remove(authority);
 
             db.SaveChanges();
         }
 
-        public IEnumerable<UserVM> ListUsers()
+        public IEnumerable<AuthorityVM> ListAuthorities()
         {
-            var users = db.User.Include(u => u.Address).Select(x => new UserVM
+            var authorities = db.Authority.Include(u => u.Address).Include(u => u.Category).Select(x => new AuthorityVM
             {
                 Id = x.Id,
-                Username = x.Username,
-                Password = x.Password,
-                Firstname = x.Firstname,
-                Lastname = x.Lastname,
-                Email = x.Email,
+                Name = x.Name,
+                Description = x.Description,
+                CategoryName = x.Category.Name,
                 StreetAddress = x.Address.Address1,
                 Zipcode = x.Address.Zipcode,
                 City = x.Address.City
             }).ToList();
 
-            return users;
+            return authorities;
         }
 
         public IEnumerable<Address> GetAllAddresses()
@@ -65,7 +58,7 @@ namespace Admin.Data
             return allAddresses;
         }
 
-        public int SetAddress(UserVM model)
+        public int SetAddress(AuthorityVM model)
         {
             Address a = new Address
             {

@@ -19,18 +19,18 @@ namespace Admin.Controllers
         private tusjoseEntities db = new tusjoseEntities();
 
         // GET: Admin
-        public ActionResult ListUsers()
+        public ActionResult ListAuthorities()
         {
             //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
             //{
             //   Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
             //    return RedirectToAction("Index", "Home");
             //}
-            var model = dbo.ListUsers();
+            var model = dbo.ListAuthorities();
 
             return View(model);
         }
-        [HttpPost, ActionName("DeleteUser")]
+        [HttpPost, ActionName("DeleteAuthority")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
@@ -40,18 +40,18 @@ namespace Admin.Controllers
             //    return RedirectToAction("Index", "Home");
             //}
 
-            User user = db.User.Find(id);
-            if (user != null)
+            Authority authority = db.Authority.Find(id);
+            if (authority != null)
             {
-                dbo.DeleteUser(id);
+                dbo.DeleteAuthority(id);
 
-                Success(string.Format("<b>{0} {1}</b> har tagits bort.", user.Firstname, user.Lastname), true);
+                Success(string.Format("<b>{0}</b> har tagits bort.", authority.Name), true);
             }
 
-            return RedirectToAction("ListUsers");
+            return RedirectToAction("ListAuthorities");
         }
 
-        public ActionResult DeleteUser(int? id)
+        public ActionResult DeleteAuthority(int? id)
         {
             //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
             //{
@@ -61,13 +61,13 @@ namespace Admin.Controllers
 
             if (id != null)
             {
-                return PartialView(dbo.GetUser(id));
+                return PartialView(dbo.GetAuthority(id));
             }
             Danger("Något gick fel.", true);
-            return RedirectToAction("ListUsers");
+            return RedirectToAction("ListAuthorities");
         }
 
-        public ActionResult EditUser(int? id)
+        public ActionResult EditAuthority(int? id)
         {
             //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
             //{
@@ -80,13 +80,13 @@ namespace Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            ViewBag.AccessId = new SelectList(db.Access, "Id", "Name", id);
-            return View(dbo.GetUser(id));
+            ViewBag.Category = new SelectList(db.Category, "Id", "Name", id);
+            return View(dbo.GetAuthority(id));
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditUser(UserVM user)
+        public ActionResult EditAuthority(AuthorityVM authority)
         {
             //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
             //{
@@ -94,27 +94,24 @@ namespace Admin.Controllers
             //    return RedirectToAction("Index", "Home");
             //}
 
-           User u = new User
+           Authority a = new Authority
             {
-                Id = user.Id,
-                Username = user.Username,
-                Password = user.Password,
-                Firstname = user.Firstname,
-                Lastname = user.Lastname,
-                Email = user.Email,
-                Access_Id = user.Access_Id,
-                Address_Id = dbo.SetAddress(user)
+                Id = authority.Id,
+                Name = authority.Name,
+                Description = authority.Description,
+                Category_Id = authority.Category_Id,
+                Address_Id = dbo.SetAddress(authority)
             };
 
             if (ModelState.IsValid)
             {
-                db.Entry(u).State = EntityState.Modified;
+                db.Entry(a).State = EntityState.Modified;
                 db.SaveChanges();
-                Success(string.Format("<b>{0} {1}</b> har uppdaterats.", user.Firstname, user.Lastname), true);
-                return RedirectToAction("ListUsers");
+                Success(string.Format("<b>{0}</b> har uppdaterats.", authority.Name), true);
+                return RedirectToAction("ListAuthorities");
             }
-            ViewBag.AccessId = new SelectList(db.Access, "Id", "Name", u.Access_Id);
-            return View(user);
+            ViewBag.Category = new SelectList(db.Category, "Id", "Name", a.Category_Id);
+            return View(authority);
         }
     }
 }

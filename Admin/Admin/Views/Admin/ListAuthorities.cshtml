@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Admin.Models.ViewModels.UserVM>
+﻿@model IEnumerable<Admin.Models.ViewModels.AuthorityVM>
 
 @{
     ViewBag.Title = "Index";
@@ -11,9 +11,6 @@
             <tr>
                 <th scope="col">
                     Namn
-                </th>
-                <th scope="col">
-                    Email
                 </th>
                 <th scope="col">
                     Adress
@@ -32,10 +29,7 @@
             {
                 <tr>
                     <td class="table-row">
-                        @Html.DisplayFor(modelItem => item.Firstname) @Html.DisplayFor(modelItem => item.Lastname)
-                    </td>
-                    <td class="table-row">
-                        @Html.DisplayFor(modelItem => item.Email)
+                        @Html.DisplayFor(modelItem => item.Name) 
                     </td>
                     <td class="table-row">
                         @Html.DisplayFor(modelItem => item.StreetAddress)
@@ -47,8 +41,8 @@
                         @Html.DisplayFor(model => item.City)
                     </td>
                     <td class="table-row">
-                        @Html.ActionLink("Redigera", "EditUser", new { id = item.Id }) |
-                        <a href="#" onclick="DeleteUser(@item.Id)" id="deleteItem" class="deleteItem" data-id="@item.Id" data-target="#deleteDialog" data-toggle="modal" data-path="@Url.Action("Delete", "Admin", new { id = item.Id })">Ta bort</a>
+                        @Html.ActionLink("Redigera", "EditAuthority", new { id = item.Id }) |
+                        <a href="#" onclick="DeleteAuthority(@item.Id)" id="deleteItem" class="deleteItem" data-id="@item.Id" data-target="#deleteDialog" data-toggle="modal" data-path="@Url.Action("Delete", "Admin", new { id = item.Id })">Ta bort</a>
                     </td>
                 </tr>
             }
@@ -74,11 +68,11 @@
 </div>
 
 <script>
-    var DeleteUser = function (id) {
+    var DeleteAuthority = function (id) {
         $.ajax({
 
             type: "GET",
-            url: "/Admin/DeleteUser",
+            url: "/Admin/DeleteAuthority",
             data: { Id: id },
             success: function (response) {
                 $(".modal-body").html(response);
