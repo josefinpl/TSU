@@ -15,6 +15,7 @@ namespace Admin.Data
 
         public AuthorityVM GetAuthority(int? id)
         {
+
             var authority = db.Authority.Where(x => x.Id == id).Select(x => new AuthorityVM
             {
                 Id = x.Id,
@@ -25,7 +26,16 @@ namespace Admin.Data
                 Zipcode = x.Address.Zipcode,
                 City = x.Address.City,
                 Category_Id = x.Category_Id,
-                CategoryName = x.Category.Name
+                CategoryName = x.Category.Name,
+                Numbers = db.Number.Where(y => y.Authority_Id == x.Id).Select(number => new NumberVM
+                {
+                    Id = number.Id,
+                    Name = number.Name,
+                    Number1 = number.Number1,
+                    Authority_Id = number.Authority_Id
+
+                }
+                ).ToList()
             }).Single();
 
             return authority;
@@ -40,9 +50,20 @@ namespace Admin.Data
                 Description = authority.Description.Trim(),
                 Logo = authority.Logo,
                 Category_Id = authority.Category_Id,
-                Address_Id = SetAddress(authority)
+                Address_Id = SetAddress(authority)               
+                    
             };
-
+            if (authority.Number1.Name !=null)
+            {
+                Number number = new Number
+                {
+                    Name = authority.Number1.Name,
+                    Number1 = authority.Number1.Number1,
+                    Authority_Id = authority.Id
+                };
+                db.Number.Add(number);                               
+            }
+        
             if (image != null)
             {
                 authority.Logo = new byte[image.ContentLength];
@@ -53,11 +74,25 @@ namespace Admin.Data
                 db.Entry(a).State = EntityState.Modified;
                 db.SaveChanges();
         }
+        
 
         public void DeleteAuthority(int id)
         {
             var authority = db.Authority.Where(x => x.Id == id).Single();
             db.Authority.Remove(authority);
+
+            db.SaveChanges();
+        }
+        public void DeleteNumber(int id)
+        {
+            var number = db.Number.Where(x => x.Id == id).Single();
+            db.Number.Remove(number);
+
+            db.SaveChanges();
+        }
+        public void EditNumber(Number id)
+        {
+            db.Entry(id).State = EntityState.Modified;
 
             db.SaveChanges();
         }

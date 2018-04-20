@@ -11,9 +11,9 @@ namespace Hitta
 	{
 		public App ()
 		{
-			InitializeComponent();
+			//InitializeComponent();
 
-			MainPage = new Hitta.MainPage();
+			MainPage = new MainPage();
 		}
 
 		protected override void OnStart ()

@@ -39,9 +39,10 @@ namespace Admin.Models.ViewModels
         [Required(ErrorMessage = "Ange stad")]
         public string City { get; set; }
 
-        public string Number1 { get; set; }
-        public string Number2 { get; set; }
-        public string Number3 { get; set; }
+        public List<NumberVM> Numbers { get; set; }
+             
+      
+        public Number Number1 { get; set; }
 
         
     }

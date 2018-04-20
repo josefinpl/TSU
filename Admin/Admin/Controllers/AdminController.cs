@@ -63,7 +63,32 @@ namespace Admin.Controllers
 
             return RedirectToAction("ListAuthorities");
         }
+        public ActionResult EditNumber(int id,string name, string number, int authId)
+        {
+            Number n = new Number
+            {
+                Name = name,
+                Number1 = number,
+                Id = id,
+                Authority_Id = authId
+            };
 
+            dbo.EditNumber(n);                      
+           
+            return RedirectToAction("EditAuthority/" + authId);
+        }
+        public ActionResult DeleteNumber(int id, int authId)
+        {           
+
+            Number number = db.Number.Find(id);
+            if ( number!= null)
+            {
+                dbo.DeleteNumber(id);
+                            
+            }
+
+            return RedirectToAction("EditAuthority/"+authId);
+        }
         public ActionResult DeleteAuthority(int? id)
         {
             //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
@@ -92,7 +117,7 @@ namespace Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
+           
             ViewBag.Category = new SelectList(db.Category, "Id", "Name", id);
             return View(dbo.GetAuthority(id));
         }
