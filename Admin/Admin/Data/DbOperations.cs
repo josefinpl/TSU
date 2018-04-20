@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using Admin.Models.db;
+using System.Web.ModelBinding;
 
 namespace Admin.Data
 {
@@ -19,13 +20,38 @@ namespace Admin.Data
                 Id = x.Id,
                 Name = x.Name,
                 Description = x.Description,
+                Logo = x.Logo,
                 StreetAddress = x.Address.Address1,
                 Zipcode = x.Address.Zipcode,
                 City = x.Address.City,
+                Category_Id = x.Category_Id,
                 CategoryName = x.Category.Name
             }).Single();
 
             return authority;
+        }
+
+        public void EditAuthority(AuthorityVM authority, HttpPostedFileBase image)
+        {
+            Authority a = new Authority
+            {
+                Id = authority.Id,
+                Name = authority.Name,
+                Description = authority.Description.Trim(),
+                Logo = authority.Logo,
+                Category_Id = authority.Category_Id,
+                Address_Id = SetAddress(authority)
+            };
+
+            if (image != null)
+            {
+                authority.Logo = new byte[image.ContentLength];
+                image.InputStream.Read(authority.Logo, 0, image.ContentLength);
+                a.Logo = authority.Logo;
+            }
+
+                db.Entry(a).State = EntityState.Modified;
+                db.SaveChanges();
         }
 
         public void DeleteAuthority(int id)
@@ -44,6 +70,7 @@ namespace Admin.Data
                 Name = x.Name,
                 Description = x.Description,
                 CategoryName = x.Category.Name,
+                Logo = x.Logo,
                 StreetAddress = x.Address.Address1,
                 Zipcode = x.Address.Zipcode,
                 City = x.Address.City

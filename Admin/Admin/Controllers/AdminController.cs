@@ -35,7 +35,12 @@ namespace Admin.Controllers
         {
             var imagedata = db.Authority.Where(x => x.Id == id).Single();
 
-            return File(imagedata.Logo, "image/jpg");
+            if (imagedata.Logo != null)
+            {
+                return File(imagedata.Logo, "image/jpg");
+            }
+
+            return RedirectToAction("ListAuthorities");
         }
 
         [HttpPost, ActionName("DeleteAuthority")]
@@ -91,27 +96,6 @@ namespace Admin.Controllers
             ViewBag.Category = new SelectList(db.Category, "Id", "Name", id);
             return View(dbo.GetAuthority(id));
         }
-        //[HttpPost]
-        //public ActionResult EditAuthority(AuthorityVM authority, HttpPostedFileBase image1)
-        //{
-        //    if (image1 != null)
-        //    {
-        //        authority.Logo = new byte[image1.ContentLength];
-        //        image1.InputStream.Read(authority.Logo, 0, image1.ContentLength);
-        //    }
-
-        //    Authority a = new Authority
-        //    {
-        //        Id = authority.Id,
-        //        Logo = authority.Logo
-        //    };
-
-        //    db.Authority.Add(a);
-        //    db.SaveChanges();
-
-        //    return View(authority);
-
-        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -123,30 +107,16 @@ namespace Admin.Controllers
             //    return RedirectToAction("Index", "Home");
             //}
 
-            if (image1 != null)
-            {
-                authority.Logo = new byte[image1.ContentLength];
-                image1.InputStream.Read(authority.Logo, 0, image1.ContentLength);
-            }
-
-            Authority a = new Authority
-            {
-                Id = authority.Id,
-                Name = authority.Name,
-                Description = authority.Description.Trim(),
-                Category_Id = authority.Category_Id,
-                Logo = authority.Logo,
-                Address_Id = dbo.SetAddress(authority)
-            };
-
             if (ModelState.IsValid)
             {
-                db.Entry(a).State = EntityState.Modified;
-                db.SaveChanges();
+                dbo.EditAuthority(authority, image1);
+
                 Success(string.Format("<b>{0}</b> har uppdaterats.", authority.Name), true);
                 return RedirectToAction("ListAuthorities");
             }
-            ViewBag.Category = new SelectList(db.Category, "Id", "Name", a.Category_Id);
+
+            ViewBag.Category = new SelectList(db.Category, "Id", "Name", authority.Category_Id);
+
             return View(authority);
         }
     }
