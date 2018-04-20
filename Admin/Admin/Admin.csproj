@@ -167,12 +167,6 @@
     <Compile Include="Models\db\Authority.cs">
       <DependentUpon>datamodel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\db\AuthorityHour.cs">
-      <DependentUpon>datamodel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\db\AuthorityNumber.cs">
-      <DependentUpon>datamodel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\db\Category.cs">
       <DependentUpon>datamodel.tt</DependentUpon>
     </Compile>

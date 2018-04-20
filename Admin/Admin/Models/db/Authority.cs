@@ -17,8 +17,8 @@ namespace Admin.Models.db
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Authority()
         {
-            this.AuthorityHour = new HashSet<AuthorityHour>();
-            this.AuthorityNumber = new HashSet<AuthorityNumber>();
+            this.Hour = new HashSet<Hour>();
+            this.Number = new HashSet<Number>();
         }
     
         public int Id { get; set; }
@@ -31,8 +31,8 @@ namespace Admin.Models.db
         public virtual Address Address { get; set; }
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AuthorityHour> AuthorityHour { get; set; }
+        public virtual ICollection<Hour> Hour { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AuthorityNumber> AuthorityNumber { get; set; }
+        public virtual ICollection<Number> Number { get; set; }
     }
 }

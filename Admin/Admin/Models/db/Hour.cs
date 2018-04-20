@@ -14,17 +14,12 @@ namespace Admin.Models.db
     
     public partial class Hour
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Hour()
-        {
-            this.AuthorityHour = new HashSet<AuthorityHour>();
-        }
-    
         public int Id { get; set; }
         public Nullable<System.TimeSpan> Open { get; set; }
         public Nullable<System.TimeSpan> Close { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> Authority_Id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AuthorityHour> AuthorityHour { get; set; }
+        public virtual Authority Authority { get; set; }
     }
 }

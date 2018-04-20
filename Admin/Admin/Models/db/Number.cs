@@ -14,16 +14,11 @@ namespace Admin.Models.db
     
     public partial class Number
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Number()
-        {
-            this.AuthorityNumber = new HashSet<AuthorityNumber>();
-        }
-    
         public int Id { get; set; }
         public string Number1 { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> Authority_Id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AuthorityNumber> AuthorityNumber { get; set; }
+        public virtual Authority Authority { get; set; }
     }
 }

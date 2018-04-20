@@ -28,8 +28,6 @@ namespace Admin.Models.db
         public virtual DbSet<Access> Access { get; set; }
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Authority> Authority { get; set; }
-        public virtual DbSet<AuthorityHour> AuthorityHour { get; set; }
-        public virtual DbSet<AuthorityNumber> AuthorityNumber { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Hour> Hour { get; set; }
         public virtual DbSet<Number> Number { get; set; }
