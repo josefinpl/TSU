@@ -195,6 +195,7 @@
       <DependentUpon>datamodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\AuthorityVM.cs" />
+    <Compile Include="Models\ViewModels\HourVM.cs" />
     <Compile Include="Models\ViewModels\NumberVM.cs" />
     <Compile Include="Models\ViewModels\UserVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -258,6 +259,7 @@
     <Content Include="Views\Admin\DeleteAuthority.cshtml" />
     <Content Include="Views\Admin\EditAuthority.cshtml" />
     <Content Include="Views\Admin\EditNumber.cshtml" />
+    <Content Include="Views\Admin\EditHour.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

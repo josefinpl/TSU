@@ -40,9 +40,10 @@ namespace Admin.Models.ViewModels
         public string City { get; set; }
 
         public List<NumberVM> Numbers { get; set; }
-             
+        public List<HourVM> Hours { get; set; }
       
-        public Number Number1 { get; set; }
+        public Number Number { get; set; }
+        public Hour Hour { get; set; }
 
         
     }

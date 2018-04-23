@@ -35,7 +35,15 @@ namespace Admin.Data
                     Authority_Id = number.Authority_Id
 
                 }
-                ).ToList()
+                ).ToList(),
+                Hours = db.Hour.Where(h => h.Authority_Id == x.Id).Select(hour => new HourVM
+                {
+                    Id = hour.Id,
+                    Open = hour.Open,
+                    Close = hour.Close,
+                    Name = hour.Name,
+                    Authority_Id = hour.Authority_Id
+                }).ToList()
             }).Single();
 
             return authority;
@@ -53,17 +61,30 @@ namespace Admin.Data
                 Address_Id = SetAddress(authority)               
                     
             };
-            if (authority.Number1.Name !=null)
+
+            if (authority.Number.Name !=null)
             {
                 Number number = new Number
                 {
-                    Name = authority.Number1.Name,
-                    Number1 = authority.Number1.Number1,
+                    Name = authority.Number.Name,
+                    Number1 = authority.Number.Number1,
                     Authority_Id = authority.Id
                 };
                 db.Number.Add(number);                               
             }
-        
+
+            if (authority.Hour.Name != null)
+            {
+                Hour hour = new Hour
+                {
+                    Name = authority.Hour.Name,
+                    Open = authority.Hour.Open,
+                    Close = authority.Hour.Close,
+                    Authority_Id = authority.Id
+                };
+                db.Hour.Add(hour);
+            }
+
             if (image != null)
             {
                 authority.Logo = new byte[image.ContentLength];
@@ -108,6 +129,36 @@ namespace Admin.Data
         public void EditNumber(Number n)
         {
             db.Entry(n).State = EntityState.Modified;
+
+            db.SaveChanges();
+        }
+
+        public HourVM GetHour(int? id)
+        {
+            var hour = db.Hour.Where(x => x.Id == id).Select(x => new HourVM
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Open = x.Open,
+                Close = x.Close,
+                Authority_Id = x.Authority_Id
+
+            }).FirstOrDefault();
+
+            return hour;
+        }
+
+        public void EditHour(Hour hour)
+        {
+            db.Entry(hour).State = EntityState.Modified;
+
+            db.SaveChanges();
+        }
+
+        public void DeleteHour(int id)
+        {
+            var hour = db.Hour.Where(x => x.Id == id).Single();
+            db.Hour.Remove(hour);
 
             db.SaveChanges();
         }

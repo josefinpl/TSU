@@ -14,122 +14,168 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
+    <div class="form-horizontal">
 
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-            <div class="row">
-                <div class="form-group col-md-6">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
 
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group col-md-6">
-                    @Html.LabelFor(model => model.Category_Id, "Kategori", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Category_Id, "Kategori", htmlAttributes: new { @class = "control-label" })
 
-                    @Html.DropDownList("Category_Id", new SelectList(ViewBag.Category, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Category_Id, "", new { @class = "text-danger" })
-                </div>
+                @Html.DropDownList("Category_Id", new SelectList(ViewBag.Category, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Category_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                <br />
+                @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" }, style = "width:500px; height:200px" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.StreetAddress, "Gatuadress", htmlAttributes: new { @class = "control-label" })
+
+                @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
             </div>
 
-            <div class="row">
-                <div class="form-group col-md-12">
-                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
-                    <br />
-                    @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" }, style = "width:500px; height:200px" })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Zipcode, "Postnummer", htmlAttributes: new { @class = "control-label" })
+
+                @Html.EditorFor(model => model.Zipcode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Zipcode, "", new { @class = "text-danger" })
             </div>
 
-            <br />
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.City, "Stad", htmlAttributes: new { @class = "control-label" })
 
-            @Html.HiddenFor(model => model.Logo)
-
-            <div class="row">
-                <div class="form-group col-md-6">
-                    @Html.Label("Nuvarande bild:")<br /><br />
-                    <img src="@Url.Action("Show", "Admin", new { id = Model.Id } )" width="100" height="100" />
-                </div>
-
-                <div class="form-group col-md-6">
-                    @Html.Label("Ladda upp ny bild:")<br /><br />
-                    <img id="blah" src="#" /><br /><br />
-                    <input type="file" value="Ladda upp bild" name="image1" id="image1" onchange="readURL(this)" />
-
-                </div>
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
             </div>
-            <br />
-            <div class="row">
+        </div>
+        <hr />
 
-                @Html.Label("Telefonnummer")<br />
+        @Html.HiddenFor(model => model.Logo)
 
-                @foreach (var number in Model.Numbers)
-                {
-                    <div class="form-group col-md-4">
-
-                        @Html.EditorFor(model => number.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Beskrivning" } })
-
-                        @Html.EditorFor(model => number.Number1, new { htmlAttributes = new { @class = "form-control", @placeholder = "Telefonnummer" } })
-                        @Html.ValidationMessageFor(model => number.Number1, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => number.Id)
-
-                        <a href="#" onclick="EditNumber(@number.Id)" id="deleteItem" class="deleteItem" data-id="@number.Id" data-target="#editDialog" data-toggle="modal" data-path="@Url.Action("Edit", "Admin", new { id = number.Id, authid = number.Authority_Id })">Ändra nummer/beskrivning</a>
-                        <br />
-                        <a href="@Url.Action("DeleteNumber", "Admin", new { id = number.Id, authId = number.Authority_Id })" style="color:red">Ta bort nummer</a>
-
-                    </div>
-                }
-
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.Label("Nuvarande bild:")<br /><br />
+                <img src="@Url.Action("Show", "Admin", new { id = Model.Id } )" width="100" height="100" />
             </div>
 
-            <div class="row">
-                <div class="form-group col-md-4">
-                    @Html.Label("Lägg till nytt nummer:")
-                    <br />
+            <div class="form-group col-md-6">
+                @Html.Label("Ladda upp ny bild:")<br /><br />
+                <img id="blah" src="#" /><br /><br />
+                <input type="file" value="Ladda upp bild" name="image1" id="image1" onchange="readURL(this)" />
 
-                    @Html.EditorFor(model => model.Number1.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Beskrivning" } })
-
-                    @Html.EditorFor(model => model.Number1.Number1, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nytt Telefonnummer" } })
-                    @Html.ValidationMessageFor(model => model.Number1, "", new { @class = "text-danger" })
-                </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(model => model.StreetAddress, "Gatuadress", htmlAttributes: new { @class = "control-label" })
+        <hr />
 
-                    @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
-                </div>
+        <div class="row">
 
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(model => model.Zipcode, "Postnummer", htmlAttributes: new { @class = "control-label" })
+            @Html.Label("Öppettider:")<br /><br />
 
-                    @Html.EditorFor(model => model.Zipcode, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Zipcode, "", new { @class = "text-danger" })
-                </div>
+            @foreach (var hour in Model.Hours)
+        {
+            @Html.HiddenFor(model => hour.Id)
 
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(model => model.City, "Stad", htmlAttributes: new { @class = "control-label" })
+            <div class="form-group col-md-4">
+                <b>@Html.DisplayNameFor(model => hour.Name)</b> <br />
+                @Html.DisplayFor(model => hour.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Beskrivning" } })
+                <br />
+                <b>@Html.Label("Öppettid")</b> <br />
+                <p>
+                    @Html.DisplayFor(model => hour.Open, new { htmlAttributes = new { @class = "form-control", @placeholder = "Öppnar" } })
+                    -
+                    @Html.DisplayFor(model => hour.Close, new { htmlAttributes = new { @class = "form-control", @placeholder = "Stänger" } })
+                </p>
+                <a href="#" onclick="EditHour(@hour.Id)" id="deleteItem" class="deleteItem" data-id="@hour.Id" data-target="#editHDialog" data-toggle="modal" data-path="@Url.Action("Edit", "Admin", new { id = hour.Id, authid = hour.Authority_Id })">Ändra öppettid/beskrivning</a>
+                <br />
+                <a href="@Url.Action("DeleteHour", "Admin", new { id = hour.Id, authId = hour.Authority_Id })" style="color:red">Ta bort öppettid</a>
 
-                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
-                </div>
             </div>
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <input type="submit" value="Uppdatera" class="btn btn-success" />
-                </div>
-            </div>
+    }
 
         </div>
+        <br />
+        <div class="row">
+            <div class="form-group col-md-12">
+                @Html.Label("Lägg till ny öppettid:")
+                <br />
+
+                @Html.EditorFor(model => model.Hour.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Beskrivning" } })
+                <br />
+                @Html.EditorFor(model => model.Hour.Open, new { htmlAttributes = new { @class = "form-control", @placeholder = "Öppnar" } })
+                @Html.ValidationMessageFor(model => model.Hour.Open, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Hour.Close, new { htmlAttributes = new { @class = "form-control", @placeholder = "Stänger" } })
+                @Html.ValidationMessageFor(model => model.Hour.Close, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+
+            @Html.Label("Telefonnummer:")<br />
+
+            @foreach (var number in Model.Numbers)
+        {
+            @Html.HiddenFor(model => number.Id)
+
+            <div class="form-group col-md-4">
+
+                <b>@Html.DisplayNameFor(model => number.Name)</b> <br />
+                @Html.DisplayFor(model => number.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Beskrivning" } })
+                <br />
+                <b>@Html.DisplayNameFor(model => number.Number1)</b> <br />
+                @Html.DisplayFor(model => number.Number1, new { htmlAttributes = new { @class = "form-control", @placeholder = "Öppnar" } })
+                <br />
+                <a href="#" onclick="EditNumber(@number.Id)" id="deleteItem" class="deleteItem" data-id="@number.Id" data-target="#editDialog" data-toggle="modal" data-path="@Url.Action("Edit", "Admin", new { id = number.Id, authid = number.Authority_Id })">Ändra nummer/beskrivning</a>
+                <br />
+                <a href="@Url.Action("DeleteNumber", "Admin", new { id = number.Id, authId = number.Authority_Id })" style="color:red">Ta bort nummer</a>
+
+            </div>
+    }
+
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.Label("Lägg till nytt nummer:")
+                <br />
+
+                @Html.EditorFor(model => model.Number.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Beskrivning" } })
+
+                @Html.EditorFor(model => model.Number.Number1, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nytt Telefonnummer" } })
+                @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="form-group col-md-12">
+                <input type="submit" value="Uppdatera" class="btn btn-success" />
+            </div>
+        </div>
+
+    </div>
 
     }
 
     <div>
         <hr />
-        @Html.ActionLink("Återgå till användarlistan", "ListAuthorities")
+        @Html.ActionLink("Återgå till listan av aktörer", "ListAuthorities")
     </div>
 
     <div class="modal fade" id="editDialog" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
@@ -137,6 +183,22 @@
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="deleteLabel">Redigera nummer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editHDialog" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="deleteLabel">Redigera öppettid</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="text-white">×</span>
                     </button>
@@ -176,6 +238,19 @@
             success: function (response) {
                 $(".modal-body").html(response);
                 $("#editDialog").modal("show");
+            }
+        });
+    };
+
+    var EditHour = function (id) {
+        $.ajax({
+
+            type: "GET",
+            url: "/Admin/EditHour",
+            data: { Id: id },
+            success: function (response) {
+                $(".modal-body").html(response);
+                $("#editHDialog").modal("show");
             }
         });
     };

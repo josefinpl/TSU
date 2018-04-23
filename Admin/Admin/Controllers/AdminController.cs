@@ -42,6 +42,8 @@ namespace Admin.Controllers
 
             return RedirectToAction("ListAuthorities");
         }
+
+        #region Redigera/Ta bort nummer
         [HttpPost, ActionName("EditNumber")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Number nr)
@@ -80,6 +82,49 @@ namespace Admin.Controllers
 
             return RedirectToAction("EditAuthority/"+authId);
         }
+        #endregion
+
+        #region Redigera/Ta bort öppettider
+        [HttpPost, ActionName("EditHour")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Hour hour)
+        {
+            if (hour != null)
+            {
+                dbo.EditHour(hour);
+
+            }
+
+            return RedirectToAction("EditAuthority/" + hour.Authority_Id);
+        }
+
+        public ActionResult EditHour(int? id, int? authId)
+        {
+            if (id != null)
+            {
+                var hour = dbo.GetHour(id);
+
+                return PartialView(hour);
+            }
+
+            Danger("Något gick fel.", true);
+            return RedirectToAction("EditAuthority/" + authId);
+
+        }
+        public ActionResult DeleteHour(int id, int authId)
+        {
+
+            Hour hour = db.Hour.Find(id);
+            if (hour != null)
+            {
+                dbo.DeleteHour(id);
+
+            }
+
+            return RedirectToAction("EditAuthority/" + authId);
+        }
+
+        #endregion
 
         [HttpPost, ActionName("DeleteAuthority")]
         [ValidateAntiForgeryToken]

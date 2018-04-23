@@ -14,7 +14,7 @@ namespace Admin.Models.ViewModels
         [DisplayName("Nummer")]
         public string Number1 { get; set; }
 
-        [DisplayName("Namn")]
+        [DisplayName("Beskrivning")]
         public string Name { get; set; }
 
         public int? Authority_Id { get; set; }
