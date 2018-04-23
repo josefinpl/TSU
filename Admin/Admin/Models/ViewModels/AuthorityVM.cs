@@ -43,8 +43,7 @@ namespace Admin.Models.ViewModels
         public List<HourVM> Hours { get; set; }
       
         public Number Number { get; set; }
-        public Hour Hour { get; set; }
+        public HourVM Hour { get; set; }
 
-        
     }
 }

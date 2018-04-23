@@ -43,7 +43,106 @@ namespace Admin.Controllers
             return RedirectToAction("ListAuthorities");
         }
 
+        public ActionResult AddAuthority()
+        {
+            //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            //{
+            //    Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+            //    return RedirectToAction("Index", "Home");
+            //}
+            //else
+            //{
+               ViewBag.Category = new SelectList(db.Category, "Id", "Name");
+               return View();
+            //}
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("SetAuthority")]
+        public ActionResult AddAuthority(AuthorityVM model, string saveAuthority)
+        {
+            //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            //{
+            //    Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+            //    return RedirectToAction("Index", "Home");
+            //}
+            //else
+            //{
+
+                //if (ModelState.IsValid)
+                //{
+
+                var id = dbo.SetAuthority(model);
+
+                return RedirectToAction("EditAuthority/" + id, "Admin");
+
+                    //if (saveUser.Equals("Spara användare"))
+                    //{
+                    //    return RedirectToAction("ListUsers", "Admin");
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToAction("EditUser/" + u.Id, "Admin");
+                    //}
+
+                //}
+                //else
+                //{
+                //    Danger("Alla fält måste fyllas i!");
+                //    return View(model);
+                //}
+
+            //}
+        }
+
+        public ActionResult AddElements(int? id)
+        {
+            var model = dbo.GetAuthority(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("SetElements")]
+        public ActionResult AddElements(AuthorityVM model, HttpPostedFileBase image1)
+        {
+            dbo.SetLogo(model, image1);
+            
+            return RedirectToAction("ListAuthorities");
+        }
+
         #region Redigera/Ta bort nummer
+        [HttpPost, ActionName("AddNumber")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(NumberVM number)
+        {
+            if (number != null)
+            {
+                dbo.SetNumber(number);
+
+            }
+
+            return RedirectToAction("AddElements/" + number.Authority_Id);
+        }
+
+        public ActionResult AddNumber(int? id)
+        {
+            if (id != null)
+            {
+                NumberVM number = new NumberVM
+                {
+                    Authority_Id = id
+                };
+
+                return PartialView(number);
+            }
+
+            Danger("Något gick fel.", true);
+            return RedirectToAction("AddElements/" + id);
+
+        }
+
         [HttpPost, ActionName("EditNumber")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Number nr)
@@ -84,7 +183,36 @@ namespace Admin.Controllers
         }
         #endregion
 
-        #region Redigera/Ta bort öppettider
+        #region Lägg till/Redigera/Ta bort öppettider
+        [HttpPost, ActionName("AddHour")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(HourVM hour)
+        {
+            if (hour != null)
+            {
+                dbo.SetHour(hour);
+
+            }
+
+            return RedirectToAction("AddElements/" + hour.Authority_Id);
+        }
+
+        public ActionResult AddHour(int? id)
+        {
+            if (id != null)
+            {
+                HourVM hour = new HourVM
+                {
+                    Authority_Id = id
+                };
+
+                return PartialView(hour);
+            }
+
+            Danger("Något gick fel.", true);
+            return RedirectToAction("AddElements/" + id);
+
+        }
         [HttpPost, ActionName("EditHour")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Hour hour)

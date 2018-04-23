@@ -49,6 +49,22 @@ namespace Admin.Data
             return authority;
         }
 
+        public int SetAuthority(AuthorityVM model)
+        {
+            Authority a = new Authority
+            {
+                Name = model.Name,
+                Description = model.Description,
+                Category_Id = model.Category_Id,
+                Address_Id = SetAddress(model)
+            };
+
+            db.Authority.Add(a);
+            db.SaveChanges();
+
+            return a.Id;
+        }
+
         public void EditAuthority(AuthorityVM authority, HttpPostedFileBase image)
         {
             Authority a = new Authority
@@ -105,6 +121,21 @@ namespace Admin.Data
             db.SaveChanges();
         }
 
+        public void SetLogo(AuthorityVM authority, HttpPostedFileBase image)
+        {
+            var a = db.Authority.Where(x => x.Id == authority.Id).FirstOrDefault();
+
+            if (image != null)
+            {
+                authority.Logo = new byte[image.ContentLength];
+                image.InputStream.Read(authority.Logo, 0, image.ContentLength);
+                a.Logo = authority.Logo;
+            }
+
+            db.Entry(a).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
         public NumberVM GetNumber(int? id)
         {
             var number = db.Number.Where(x => x.Id == id).Select(x => new NumberVM
@@ -117,6 +148,20 @@ namespace Admin.Data
             }).FirstOrDefault();
 
             return number;
+        }
+
+        public void SetNumber(NumberVM model)
+        {
+            Number number = new Number
+            {
+                Name = model.Name,
+                Number1 = model.Number1,
+                Authority_Id = model.Authority_Id
+            };
+
+            db.Number.Add(number);
+            db.SaveChanges();
+
         }
 
         public void DeleteNumber(int id)
@@ -146,6 +191,20 @@ namespace Admin.Data
             }).FirstOrDefault();
 
             return hour;
+        }
+
+        public void SetHour(HourVM model)
+        {
+            Hour h = new Hour
+            {
+                Name = model.Name,
+                Open = model.Open,
+                Close = model.Close,
+                Authority_Id = model.Authority_Id
+            };
+
+            db.Hour.Add(h);
+            db.SaveChanges();
         }
 
         public void EditHour(Hour hour)

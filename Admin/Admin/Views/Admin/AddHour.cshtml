@@ -1,6 +1,6 @@
 ﻿@model Admin.Models.ViewModels.HourVM
 @{
-    ViewBag.Title = "Ändra öppettid";
+    ViewBag.Title = "Lägg till öppettid";
 }
 
 <div class="container">
@@ -11,7 +11,6 @@
             @Html.AntiForgeryToken()
 
             <hr />
-            @Html.HiddenFor(model => model.Id)
             @Html.HiddenFor(model => model.Authority_Id)
             <dl class="dl-horizontal">
                 <dt>
@@ -19,30 +18,31 @@
                 </dt>
 
                 <dd>
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Beskrivning" } })
                 </dd>
                 <dt>
                     @Html.LabelFor(model => model.Open, new { htmlAttributes = new { @class = "control-label" } })
                 </dt>
 
                 <dd>
-                    @Html.EditorFor(model => model.Open, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Open, new { htmlAttributes = new { @class = "form-control", @placeholder = "Öppnar" } })
                 </dd>
                 <dt>
                     @Html.LabelFor(model => model.Close, new { htmlAttributes = new { @class = "control-label" } })
                 </dt>
 
                 <dd>
-                    @Html.EditorFor(model => model.Close, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Close, new { htmlAttributes = new { @class = "form-control", @placeholder = "Stänger" } })
                 </dd>
 
             </dl>
 
 
             <div class="form-actions no-color">
-                    <input type="submit" value="Ändra" id="#changeButton" class="btn btn-success" />
-                    <button type="button" class="btn btn-secondary" id="closeButton" data-dismiss="modal">Stäng</button>
+                <input type="submit" value="Lägg till" id="#changeButton" class="btn btn-success" />
+                <button type="button" class="btn btn-secondary" id="closeButton" data-dismiss="modal">Stäng</button>
             </div>
         }
     </div>
 </div>
+

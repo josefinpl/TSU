@@ -1,82 +1,22 @@
 ﻿@model Admin.Models.ViewModels.AuthorityVM
-
 @{
-    ViewBag.Title = "Uppdatera aktör";
+    ViewBag.Title = "AddElements";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Current = "Edit";
 }
-
 <div class="container">
+
     <hr />
-    <span id="create-info">Redigerar @Model.Name</span>
+    <h2>Lägg till attribut</h2>
     <hr />
 
-    @using (Html.BeginForm("EditAuthority", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (@Html.BeginForm("SetElements", "Admin", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-
         <div class="form-horizontal">
 
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
             <div class="row">
                 <div class="form-group col-md-6">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group col-md-6">
-                    @Html.LabelFor(model => model.Category_Id, "Kategori", htmlAttributes: new { @class = "control-label" })
-
-                    @Html.DropDownList("Category_Id", new SelectList(ViewBag.Category, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Category_Id, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-12">
-                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
-                    <br />
-                    @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" }, style = "width:500px; height:200px" })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(model => model.StreetAddress, "Gatuadress", htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(model => model.Zipcode, "Postnummer", htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.Zipcode, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Zipcode, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(model => model.City, "Stad", htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <hr />
-
-            @Html.HiddenFor(model => model.Logo)
-
-            <div class="row">
-                <div class="form-group col-md-6">
-                    @Html.Label("Nuvarande bild:")<br /><br />
-                    <img src="@Url.Action("Show", "Admin", new { id = Model.Id } )" width="100" height="100" />
-                </div>
-
-                <div class="form-group col-md-6">
-                    @Html.Label("Ladda upp ny bild:")<br /><br />
+                    @Html.Label("Ladda upp bild:")<br /><br />
                     <img id="blah" src="#" /><br /><br />
                     <input type="file" value="Ladda upp bild" name="image1" id="image1" onchange="readURL(this)" />
 
@@ -84,6 +24,15 @@
             </div>
 
             <hr />
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    @Html.Label("Lägg till ny öppettid:")
+                    <br />
+                    <a href="#" onclick="AddHour(@Model.Id)" id="deleteItem" class="deleteItem" data-id="@Model.Id" data-target="#addDialog" data-toggle="modal" data-path="@Url.Action("Add", "Admin", new { id = Model.Id })">Tryck för att lägga till ny öppettid</a>
+
+                </div>
+            </div>
             @if (Model.Hours != null)
             {
                 <div class="row">
@@ -112,23 +61,20 @@
                     }
 
                 </div>
-                <br />
+
             }
 
+            <hr />
             <div class="row">
-                <div class="form-group col-md-12">
-                    @Html.Label("Lägg till ny öppettid:")
+                <div class="form-group col-md-4">
+                    @Html.Label("Lägg till nytt nummer:")
                     <br />
 
-                    @Html.EditorFor(model => model.Hour.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Beskrivning" } })
-                    <br />
-                    @Html.EditorFor(model => model.Hour.Open, new { htmlAttributes = new { @class = "form-control", @placeholder = "Öppnar" } })
-                    @Html.ValidationMessageFor(model => model.Hour.Open, "", new { @class = "text-danger" })
-                    @Html.EditorFor(model => model.Hour.Close, new { htmlAttributes = new { @class = "form-control", @placeholder = "Stänger" } })
-                    @Html.ValidationMessageFor(model => model.Hour.Close, "", new { @class = "text-danger" })
+                    <a href="#" onclick="AddNumber(@Model.Id)" id="deleteItem" class="deleteItem" data-id="@Model.Id" data-target="#addDialog" data-toggle="modal" data-path="@Url.Action("Add", "Admin", new { id = Model.Id })">Tryck för att lägga till ny öppettid</a>
+
                 </div>
             </div>
-            <hr />
+            <br />
             @if (Model.Numbers != null)
             {
                 <div class="row">
@@ -155,20 +101,8 @@
                     }
 
                 </div>
-                <br />
             }
 
-            <div class="row">
-                <div class="form-group col-md-4">
-                    @Html.Label("Lägg till nytt nummer:")
-                    <br />
-
-                    @Html.EditorFor(model => model.Number.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Beskrivning" } })
-
-                    @Html.EditorFor(model => model.Number.Number1, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nytt Telefonnummer" } })
-                    @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
             <br />
             <div class="row">
@@ -192,6 +126,20 @@
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="deleteLabel">Redigera</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addDialog" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="deleteLabel">Lägg till</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -238,10 +186,37 @@
             data: { Id: id },
             success: function (response) {
                 $(".modal-body").html(response);
-                $("#editDialog").modal("show");
+                $("#editHDialog").modal("show");
             }
         });
     };
 
+    var AddHour = function (id) {
+        $.ajax({
+
+            type: "GET",
+            url: "/Admin/AddHour",
+            data: { Id: id },
+            success: function (response) {
+                $(".modal-body").html(response);
+                $("#addDialog").modal("show");
+            }
+        });
+    };
+
+    var AddHour = function (id) {
+        $.ajax({
+
+            type: "GET",
+            url: "/Admin/AddNumber",
+            data: { Id: id },
+            success: function (response) {
+                $(".modal-body").html(response);
+                $("#addDialog").modal("show");
+            }
+        });
+    };
 
 </script>
+
+

@@ -261,6 +261,10 @@
     <Content Include="Views\Admin\EditAuthority.cshtml" />
     <Content Include="Views\Admin\EditNumber.cshtml" />
     <Content Include="Views\Admin\EditHour.cshtml" />
+    <Content Include="Views\Admin\AddAuthority.cshtml" />
+    <Content Include="Views\Admin\AddElements.cshtml" />
+    <Content Include="Views\Admin\AddHour.cshtml" />
+    <Content Include="Views\Admin\AddNumber.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
