@@ -42,6 +42,44 @@ namespace Admin.Controllers
 
             return RedirectToAction("ListAuthorities");
         }
+        [HttpPost, ActionName("EditNumber")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Number nr)
+        {
+            if (nr != null)
+            {
+                dbo.EditNumber(nr);
+
+            }
+
+            return RedirectToAction("EditAuthority/" + nr.Authority_Id);
+        }
+
+        public ActionResult EditNumber(int? id, int? authId)
+        {
+            if (id != null)
+            {
+                var number = dbo.GetNumber(id);
+
+                return PartialView(number);
+            }
+
+            Danger("Något gick fel.", true);
+            return RedirectToAction("EditAuthority/" + authId);
+
+        }
+        public ActionResult DeleteNumber(int id, int authId)
+        {           
+
+            Number number = db.Number.Find(id);
+            if ( number!= null)
+            {
+                dbo.DeleteNumber(id);
+                            
+            }
+
+            return RedirectToAction("EditAuthority/"+authId);
+        }
 
         [HttpPost, ActionName("DeleteAuthority")]
         [ValidateAntiForgeryToken]
@@ -63,32 +101,7 @@ namespace Admin.Controllers
 
             return RedirectToAction("ListAuthorities");
         }
-        public ActionResult EditNumber(int id,string name, string number, int authId)
-        {
-            Number n = new Number
-            {
-                Name = name,
-                Number1 = number,
-                Id = id,
-                Authority_Id = authId
-            };
 
-            dbo.EditNumber(n);                      
-           
-            return RedirectToAction("EditAuthority/" + authId);
-        }
-        public ActionResult DeleteNumber(int id, int authId)
-        {           
-
-            Number number = db.Number.Find(id);
-            if ( number!= null)
-            {
-                dbo.DeleteNumber(id);
-                            
-            }
-
-            return RedirectToAction("EditAuthority/"+authId);
-        }
         public ActionResult DeleteAuthority(int? id)
         {
             //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)

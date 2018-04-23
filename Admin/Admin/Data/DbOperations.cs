@@ -83,6 +83,21 @@ namespace Admin.Data
 
             db.SaveChanges();
         }
+
+        public NumberVM GetNumber(int? id)
+        {
+            var number = db.Number.Where(x => x.Id == id).Select(x => new NumberVM
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Number1 = x.Number1,
+                Authority_Id = x.Authority_Id
+
+            }).FirstOrDefault();
+
+            return number;
+        }
+
         public void DeleteNumber(int id)
         {
             var number = db.Number.Where(x => x.Id == id).Single();
@@ -90,9 +105,9 @@ namespace Admin.Data
 
             db.SaveChanges();
         }
-        public void EditNumber(Number id)
+        public void EditNumber(Number n)
         {
-            db.Entry(id).State = EntityState.Modified;
+            db.Entry(n).State = EntityState.Modified;
 
             db.SaveChanges();
         }
