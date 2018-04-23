@@ -5,8 +5,7 @@
 
 <div class="container">
 
-    <h5>Redigera nummer och/eller beskrivning:</h5>
-
+   
     <div>
         @using (Html.BeginForm())
         {
@@ -35,8 +34,8 @@
 
 
             <div class="form-actions no-color">
-                <input type="submit" value="Ändra" class="btn btn-danger" />
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+                <input type="submit" value="Ändra" id="changeButton"class="btn btn-success" />
+                <button type="button" class="btn btn-secondary" id="closeButton" data-dismiss="modal">Stäng</button>
             </div>
         }
     </div>
