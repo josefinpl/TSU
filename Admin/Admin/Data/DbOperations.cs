@@ -112,35 +112,14 @@ namespace Admin.Data
                 db.Entry(a).State = EntityState.Modified;
                 db.SaveChanges();
         }
-        //Finns user i databas
-        public bool UserCheck (string username, string password)
+   
+        public User LoginCheck(User user)
         {
-            var user = db.User.Where(x => x.Username == username && x.Password == password);
-            if (user.Any())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public User GetUsernamePass(string username, string password)
-        {
-            var result = db.User.FirstOrDefault(i => i.Username == username && i.Password == password);
-            return result;
+            var usr = db.User.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
+
+            return usr;
         }
 
-        public Access GetAccess(User u)
-        {
-            var result = db.Access.FirstOrDefault(i => i.Id == u.Access_Id);
-            return result;
-        }
-        public bool CheckUserRole(string username, string rname)
-        {
-            var role = db.User.Where(x => x.Username.Equals(username)).Include(x => x.Access.Name).Where(x => x.Access.Name.Equals(rname));
-            return role.Any();
-        }
         public void DeleteAuthority(int id)
         {
             var authority = db.Authority.Where(x => x.Id == id).Single();

@@ -19,14 +19,25 @@
                 </button>
                 @Html.ActionLink("Start", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+            @if (Session["Id"] != null)
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Logga ut", "Logout", "Home")</li>
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
 
-                    <li>@Html.ActionLink("Logga in", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Logga ut", "Logout", "Home")</li>
-                    @User.Identity.Name
-                </ul>
-            </div>
+                        <li>@Html.ActionLink("Logga in", "Index", "Home")</li>
+
+                    </ul>
+                </div>
+            }
+
         </div>
     </div>
     <div class="container body-content">

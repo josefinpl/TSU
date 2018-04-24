@@ -10,11 +10,9 @@ using System.Data.Entity;
 using Admin.Models.db;
 using Admin.Data;
 using Admin.Models.ViewModels;
-using Admin.Authentication;
 
 namespace Admin.Controllers
 {
-    [AuthenticationRole("Admin")]
     public class AdminController : BaseController
     {
         private DbOperations dbo = new DbOperations();
@@ -23,11 +21,11 @@ namespace Admin.Controllers
         // GET: Admin
         public ActionResult ListAuthorities()
         {
-            //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
-            //{
-            //   Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
-            //    return RedirectToAction("Index", "Home");
-            //}
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
             var model = dbo.ListAuthorities();
 
             return View(model);
@@ -47,16 +45,16 @@ namespace Admin.Controllers
 
         public ActionResult AddAuthority()
         {
-            //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
-            //{
-            //    Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
-            //    return RedirectToAction("Index", "Home");
-            //}
-            //else
-            //{
-            ViewBag.Category = new SelectList(db.Category, "Id", "Name");
-            return View();
-            //}
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.Category = new SelectList(db.Category, "Id", "Name");
+                return View();
+            }
         }
 
         [HttpPost]
@@ -64,37 +62,43 @@ namespace Admin.Controllers
         [ActionName("SetAuthority")]
         public ActionResult AddAuthority(AuthorityVM model)
         {
-            //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
-            //{
-            //    Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
-            //    return RedirectToAction("Index", "Home");
-            //}
-            //else
-            //{
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
 
-            //if (ModelState.IsValid)
-            //{
+                    var id = dbo.SetAuthority(model);
 
-            var id = dbo.SetAuthority(model);
+                    return RedirectToAction("AddElements/" + id);
 
-            return RedirectToAction("AddElements/" + id);
+                }
+                else
+                {
+                    Danger("Alla fält måste fyllas i!");
+                    return View(model);
+                }
 
-
-            //}
-            //else
-            //{
-            //    Danger("Alla fält måste fyllas i!");
-            //    return View(model);
-            //}
-
-            //}
+            }
         }
 
         public ActionResult AddElements(int? id)
         {
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
+
             var model = dbo.GetAuthority(id);
 
             return View(model);
+
+
         }
 
         [HttpPost]
@@ -102,9 +106,17 @@ namespace Admin.Controllers
         [ActionName("SetElements")]
         public ActionResult AddElements(AuthorityVM model, HttpPostedFileBase image1)
         {
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
+
             dbo.SetLogo(model, image1);
 
             return RedirectToAction("ListAuthorities");
+
+
         }
 
         #region Redigera/Ta bort nummer
@@ -112,6 +124,12 @@ namespace Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Add(NumberVM number)
         {
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
+
             if (number != null)
             {
                 dbo.SetNumber(number);
@@ -123,6 +141,12 @@ namespace Admin.Controllers
 
         public ActionResult AddNumber(int? id)
         {
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id != null)
             {
                 NumberVM number = new NumberVM
@@ -142,6 +166,11 @@ namespace Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(NumberVM number)
         {
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
 
             if (number != null)
             {
@@ -153,6 +182,12 @@ namespace Admin.Controllers
 
         public ActionResult EditNumber(int? id, int? authId, int? check)
         {
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id != null)
             {
 
@@ -163,11 +198,16 @@ namespace Admin.Controllers
             }
 
             Danger("Något gick fel.", true);
-            return RedirectToAction("EditAuthority/"+id);
+            return RedirectToAction("EditAuthority/" + id);
 
         }
         public ActionResult DeleteNumber(int id, int authId)
         {
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
 
             Number number = db.Number.Find(id);
             if (number != null)
@@ -185,6 +225,12 @@ namespace Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Add(HourVM hour)
         {
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
+
             if (hour != null)
             {
                 dbo.SetHour(hour);
@@ -196,6 +242,12 @@ namespace Admin.Controllers
 
         public ActionResult AddHour(int? id)
         {
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id != null)
             {
                 HourVM hour = new HourVM
@@ -214,6 +266,12 @@ namespace Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Hour hour)
         {
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
+
             if (hour != null)
             {
                 dbo.EditHour(hour);
@@ -225,6 +283,12 @@ namespace Admin.Controllers
 
         public ActionResult EditHour(int? id, int? authId)
         {
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id != null)
             {
                 var hour = dbo.GetHour(id);
@@ -238,6 +302,11 @@ namespace Admin.Controllers
         }
         public ActionResult DeleteHour(int id, int authId)
         {
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
 
             Hour hour = db.Hour.Find(id);
             if (hour != null)
@@ -255,11 +324,11 @@ namespace Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
-            //{
-            //    Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
-            //    return RedirectToAction("Index", "Home");
-            //}
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
 
             Authority authority = db.Authority.Find(id);
             if (authority != null)
@@ -274,11 +343,11 @@ namespace Admin.Controllers
 
         public ActionResult DeleteAuthority(int? id)
         {
-            //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
-            //{
-            //    Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
-            //    return RedirectToAction("ListUsers", "Admin");
-            //}
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("ListUsers", "Admin");
+            }
 
             if (id != null)
             {
@@ -290,11 +359,11 @@ namespace Admin.Controllers
 
         public ActionResult EditAuthority(int? id)
         {
-            //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
-            //{
-            //    Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
-            //    return RedirectToAction("Index", "Home");
-            //}
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
 
             if (id == null)
             {
@@ -309,11 +378,11 @@ namespace Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditAuthority(AuthorityVM authority, HttpPostedFileBase image1)
         {
-            //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
-            //{
-            //    Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
-            //    return RedirectToAction("Index", "Home");
-            //}
+            if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
+            {
+                Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
+                return RedirectToAction("Index", "Home");
+            }
 
             if (ModelState.IsValid)
             {

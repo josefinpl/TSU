@@ -12,60 +12,85 @@ using Admin.Models.ViewModels;
 
 namespace Admin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         DbOperations dbOps = new DbOperations();
+        tusjoseEntities db = new tusjoseEntities();
 
-       
-
-        //Metod för att logga in
-    
         public ActionResult Index()
         {
-            ViewBag.Message = "Newp";
-
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Index(LoginVM login)
-        {
-            if (ModelState.IsValid)
+            bool auth = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (auth)
             {
-                if (dbOps.UserCheck(login.Username, login.Password))
+                string username = System.Web.HttpContext.Current.User.Identity.Name.ToString();
+                var user = db.User.Where(x => x.Username == username).Single();
+                dbOps.LoginCheck(user);
+
+                Session["Id"] = user.Id.ToString();
+                Session["Username"] = user.Username.ToString();
+                Session["Firstname"] = user.Firstname.ToString();
+                Session["Lastname"] = user.Lastname.ToString();
+                Session["Access_id"] = Convert.ToInt32(user.Access_Id);
+                Session["Access"] = user.Access.Name.ToString();
+
+               
+                return RedirectToAction("ListAuthorities", "Admin");
+            }
+            else
+                return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(User user)
+        {
+            var usr = dbOps.LoginCheck(user);
+
+            if (usr != null)
+            {
+                //if (user.RememberMe == true)
+                //{
+                //    CreateLoginCookie(user);
+                //}
+                Session["Id"] = usr.Id.ToString();
+                Session["Username"] = usr.Username.ToString();
+                Session["Firstname"] = usr.Firstname.ToString();
+                Session["Lastname"] = usr.Lastname.ToString();
+                Session["Access_id"] = Convert.ToInt32(usr.Access_Id);
+                Session["Access"] = usr.Access.Name.ToString();
+
+
+                if (Session["Id"] != null)
                 {
-                    var user = dbOps.GetUsernamePass(login.Username, login.Password);
-                    login.Access = dbOps.GetAccess(user);
-
-                    FormsAuthentication.SetAuthCookie(user.Username, false);
-
-                    if (user != null)
+                    if (Convert.ToInt32(Session["Access_Id"]) == 1)
                     {
-                        SetCookie(login);
                         return RedirectToAction("ListAuthorities", "Admin");
                     }
-
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 else
-                    ModelState.AddModelError("", "Var vänlig att kontrollera dina användaruppgifter");
+                {
+                    return RedirectToAction("Index");
+                }
             }
+            else
+            {
+                Danger("Användarnamn och lösenord matchar inte!");
+            }
+
             return View();
         }
-    
 
         public ActionResult Logout()
         {
+            string userId = Session["Id"].ToString();
+            Session.Abandon();
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
-        }
-        public void SetCookie(LoginVM lvm)
-        {
-            User p = dbOps.GetUsernamePass(lvm.Username, lvm.Password);
-
-            HttpCookie myCookie = new HttpCookie("UserInfo");
-            myCookie["Id"] = p.Id.ToString();
-            myCookie.Expires = DateTime.Now.AddDays(1d);
-            Response.Cookies.Add(myCookie);
         }
 
       
