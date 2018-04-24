@@ -116,6 +116,25 @@ namespace Admin.Data
         public void DeleteAuthority(int id)
         {
             var authority = db.Authority.Where(x => x.Id == id).Single();
+
+            if (authority.Hour.Count != 0)
+            {
+                for (int i = 0; i < authority.Hour.Count; i++)
+                {
+                    db.Hour.Remove(authority.Hour.ElementAt(i));
+                }
+
+            }
+
+            if (authority.Number.Count != 0)
+            {
+                for (int i = 0; i < authority.Number.Count; i++)
+                {
+                    db.Number.Remove(authority.Number.ElementAt(i));
+                }
+             
+            }
+
             db.Authority.Remove(authority);
 
             db.SaveChanges();
@@ -130,10 +149,11 @@ namespace Admin.Data
                 authority.Logo = new byte[image.ContentLength];
                 image.InputStream.Read(authority.Logo, 0, image.ContentLength);
                 a.Logo = authority.Logo;
+                db.Entry(a).State = EntityState.Modified;
+                db.SaveChanges();
             }
 
-            db.Entry(a).State = EntityState.Modified;
-            db.SaveChanges();
+          
         }
 
         public NumberVM GetNumber(int? id)
@@ -171,8 +191,16 @@ namespace Admin.Data
 
             db.SaveChanges();
         }
-        public void EditNumber(Number n)
+        public void EditNumber(NumberVM number)
         {
+            Number n = new Number
+            {
+                Id = number.Id,
+                Name = number.Name,
+                Number1 = number.Number1,
+                Authority_Id = number.Authority_Id
+            };
+
             db.Entry(n).State = EntityState.Modified;
 
             db.SaveChanges();

@@ -9,21 +9,11 @@
     <h2>Lägg till attribut</h2>
     <hr />
 
-    @using (@Html.BeginForm("SetElements", "Admin", FormMethod.Post))
+    @using (@Html.BeginForm("SetElements", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
-
-            <div class="row">
-                <div class="form-group col-md-6">
-                    @Html.Label("Ladda upp bild:")<br /><br />
-                    <img id="blah" src="#" /><br /><br />
-                    <input type="file" value="Ladda upp bild" name="image1" id="image1" onchange="readURL(this)" />
-
-                </div>
-            </div>
-
-            <hr />
+            @Html.HiddenFor(model => Model.Id)
 
             <div class="row">
                 <div class="form-group col-md-12">
@@ -53,7 +43,7 @@
                                 -
                                 @Html.DisplayFor(model => hour.Close, new { htmlAttributes = new { @class = "form-control", @placeholder = "Stänger" } })
                             </p>
-                            <a href="#" onclick="EditHour(@hour.Id)" id="deleteItem" class="deleteItem" data-id="@hour.Id" data-target="#editDialog" data-toggle="modal" data-path="@Url.Action("Edit", "Admin", new { id = hour.Id, authid = hour.Authority_Id })">Ändra öppettid/beskrivning</a>
+                            <a href="#" onclick="EditHour(@hour.Id)" id="deleteItem" class="deleteItem" data-id="@hour.Id" data-target="#editDialog" data-toggle="modal" data-path="@Url.Action("Edit", "Admin", new { id = hour.Id, authid = hour.Authority_Id})">Ändra öppettid/beskrivning</a>
                             <br />
                             <a href="@Url.Action("DeleteHour", "Admin", new { id = hour.Id, authId = hour.Authority_Id })" style="color:red">Ta bort öppettid</a>
 
@@ -93,7 +83,7 @@
                             <b>@Html.DisplayNameFor(model => number.Number1)</b> <br />
                             @Html.DisplayFor(model => number.Number1, new { htmlAttributes = new { @class = "form-control", @placeholder = "Öppnar" } })
                             <br />
-                            <a href="#" onclick="EditNumber(@number.Id)" id="deleteItem" class="deleteItem" data-id="@number.Id" data-target="#editDialog" data-toggle="modal" data-path="@Url.Action("Edit", "Admin", new { id = number.Id, authid = number.Authority_Id })">Ändra nummer/beskrivning</a>
+                            <a href="#" onclick="EditNumber(@number.Id)" id="deleteItem" class="deleteItem" data-id="@number.Id" data-target="#editDialog" data-toggle="modal" data-path="@Url.Action("Edit", "Admin", new { id = number.Id })">Ändra nummer/beskrivning</a>
                             <br />
                             <a href="@Url.Action("DeleteNumber", "Admin", new { id = number.Id, authId = number.Authority_Id })" style="color:red">Ta bort nummer</a>
 
@@ -101,8 +91,19 @@
                     }
 
                 </div>
+
             }
 
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.Label("Ladda upp bild:")<br /><br />
+                    <img id="blah" src="#" /><br /><br />
+                    <input type="file" value="Ladda upp bild" name="image1" id="image1" onchange="readURL(this)" />
+
+                </div>
+            </div>
+
+            <hr />
 
             <br />
             <div class="row">
@@ -121,6 +122,7 @@
     </div>
 
 </div>
+
 <div class="modal fade" id="editDialog" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -186,7 +188,7 @@
             data: { Id: id },
             success: function (response) {
                 $(".modal-body").html(response);
-                $("#editHDialog").modal("show");
+                $("#editDialog").modal("show");
             }
         });
     };
@@ -204,7 +206,7 @@
         });
     };
 
-    var AddHour = function (id) {
+    var AddNumber = function (id) {
         $.ajax({
 
             type: "GET",
