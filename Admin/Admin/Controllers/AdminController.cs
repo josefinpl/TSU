@@ -10,9 +10,11 @@ using System.Data.Entity;
 using Admin.Models.db;
 using Admin.Data;
 using Admin.Models.ViewModels;
+using Admin.Authentication;
 
 namespace Admin.Controllers
 {
+    [AuthenticationRole("Admin")]
     public class AdminController : BaseController
     {
         private DbOperations dbo = new DbOperations();

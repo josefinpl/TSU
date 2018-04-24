@@ -4,6 +4,8 @@
     ViewBag.Title = "Aktörer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@Html.ActionLink("Lägg Till Myndighet/Aktör", "AddAuthority")
 <div>
     <br />
     <table class="table table-striped table-hover table-sm" id="listusers">
@@ -30,27 +32,27 @@
         <tbody id="DataSearching">
             @foreach (var item in Model)
             {
-            <tr>
-                <td class="table-row">
-                    <img src="@Url.Action("Show", "Admin", new { id = item.Id } )" width="100" height="100" />
-                </td>
-                <td class="table-row">
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td class="table-row">
-                    @Html.DisplayFor(modelItem => item.StreetAddress)
-                </td>
-                <td class="table-row">
-                    @Html.DisplayFor(model => item.Zipcode)
-                </td>
-                <td class="table-row">
-                    @Html.DisplayFor(model => item.City)
-                </td>
-                <td class="table-row">
-                    @Html.ActionLink("Redigera", "EditAuthority", new { id = item.Id }) |
-                    <a href="#" onclick="DeleteAuthority(@item.Id)" id="deleteItem" class="deleteItem" data-id="@item.Id" data-target="#deleteDialog" data-toggle="modal" data-path="@Url.Action("Delete", "Admin", new { id = item.Id })">Ta bort</a>
-                </td>
-            </tr>
+                <tr>
+                    <td class="table-row">
+                        <img src="@Url.Action("Show", "Admin", new { id = item.Id } )" width="100" height="100" />
+                    </td>
+                    <td class="table-row">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="table-row">
+                        @Html.DisplayFor(modelItem => item.StreetAddress)
+                    </td>
+                    <td class="table-row">
+                        @Html.DisplayFor(model => item.Zipcode)
+                    </td>
+                    <td class="table-row">
+                        @Html.DisplayFor(model => item.City)
+                    </td>
+                    <td class="table-row">
+                        @Html.ActionLink("Redigera", "EditAuthority", new { id = item.Id }) |
+                        <a href="#" onclick="DeleteAuthority(@item.Id)" id="deleteItem" class="deleteItem" data-id="@item.Id" data-target="#deleteDialog" data-toggle="modal" data-path="@Url.Action("Delete", "Admin", new { id = item.Id })">Ta bort</a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
