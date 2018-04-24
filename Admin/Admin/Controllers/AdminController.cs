@@ -54,15 +54,15 @@ namespace Admin.Controllers
             //}
             //else
             //{
-               ViewBag.Category = new SelectList(db.Category, "Id", "Name");
-               return View();
+            ViewBag.Category = new SelectList(db.Category, "Id", "Name");
+            return View();
             //}
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("SetAuthority")]
-        public ActionResult AddAuthority(AuthorityVM model, string saveAuthority)
+        public ActionResult AddAuthority(AuthorityVM model)
         {
             //if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
             //{
@@ -72,28 +72,20 @@ namespace Admin.Controllers
             //else
             //{
 
-                //if (ModelState.IsValid)
-                //{
+            //if (ModelState.IsValid)
+            //{
 
-                var id = dbo.SetAuthority(model);
+            var id = dbo.SetAuthority(model);
 
-                return RedirectToAction("EditAuthority/" + id, "Admin");
+            return RedirectToAction("AddElements/" + id);
 
-                    //if (saveUser.Equals("Spara användare"))
-                    //{
-                    //    return RedirectToAction("ListUsers", "Admin");
-                    //}
-                    //else
-                    //{
-                    //    return RedirectToAction("EditUser/" + u.Id, "Admin");
-                    //}
 
-                //}
-                //else
-                //{
-                //    Danger("Alla fält måste fyllas i!");
-                //    return View(model);
-                //}
+            //}
+            //else
+            //{
+            //    Danger("Alla fält måste fyllas i!");
+            //    return View(model);
+            //}
 
             //}
         }
@@ -101,6 +93,7 @@ namespace Admin.Controllers
         public ActionResult AddElements(int? id)
         {
             var model = dbo.GetAuthority(id);
+
             return View(model);
         }
 
@@ -110,7 +103,7 @@ namespace Admin.Controllers
         public ActionResult AddElements(AuthorityVM model, HttpPostedFileBase image1)
         {
             dbo.SetLogo(model, image1);
-            
+
             return RedirectToAction("ListAuthorities");
         }
 
@@ -147,41 +140,43 @@ namespace Admin.Controllers
 
         [HttpPost, ActionName("EditNumber")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Number nr)
+        public ActionResult Edit(NumberVM number)
         {
-            if (nr != null)
+
+            if (number != null)
             {
-                dbo.EditNumber(nr);
+                dbo.EditNumber(number);
 
             }
-
-            return RedirectToAction("EditAuthority/" + nr.Authority_Id);
+            return RedirectToAction("EditAuthority/" + number.Authority_Id);
         }
 
-        public ActionResult EditNumber(int? id, int? authId)
+        public ActionResult EditNumber(int? id, int? authId, int? check)
         {
             if (id != null)
             {
+
                 var number = dbo.GetNumber(id);
 
                 return PartialView(number);
+
             }
 
             Danger("Något gick fel.", true);
-            return RedirectToAction("EditAuthority/" + authId);
+            return RedirectToAction("EditAuthority/"+id);
 
         }
         public ActionResult DeleteNumber(int id, int authId)
-        {           
+        {
 
             Number number = db.Number.Find(id);
-            if ( number!= null)
+            if (number != null)
             {
                 dbo.DeleteNumber(id);
-                            
+
             }
 
-            return RedirectToAction("EditAuthority/"+authId);
+            return RedirectToAction("EditAuthority/" + authId);
         }
         #endregion
 
@@ -305,7 +300,7 @@ namespace Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-           
+
             ViewBag.Category = new SelectList(db.Category, "Id", "Name", id);
             return View(dbo.GetAuthority(id));
         }
