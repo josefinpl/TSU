@@ -1,10 +1,34 @@
 ﻿#changeButton {
-    max-width: 100px;
-    float: right;
+    width: 85px;
+    height: 40px;
 }
-#closeButton{
-
-    padding-left: 1%;
-    max-width: 100px;
+#closeButton {
+    width: 85px;
+    height: 40px;
+}
+#buttons{
+    padding: 6% 0 2% 0;
     float:right;
 }
+.body-content {
+    padding-top: 2% !important;
+}
+.row {
+    padding-right: 2% !important;
+    padding-left: 2% !important;
+}
+.control-label{
+    font-size: 15px;
+}
+#btnElements {
+    width: 200px;
+    height: 50px;
+}
+#btnLogin{
+    width:100px;
+    height:40px;
+}
+.loginbtn{
+    padding-left: 17%;
+}
+

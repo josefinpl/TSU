@@ -18,14 +18,22 @@
                 @Html.DisplayFor(model => model.Name)
             </dd>
 
+            <dt>
+                @Html.LabelFor(model => model.Category_Id, "Kategori")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+
         </dl>
 
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Ta bort" id="#changeButton" class="btn btn-danger" />
+            <div class="form-actions no-color" id="buttons">
+                <input type="submit" value="Ta bort" id="changeButton" class="btn btn-danger" />
                 <button type="button" class="btn btn-secondary" id="closeButton" data-dismiss="modal">Stäng</button>
             </div>
         }

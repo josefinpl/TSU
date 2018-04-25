@@ -17,7 +17,6 @@
 
             <div class="row">
                 <div class="form-group col-md-12">
-                    @Html.Label("Lägg till ny öppettid:")
                     <br />
                     <a href="#" onclick="AddHour(@Model.Id)" id="deleteItem" class="deleteItem" data-id="@Model.Id" data-target="#addDialog" data-toggle="modal" data-path="@Url.Action("Add", "Admin", new { id = Model.Id })">Tryck för att lägga till ny öppettid</a>
 
@@ -27,7 +26,7 @@
             {
                 <div class="row">
 
-                    @Html.Label("Öppettider:")<br /><br />
+                    @Html.Label("Sparade öppettider:", htmlAttributes: new { @class = "control-label" })<br /><br />
 
                     @foreach (var hour in Model.Hours)
                     {
@@ -57,19 +56,18 @@
             <hr />
             <div class="row">
                 <div class="form-group col-md-4">
-                    @Html.Label("Lägg till nytt nummer:")
                     <br />
 
-                    <a href="#" onclick="AddNumber(@Model.Id)" id="deleteItem" class="deleteItem" data-id="@Model.Id" data-target="#addDialog" data-toggle="modal" data-path="@Url.Action("Add", "Admin", new { id = Model.Id })">Tryck för att lägga till ny öppettid</a>
+                    <a href="#" onclick="AddNumber(@Model.Id)" id="deleteItem" class="deleteItem" data-id="@Model.Id" data-target="#addDialog" data-toggle="modal" data-path="@Url.Action("Add", "Admin", new { id = Model.Id })">Tryck för att lägga till ett nytt nummer</a>
 
                 </div>
             </div>
-            <br />
+           
             @if (Model.Numbers != null)
             {
                 <div class="row">
 
-                    @Html.Label("Telefonnummer:")<br />
+                    @Html.Label("Sparade telefonnummer:", htmlAttributes: new { @class = "control-label" })<br /><br />
 
                     @foreach (var number in Model.Numbers)
                     {
@@ -94,9 +92,11 @@
 
             }
 
+            <hr />
+
             <div class="row">
                 <div class="form-group col-md-6">
-                    @Html.Label("Ladda upp bild:")<br /><br />
+                    @Html.Label("Ladda upp bild:", htmlAttributes: new { @class = "control-label" })<br /><br />
                     <img id="blah" src="#" /><br /><br />
                     <input type="file" value="Ladda upp bild" name="image1" id="image1" onchange="readURL(this)" />
 
@@ -108,7 +108,7 @@
             <br />
             <div class="row">
                 <div class="form-group col-md-12">
-                    <input type="submit" value="Uppdatera" class="btn btn-success" />
+                    <input type="submit" value="Uppdatera" class="btn btn-success" id="btnElements" />
                 </div>
             </div>
 

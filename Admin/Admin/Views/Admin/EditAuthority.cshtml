@@ -71,12 +71,12 @@
 
             <div class="row">
                 <div class="form-group col-md-6">
-                    @Html.Label("Nuvarande bild:")<br /><br />
+                    @Html.Label("Nuvarande bild:", htmlAttributes: new { @class = "control-label" })<br /><br />
                     <img src="@Url.Action("Show", "Admin", new { id = Model.Id } )" width="100" height="100" />
                 </div>
 
                 <div class="form-group col-md-6">
-                    @Html.Label("Ladda upp ny bild:")<br /><br />
+                    @Html.Label("Ladda upp ny bild:", htmlAttributes: new { @class = "control-label" })<br /><br />
                     <img id="blah" src="#" /><br /><br />
                     <input type="file" value="Ladda upp bild" name="image1" id="image1" onchange="readURL(this)" />
 
@@ -88,7 +88,7 @@
             {
                 <div class="row">
 
-                    @Html.Label("Öppettider:")<br /><br />
+                    @Html.Label("Sparade öppettider:", htmlAttributes: new { @class = "control-label" })<br /><br />
 
                     @foreach (var hour in Model.Hours)
                     {
@@ -117,7 +117,7 @@
 
             <div class="row">
                 <div class="form-group col-md-12">
-                    @Html.Label("Lägg till ny öppettid:")
+                    @Html.Label("Lägg till ny öppettid:", htmlAttributes: new { @class = "control-label" })
                     <br />
 
                     @Html.EditorFor(model => model.Hour.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Beskrivning" } })
@@ -133,7 +133,7 @@
             {
                 <div class="row">
 
-                    @Html.Label("Telefonnummer:")<br />
+                    @Html.Label("Sparade telefonnummer:", htmlAttributes: new { @class = "control-label" })<br /><br />
 
                     @foreach (var number in Model.Numbers)
                     {
@@ -160,7 +160,7 @@
 
             <div class="row">
                 <div class="form-group col-md-4">
-                    @Html.Label("Lägg till nytt nummer:")
+                    @Html.Label("Lägg till nytt nummer:", htmlAttributes: new { @class = "control-label" })
                     <br />
 
                     @Html.EditorFor(model => model.Number.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Beskrivning" } })
@@ -173,7 +173,7 @@
             <br />
             <div class="row">
                 <div class="form-group col-md-12">
-                    <input type="submit" value="Uppdatera" class="btn btn-success" />
+                    <input type="submit" value="Uppdatera" class="btn btn-success"id="btnElements" />
                 </div>
             </div>
 
@@ -192,7 +192,6 @@
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="deleteLabel">Redigera</h5>
-                
             </div>
             <div class="modal-body">
 

@@ -4,14 +4,11 @@
 }
 
 <div class="container">
-
    
-    <div>
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
-            <hr />
             @Html.HiddenFor(model => model.Id)
             @Html.HiddenFor(model => model.Authority_Id)
             <dl class="dl-horizontal">
@@ -33,11 +30,11 @@
             </dl>
 
 
-            <div class="form-actions no-color">
+            <div class="form-actions no-color" id="buttons">
                 <input type="submit" value="Ändra" id="changeButton"class="btn btn-success" />
                 <button type="button" class="btn btn-secondary" id="closeButton" data-dismiss="modal">Stäng</button>
             </div>
         }
-    </div>
+    
 </div>
 
