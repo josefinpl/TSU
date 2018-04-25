@@ -31,4 +31,8 @@
 .loginbtn{
     padding-left: 17%;
 }
+.navbar-inverse {
+    background-color: #003366;
+    border-color: #003366;
+}
 
