@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Hitta"
              x:Class="Hitta.MainPage">
 
-	<Label Text="Welcome to Xamarin.Forms!" 
+    <Label Text="Welcome to Xamarin.Forms!" 
            VerticalOptions="Center" 
            HorizontalOptions="Center" />
 

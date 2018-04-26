@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hitta.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,8 @@ namespace Hitta
 		{
 			InitializeComponent();
 
-			MainPage = new Hitta.MainPage();
-		}
+            MainPage = new Hitta.MainPage();
+        }
 
 		protected override void OnStart ()
 		{
