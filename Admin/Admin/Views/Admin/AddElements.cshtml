@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-
-    <hr />
     <h2>Lägg till attribut</h2>
     <hr />
 
@@ -22,7 +20,7 @@
 
                 </div>
             </div>
-            @if (Model.Hours != null)
+            @if (Model.Hours.Count != 0)
             {
                 <div class="row">
 
@@ -63,7 +61,7 @@
                 </div>
             </div>
            
-            @if (Model.Numbers != null)
+            @if (Model.Numbers.Count != 0)
             {
                 <div class="row">
 

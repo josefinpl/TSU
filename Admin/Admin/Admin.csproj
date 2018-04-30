@@ -266,6 +266,7 @@
     <Content Include="Views\Admin\AddElements.cshtml" />
     <Content Include="Views\Admin\AddHour.cshtml" />
     <Content Include="Views\Admin\AddNumber.cshtml" />
+    <Content Include="Views\Shared\_Alert.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

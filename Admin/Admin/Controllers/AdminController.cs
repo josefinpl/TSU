@@ -50,40 +50,38 @@ namespace Admin.Controllers
                 Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
                 return RedirectToAction("Index", "Home");
             }
-            else
-            {
-                ViewBag.Category = new SelectList(db.Category, "Id", "Name");
-                return View();
-            }
+
+            ViewBag.Category = new SelectList(db.Category, "Id", "Name");
+            return View();
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("SetAuthority")]
-        public ActionResult AddAuthority(AuthorityVM model)
+        public ActionResult AddAuthority([Bind(Exclude = "Id")] AuthorityVM model)
         {
             if (Convert.ToInt32(Session["Access_Id"]) == 2 || Session["Access_Id"] == null)
             {
                 Danger("Fel 403: Åtkomst nekad/förbjuden.", true);
                 return RedirectToAction("Index", "Home");
             }
-            else
+
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
 
-                    var id = dbo.SetAuthority(model);
+                var id = dbo.SetAuthority(model);
 
-                    return RedirectToAction("AddElements/" + id);
-
-                }
-                else
-                {
-                    Danger("Alla fält måste fyllas i!");
-                    return View(model);
-                }
+                return RedirectToAction("AddElements/" + id);
 
             }
+
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+
+            Danger("Alla fält måste fyllas i!");
+            return RedirectToAction("AddAuthority");
+
+
         }
 
         public ActionResult AddElements(int? id)
