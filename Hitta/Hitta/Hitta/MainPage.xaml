@@ -4,8 +4,13 @@
              xmlns:local="clr-namespace:Hitta"
              x:Class="Hitta.MainPage">
 
-    <Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <ListView x:Name="AuthorityView" HorizontalOptions="Center" BackgroundColor="BlanchedAlmond">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding Name}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
 
 </ContentPage>
