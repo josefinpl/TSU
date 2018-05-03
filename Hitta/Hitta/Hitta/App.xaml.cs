@@ -1,4 +1,5 @@
 ﻿using Hitta.Resources;
+using Plugin.Multilingual;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,12 @@ namespace Hitta
 		{
 			InitializeComponent();
 
-            MainPage = new Hitta.MainPage();
+            var culture = CrossMultilingual.Current.DeviceCultureInfo;
+            AppResources.Culture = culture;
+
+            MainPage = new NavigationPage(new Hitta.MainPage());
+
+            //MainPage = new Hitta.MainPage();
         }
 
 		protected override void OnStart ()

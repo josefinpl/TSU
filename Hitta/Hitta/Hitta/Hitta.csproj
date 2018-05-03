@@ -25,12 +25,15 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Mutex.Data.SqlClient" Version="1.0.0" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
+    <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="MultilingualResources\Hitta.ar.xlf" />
-    <XliffResource Include="MultilingualResources\Hitta.de.xlf" />
-    <XliffResource Include="MultilingualResources\Hitta.en.xlf" />
+    <AdditionalFiles Include="MultilingualResources\Hitta.de.xlf" />
+    <XliffResource Include="MultilingualResources\Hitta.en.xlf">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'"></ExcludedFromBuild>
+    </XliffResource>
     <XliffResource Include="MultilingualResources\Hitta.fa.xlf" />
     <XliffResource Include="MultilingualResources\Hitta.sv.xlf" />
     <XliffResource Include="MultilingualResources\Hitta.sw.xlf" />
