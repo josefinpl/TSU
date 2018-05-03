@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Hitta.Models
 {
@@ -12,6 +14,8 @@ namespace Hitta.Models
         public int Address_Id { get; set; }
         public int Category_Id { get; set; }
         public byte[] Logo { get; set; }
+        public ImageSource Image { get; set; }
+
 
     }
 }

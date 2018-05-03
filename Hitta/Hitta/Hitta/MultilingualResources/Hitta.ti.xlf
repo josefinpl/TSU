@@ -5,7 +5,17 @@
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6900.0" tool-company="Microsoft" />
     </header>
     <body>
-      <group id="HITTA/RESOURCES/APPRESOURCES.RESX" datatype="resx" />
+      <group id="HITTA/RESOURCES/APPRESOURCES.RESX" datatype="resx">
+        <trans-unit id="HelloWorld" translate="yes" xml:space="preserve">
+          <source>Hello from App</source>
+          <target state="new">Hello from App</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Comment!</note>
+        </trans-unit>
+        <trans-unit id="Test" translate="yes" xml:space="preserve">
+          <source>Testar lite</source>
+          <target state="new">Testar lite</target>
+        </trans-unit>
+      </group>
     </body>
   </file>
 </xliff>
