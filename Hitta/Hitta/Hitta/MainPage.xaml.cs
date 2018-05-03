@@ -16,7 +16,7 @@ namespace Hitta
 {
     public partial class MainPage : ContentPage
     {
-        public ObservableCollection<Hitta.Models.Language> Languages { get; }
+        public ObservableCollection<Language> Languages { get; }
         List<Authority> authorities;
         SqlOperations sqlOp = new SqlOperations();
 
@@ -39,21 +39,21 @@ namespace Hitta
             AuthorityView.ItemsSource = items;
 
 
-            //Languages = new ObservableCollection<Hitta.Models.Language>()
-            //{
-            //    new Language { DisplayName =  "عربى - Arabic", ShortName = "ar" },
-            //    new Language { DisplayName =  "Deutsche - German", ShortName = "de" },
-            //    new Language { DisplayName =  "English", ShortName = "en" },
-            //    new Language { DisplayName =  "Fârsi - Persian", ShortName = "fa" },
-            //    new Language { DisplayName =  "Svenska - Swedish", ShortName = "sv" },
-            //    new Language { DisplayName =  "Kiswahili - Swahili", ShortName = "sw" },
-            //    new Language { DisplayName =  "ትግርኛ - Tigrinya", ShortName = "ti" }
+            Languages = new ObservableCollection<Language>()
+            {
+                new Language { DisplayName =  "عربى - Arabic", ShortName = "ar" },
+                new Language { DisplayName =  "Deutsche - German", ShortName = "de" },
+                new Language { DisplayName =  "English", ShortName = "en" },
+                new Language { DisplayName =  "Fârsi - Persian", ShortName = "fa" },
+                new Language { DisplayName =  "Svenska - Swedish", ShortName = "sv" },
+                new Language { DisplayName =  "Kiswahili - Swahili", ShortName = "sw" },
+                new Language { DisplayName =  "ትግርኛ - Tigrinya", ShortName = "ti" }
 
-            //};
+            };
 
-            //BindingContext = this;
+            BindingContext = this;
 
-            //PickerLanguages.SelectedIndexChanged += PickerLanguages_SelectedIndexChanged;
+            PickerLanguages.SelectedIndexChanged += PickerLanguages_SelectedIndexChanged;
         }
 
         private void PickerLanguages_SelectedIndexChanged(object sender, EventArgs e)
