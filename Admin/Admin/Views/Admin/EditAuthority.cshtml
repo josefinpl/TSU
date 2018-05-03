@@ -76,9 +76,10 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    @Html.Label("Ladda upp ny bild:", htmlAttributes: new { @class = "control-label" })<br /><br />
+                    @Html.Label("Ladda upp ny bild, Max 500KB:", htmlAttributes: new { @class = "control-label" })<br /><br />
                     <img id="blah" src="#" /><br /><br />
-                    <input type="file" value="Ladda upp bild" name="image1" id="image1" onchange="readURL(this)" />
+                    <input type="file" value="Ladda upp bild" name="image1" id="image1" onchange="readURL(this)" /> 
+                    
 
                 </div>
             </div>
@@ -211,6 +212,7 @@
                     .width(100)
                     .height(100);
             };
+          
 
             reader.readAsDataURL(input.files[0]);
         }

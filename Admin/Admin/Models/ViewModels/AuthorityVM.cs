@@ -44,6 +44,6 @@ namespace Admin.Models.ViewModels
       
         public NumberVM Number { get; set; }
         public HourVM Hour { get; set; }
-
+        public bool RightSize { get; set; }
     }
 }
