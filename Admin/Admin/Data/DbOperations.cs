@@ -11,7 +11,7 @@ namespace Admin.Data
 {
     public class DbOperations
     {
-        
+
         private tusjoseEntities db = new tusjoseEntities();
 
         public AuthorityVM GetAuthority(int? id)
@@ -66,7 +66,7 @@ namespace Admin.Data
             return a.Id;
         }
 
-        public void EditAuthority(AuthorityVM authority, HttpPostedFileBase image)
+        public bool EditAuthority(AuthorityVM authority, HttpPostedFileBase image)
         {
             Authority a = new Authority
             {
@@ -75,11 +75,11 @@ namespace Admin.Data
                 Description = authority.Description.Trim(),
                 Logo = authority.Logo,
                 Category_Id = authority.Category_Id,
-                Address_Id = SetAddress(authority)               
-                    
+                Address_Id = SetAddress(authority)
+
             };
 
-            if (authority.Number.Name !=null)
+            if (authority.Number.Name != null)
             {
                 Number number = new Number
                 {
@@ -87,7 +87,7 @@ namespace Admin.Data
                     Number1 = authority.Number.Number1,
                     Authority_Id = authority.Id
                 };
-                db.Number.Add(number);                               
+                db.Number.Add(number);
             }
 
             if (authority.Hour.Name != null)
@@ -105,14 +105,23 @@ namespace Admin.Data
             if (image != null)
             {
                 authority.Logo = new byte[image.ContentLength];
-                image.InputStream.Read(authority.Logo, 0, image.ContentLength);
-                a.Logo = authority.Logo;
+                if (image.ContentLength > 500000)
+                {
+                    authority.RightSize = false;
+                }
+                else
+                {
+                    image.InputStream.Read(authority.Logo, 0, image.ContentLength);
+                    a.Logo = authority.Logo;
+                    authority.RightSize = true;
+                }
             }
 
-                db.Entry(a).State = EntityState.Modified;
-                db.SaveChanges();
+            db.Entry(a).State = EntityState.Modified;
+            db.SaveChanges();
+            return authority.RightSize;
         }
-   
+
         public User LoginCheck(User user)
         {
             var usr = db.User.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
@@ -139,7 +148,7 @@ namespace Admin.Data
                 {
                     db.Number.Remove(authority.Number.ElementAt(i));
                 }
-             
+
             }
 
             db.Authority.Remove(authority);
@@ -160,7 +169,7 @@ namespace Admin.Data
                 db.SaveChanges();
             }
 
-          
+
         }
 
         public NumberVM GetNumber(int? id)
@@ -282,7 +291,7 @@ namespace Admin.Data
 
         public int SetAddress(AuthorityVM model)
         {
-           
+
             Address a = new Address
             {
                 Address1 = model.StreetAddress,
@@ -295,8 +304,8 @@ namespace Admin.Data
 
             foreach (var item in addresses)
             {
-               if (a.Address1.Trim() == item.Address1.Trim()
-                    && a.Zipcode == item.Zipcode)
+                if (a.Address1.Trim() == item.Address1.Trim()
+                     && a.Zipcode == item.Zipcode)
                 {
                     exists = true;
                     a = item;

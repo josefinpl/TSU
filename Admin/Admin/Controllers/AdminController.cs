@@ -368,6 +368,8 @@ namespace Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+
+
             ViewBag.Category = new SelectList(db.Category, "Id", "Name", id);
             return View(dbo.GetAuthority(id));
         }
@@ -382,12 +384,19 @@ namespace Admin.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+
             if (ModelState.IsValid)
             {
-                dbo.EditAuthority(authority, image1);
-
-                Success(string.Format("<b>{0}</b> har uppdaterats.", authority.Name), true);
-                return RedirectToAction("ListAuthorities");
+                bool size = dbo.EditAuthority(authority, image1);
+                if (size)
+                {
+                    Success(string.Format("<b>{0}</b> har uppdaterats.", authority.Name), true);
+                    return RedirectToAction("ListAuthorities");
+                }
+                else {
+                    Danger("Fel 404-13: Bilden får inte vara större än 500 KB", true);
+                    return RedirectToAction("EditAuthority/"+authority.Id);
+                }
             }
 
             ViewBag.Category = new SelectList(db.Category, "Id", "Name", authority.Category_Id);
