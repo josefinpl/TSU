@@ -1,5 +1,6 @@
 ﻿using Hitta.Data;
 using Hitta.Models;
+using Hitta.Models.ViewModels;
 using Hitta.Resources;
 using Plugin.Multilingual;
 using System;
@@ -17,26 +18,20 @@ namespace Hitta
     public partial class MainPage : ContentPage
     {
         public ObservableCollection<Language> Languages { get; }
-        List<Authority> authorities;
-        SqlOperations sqlOp = new SqlOperations();
+        AuthorityVM avm;
 
         public MainPage()
         {
             InitializeComponent();
 
-            ObservableCollection<Authority> items = new ObservableCollection<Authority>();
+            avm = new AuthorityVM();
 
-            authorities = new List<Authority>();
-            authorities = sqlOp.GetAuthorities();
-
-            foreach (var number in authorities)
+            foreach (var authority in avm.Authorities)
             {
-                number.Image = ImageSource.FromStream(() => new MemoryStream(number.Logo));
-                items.Add(new Authority() { Name = number.Name, Image = number.Image });
-
+                authority.Image = ImageSource.FromStream(() => new MemoryStream(authority.Logo));
             }
 
-            AuthorityView.ItemsSource = items;
+            AuthorityView.ItemsSource = avm.Authorities;
 
 
             Languages = new ObservableCollection<Language>()
@@ -53,6 +48,15 @@ namespace Hitta
 
             BindingContext = this;
             PickerLanguages.SelectedIndexChanged += PickerLanguages_SelectedIndexChanged;
+
+            AuthorityView.ItemSelected += (object sender, SelectedItemChangedEventArgs e) =>
+            {
+                var item = (Authority)e.SelectedItem;
+
+                Navigation.PushAsync(new NavigationPage(new AuthorityPage()));
+
+              //  DisplayAlert("ItemSelected", item.Name, "Ok");
+            };
         }
 
         private void PickerLanguages_SelectedIndexChanged(object sender, EventArgs e)
@@ -72,6 +76,13 @@ namespace Hitta
             LabelLanguage.Text = AppResources.Language;
             LabelHello.Text = AppResources.Hello;
         }
+
+     
+
+    public void Authority_ItemSelected(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new NavigationPage(new AuthorityPage()));
     }
+}
 }
 

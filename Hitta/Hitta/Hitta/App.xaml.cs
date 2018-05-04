@@ -20,9 +20,9 @@ namespace Hitta
             AppResources.Culture = culture;
             CrossMultilingual.Current.CurrentCultureInfo = culture;
 
-            //MainPage = new NavigationPage(new Hitta.MainPage());
+            MainPage = new NavigationPage(new Hitta.MainPage());
 
-            MainPage = new Hitta.MainPage();
+           // MainPage = new Hitta.MainPage();
         }
 
 		protected override void OnStart ()

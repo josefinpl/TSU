@@ -51,30 +51,30 @@ namespace Hitta.Data
         }
         #endregion
 
-        public List<Authority> GetAuthorities()
-        {
-            List<Authority> authorities = new List<Authority>();
-            Authority a;
+        //public List<Authority> GetAuthorities()
+        //{
+        //    List<Authority> authorities = new List<Authority>();
+        //    Authority a;
             
-            string sql = "SELECT * FROM Authority";
-            dt = QueryRead(sql);
+        //    string sql = "SELECT * FROM Authority";
+        //    dt = QueryRead(sql);
 
-            foreach (DataRow dr in dt.Rows)
-            {
-                a = new Authority()
-                {
-                    Id = (int)dr["Id"],
-                    Name = (string)dr["Name"],
-                    Description = (string)dr["Description"],
-                    Address_Id = (int)dr["Address_Id"],
-                    Category_Id= (int)dr["Category_Id"],
-                    Logo = (byte[])dr["Logo"]
-                };
-                authorities.Add(a);
-            }
+        //    foreach (DataRow dr in dt.Rows)
+        //    {
+        //        a = new Authority()
+        //        {
+        //            Id = (int)dr["Id"],
+        //            Name = (string)dr["Name"],
+        //            Description = (string)dr["Description"],
+        //            Address_Id = (int)dr["Address_Id"],
+        //            Category_Id= (int)dr["Category_Id"],
+        //            Logo = (byte[])dr["Logo"]
+        //        };
+        //        authorities.Add(a);
+        //    }
 
-            return authorities;
-        }
+        //    return authorities;
+        //}
 
     }
 }
