@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:Hitta"
              x:Class="Hitta.MainPage">
 
+    <ContentPage.Content>
     <StackLayout Padding="20" Spacing="20">
         <Label Text="{i18n:Translate Hello}" 
                LineBreakMode="WordWrap"
@@ -45,6 +46,6 @@
     </ListView>
 
     </StackLayout>
-
+    </ContentPage.Content>
 
 </ContentPage>

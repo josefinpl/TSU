@@ -53,9 +53,12 @@ namespace Hitta
             {
                 var item = (Authority)e.SelectedItem;
 
-                Navigation.PushAsync(new NavigationPage(new AuthorityPage()));
+                var page = new AuthorityPage(item);
+                NavigationPage.SetHasNavigationBar(page, false);
 
-              //  DisplayAlert("ItemSelected", item.Name, "Ok");
+                Navigation.PushAsync(page);
+
+                //  DisplayAlert("ItemSelected", item.Name, "Ok");
             };
         }
 
@@ -77,12 +80,6 @@ namespace Hitta
             LabelHello.Text = AppResources.Hello;
         }
 
-     
-
-    public void Authority_ItemSelected(object sender, EventArgs e)
-    {
-        Navigation.PushAsync(new NavigationPage(new AuthorityPage()));
     }
-}
 }
 

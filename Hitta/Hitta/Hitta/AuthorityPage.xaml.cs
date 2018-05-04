@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hitta.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,12 @@ namespace Hitta
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AuthorityPage : ContentPage
 	{
-		public AuthorityPage ()
+		public AuthorityPage (Authority auth)
 		{
 			InitializeComponent ();
-		}
+
+            this.BindingContext = auth;
+
+        }
 	}
 }
