@@ -5,22 +5,28 @@
              xmlns:local="clr-namespace:Hitta"
              x:Class="Hitta.MainPage">
 
-    <StackLayout Padding="20">
-        <Label Text="{i18n:Translate HelloWorld}" 
-               LineBreakMode="WordWrap"/>
+    <StackLayout Padding="20" Spacing="20">
+        <Label Text="{i18n:Translate Hello}" 
+               LineBreakMode="WordWrap"
+               x:Name="LabelHello"
+               HorizontalOptions="Center"
+               FontSize="Large"/>
+        
+        <StackLayout Padding="20" Margin="60,20,60,0">
+            
+            <Label Text="{i18n:Translate Language}" 
+               LineBreakMode="WordWrap"
+               x:Name="LabelLanguage"/>
 
-        <Label 
-                Margin="0,60,0,0"
-                Text="Translate this automatically"
-                LineBreakMode="WordWrap"
-               x:Name="LabelTranslate"/>
-    
-    <Picker ItemsSource="{Binding Languages}"
+            <Picker ItemsSource="{Binding Languages}"
                 ItemDisplayBinding="{Binding DisplayName}"
                 x:Name="PickerLanguages"/>
-    
-    
-    <ListView  x:Name="AuthorityView" Margin="10" Header="Aktörer">
+
+        </StackLayout>
+        
+
+
+        <ListView  x:Name="AuthorityView" Margin="10" Header="Aktörer">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

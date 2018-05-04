@@ -52,7 +52,6 @@ namespace Hitta
             };
 
             BindingContext = this;
-
             PickerLanguages.SelectedIndexChanged += PickerLanguages_SelectedIndexChanged;
         }
 
@@ -70,7 +69,8 @@ namespace Hitta
             {
             }
 
-            LabelTranslate.Text = AppResources.HelloWorld;
+            LabelLanguage.Text = AppResources.Language;
+            LabelHello.Text = AppResources.Hello;
         }
     }
 }

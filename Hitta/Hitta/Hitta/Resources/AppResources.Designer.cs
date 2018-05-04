@@ -61,20 +61,20 @@ namespace Hitta.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello from App.
+        ///   Looks up a localized string similar to Welcome!.
         /// </summary>
-        public static string HelloWorld {
+        public static string Hello {
             get {
-                return ResourceManager.GetString("HelloWorld", resourceCulture);
+                return ResourceManager.GetString("Hello", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Testar lite.
+        ///   Looks up a localized string similar to Choose language.
         /// </summary>
-        public static string Test {
+        public static string Language {
             get {
-                return ResourceManager.GetString("Test", resourceCulture);
+                return ResourceManager.GetString("Language", resourceCulture);
             }
         }
     }

@@ -6,10 +6,14 @@
     </header>
     <body>
       <group id="HITTA/RESOURCES/APPRESOURCES.RESX" datatype="resx">
-        <trans-unit id="HelloWorld" translate="yes" xml:space="preserve">
-          <source>Hello from App</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Hallo aus App</target>
+        <trans-unit id="Hello" translate="yes" xml:space="preserve">
+          <source>Welcome!</source>
+          <target state="translated" state-qualifier="tm-suggestion">Willkommen!</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Comment!</note>
+        </trans-unit>
+        <trans-unit id="Language" translate="yes" xml:space="preserve">
+          <source>Choose language</source>
+          <target state="translated" state-qualifier="mt-suggestion">Wählen Sie Sprache</target>
         </trans-unit>
       </group>
     </body>

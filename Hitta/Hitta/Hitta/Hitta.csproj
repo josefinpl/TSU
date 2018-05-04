@@ -16,7 +16,6 @@
   </Target>
   <ItemGroup>
     <None Remove="MultilingualResources\Hitta.ar.xlf" />
-    <None Remove="MultilingualResources\Hitta.de.xlf" />
     <None Remove="MultilingualResources\Hitta.en.xlf" />
     <None Remove="MultilingualResources\Hitta.fa.xlf" />
     <None Remove="MultilingualResources\Hitta.sv.xlf" />
@@ -30,7 +29,6 @@
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="MultilingualResources\Hitta.ar.xlf" />
-    <AdditionalFiles Include="MultilingualResources\Hitta.de.xlf" />
     <XliffResource Include="MultilingualResources\Hitta.en.xlf">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'"></ExcludedFromBuild>
     </XliffResource>
