@@ -36,15 +36,12 @@
                                     <Label Text=" - "/>
                                     <Label Text="{Binding Close, StringFormat='{}{0:hh\\:mm}'}}"
 								TextColor="#f35e20"/>
-
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </StackLayout>
 
-            <StackLayout>
                 <ListView x:Name="AuthorityNumber">
                     <ListView.Header>
                         <ContentView Padding="0,5">
@@ -54,18 +51,17 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-
-                                <Label Text="{Binding Name}"
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}"
 								TextColor="#f35e20"/>
-                                <Label Text="{Binding Number1}"
+                                    <Label Text="{Binding Number1}"
 								TextColor="#f35e20"/>
-                                
+                                </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-
 
         </StackLayout>
     </ContentPage.Content>
