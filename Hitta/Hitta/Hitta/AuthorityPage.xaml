@@ -1,22 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:Hitta.Helpers;assembly=Hitta" 
              x:Class="Hitta.AuthorityPage">
     <ContentPage.Content>
         <StackLayout Padding="20" Spacing="20">
 
             <Image Source="{Binding Image}" HeightRequest="100" WidthRequest="100" ></Image>
-            
+
             <StackLayout>
-                <Label Text="Namn:" FontSize="Medium"></Label>
+                <Label Text="{i18n:Translate Name}" FontSize="Medium"></Label>
                 <Label Text="{Binding Name}"></Label>
             </StackLayout>
 
             <StackLayout>
-                <Label Text="Beskrivning:" FontSize="Medium"></Label>
+                <Label Text="{i18n:Translate Description}" FontSize="Medium"></Label>
                 <Label Text="{Binding Description}"></Label>
             </StackLayout>
-            
+
+            <StackLayout>
+                <ListView x:Name="AuthorityView">
+                    <ListView.Header>
+                        <ContentView Padding="0,5">
+                            <Label FontSize="Medium" TextColor="Black" Text="{i18n:Translate OpenHours}"></Label>
+                        </ContentView>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}"
+								TextColor="#f35e20"/>
+                                    <Label Text="{Binding Open, StringFormat='{}{0:hh\\:mm}'}}"
+								TextColor="#f35e20"/>
+                                    <Label Text=" - "/>
+                                    <Label Text="{Binding Close, StringFormat='{}{0:hh\\:mm}'}}"
+								TextColor="#f35e20"/>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <StackLayout>
+                <ListView x:Name="AuthorityNumber">
+                    <ListView.Header>
+                        <ContentView Padding="0,5">
+                            <Label FontSize="Medium" TextColor="Black" Text="{i18n:Translate PhoneNumber}"></Label>
+                        </ContentView>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+
+                                <Label Text="{Binding Name}"
+								TextColor="#f35e20"/>
+                                <Label Text="{Binding Number1}"
+								TextColor="#f35e20"/>
+                                
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
 
         </StackLayout>
     </ContentPage.Content>

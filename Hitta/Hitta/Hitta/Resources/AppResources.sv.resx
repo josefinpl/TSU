@@ -19,4 +19,19 @@
     <value>Välkommen!</value>
     <comment>Comment!</comment>
   </data>
+  <data name="Authority" xml:space="preserve">
+    <value>Myndighet</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beskrivning</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Namn</value>
+  </data>
+  <data name="OpenHours" xml:space="preserve">
+    <value>Öppettider</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Telefonnummer</value>
+  </data>
 </root>

@@ -19,4 +19,19 @@
     <value>እንቋዕ ደሓን መጻእካ!</value>
     <comment>Comment!</comment>
   </data>
+  <data name="Authority" xml:space="preserve">
+    <value>Authority</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>መግለጺ</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="OpenHours" xml:space="preserve">
+    <value>Business hours</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>ቁጽሪ ተሌፎን</value>
+  </data>
 </root>

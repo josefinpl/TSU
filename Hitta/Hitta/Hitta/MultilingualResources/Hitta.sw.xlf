@@ -15,6 +15,26 @@
           <target state="translated" state-qualifier="tm-suggestion">Karibu</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Comment!</note>
         </trans-unit>
+        <trans-unit id="Authority" translate="yes" xml:space="preserve">
+          <source>Authority</source>
+          <target state="translated">Authority</target>
+        </trans-unit>
+        <trans-unit id="Description" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Maelezo</target>
+        </trans-unit>
+        <trans-unit id="Name" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Name</target>
+        </trans-unit>
+        <trans-unit id="OpenHours" translate="yes" xml:space="preserve">
+          <source>Business hours</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Saa za biashara:</target>
+        </trans-unit>
+        <trans-unit id="PhoneNumber" translate="yes" xml:space="preserve">
+          <source>Phone number</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Namba ya simu</target>
+        </trans-unit>
       </group>
     </body>
   </file>

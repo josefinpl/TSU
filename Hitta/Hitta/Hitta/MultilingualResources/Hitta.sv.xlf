@@ -12,8 +12,28 @@
         </trans-unit>
         <trans-unit id="Hello" translate="yes" xml:space="preserve">
           <source>Welcome!</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Välkommen!</target>
+          <target state="translated" state-qualifier="mt-suggestion">Välkommen!</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Comment!</note>
+        </trans-unit>
+        <trans-unit id="Authority" translate="yes" xml:space="preserve">
+          <source>Authority</source>
+          <target state="translated">Myndighet</target>
+        </trans-unit>
+        <trans-unit id="Description" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target state="translated" state-qualifier="tm-suggestion">Beskrivning</target>
+        </trans-unit>
+        <trans-unit id="Name" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="translated" state-qualifier="tm-suggestion">Namn</target>
+        </trans-unit>
+        <trans-unit id="OpenHours" translate="yes" xml:space="preserve">
+          <source>Business hours</source>
+          <target state="translated" state-qualifier="mt-suggestion">Öppettider</target>
+        </trans-unit>
+        <trans-unit id="PhoneNumber" translate="yes" xml:space="preserve">
+          <source>Phone number</source>
+          <target state="translated">Telefonnummer</target>
         </trans-unit>
       </group>
     </body>

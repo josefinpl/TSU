@@ -19,4 +19,19 @@
     <value>خوش آمدی!</value>
     <comment>Comment!</comment>
   </data>
+  <data name="Authority" xml:space="preserve">
+    <value>اقتدار</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>توصیف</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="OpenHours" xml:space="preserve">
+    <value>ساعات کار</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>شماره تلفن</value>
+  </data>
 </root>

@@ -28,7 +28,12 @@
         
 
 
-        <ListView  x:Name="AuthorityView" Margin="10" Header="Aktörer">
+        <ListView  x:Name="AuthorityView" Margin="10">
+                <ListView.Header>
+                    <ContentView Padding="0,5">
+                        <Label FontSize="Medium" TextColor="Black" Text="{i18n:Translate Authority}" x:Name="LabelAuthority"></Label>
+                    </ContentView>
+                </ListView.Header>
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell x:Name="Authority">

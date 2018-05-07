@@ -19,4 +19,19 @@
     <value>Karibu</value>
     <comment>Comment!</comment>
   </data>
+  <data name="Authority" xml:space="preserve">
+    <value>Authority</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Maelezo</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="OpenHours" xml:space="preserve">
+    <value>Saa za biashara:</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Namba ya simu</value>
+  </data>
 </root>

@@ -61,6 +61,24 @@ namespace Hitta.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Authority.
+        /// </summary>
+        public static string Authority {
+            get {
+                return ResourceManager.GetString("Authority", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome!.
         /// </summary>
         public static string Hello {
@@ -75,6 +93,33 @@ namespace Hitta.Resources {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business hours.
+        /// </summary>
+        public static string OpenHours {
+            get {
+                return ResourceManager.GetString("OpenHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number.
+        /// </summary>
+        public static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
             }
         }
     }

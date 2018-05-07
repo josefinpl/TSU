@@ -37,11 +37,10 @@ namespace Hitta
             Languages = new ObservableCollection<Language>()
             {
                 new Language { DisplayName =  "عربى - Arabic", ShortName = "ar" },
-                new Language { DisplayName =  "Deutsche - German", ShortName = "de" },
                 new Language { DisplayName =  "English", ShortName = "en" },
                 new Language { DisplayName =  "Fârsi - Persian", ShortName = "fa" },
-                new Language { DisplayName =  "Svenska - Swedish", ShortName = "sv" },
                 new Language { DisplayName =  "Kiswahili - Swahili", ShortName = "sw" },
+                new Language { DisplayName =  "Svenska - Swedish", ShortName = "sv" },
                 new Language { DisplayName =  "ትግርኛ - Tigrinya", ShortName = "ti" }
 
             };
@@ -58,7 +57,6 @@ namespace Hitta
 
                 Navigation.PushAsync(page);
 
-                //  DisplayAlert("ItemSelected", item.Name, "Ok");
             };
         }
 
@@ -78,6 +76,7 @@ namespace Hitta
 
             LabelLanguage.Text = AppResources.Language;
             LabelHello.Text = AppResources.Hello;
+            LabelAuthority.Text = AppResources.Authority;
         }
 
     }
