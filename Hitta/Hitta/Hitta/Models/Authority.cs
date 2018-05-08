@@ -17,6 +17,10 @@ namespace Hitta.Models
         public int Category_Id { get; set; }
         public byte[] Logo { get; set; }
         public ImageSource Image { get; set; }
+        public string Address1 { get; set; }
+        public string City1 { get; set; }  
+        public int? Zipcode1 { get; set; }   
+        
 
         private SqlOperations sqlOp;
         private DataTable dt;

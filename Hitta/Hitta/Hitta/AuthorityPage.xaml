@@ -62,6 +62,13 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
+            <StackLayout>
+                <Label Text="Address" FontSize="Medium"></Label>
+                <Label Text="{Binding Address1}"></Label>
+                <Label Text="{Binding City1}"></Label>
+                <Label Text="{Binding Zipcode1}"></Label>
+            </StackLayout>
+
 
         </StackLayout>
     </ContentPage.Content>
