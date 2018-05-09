@@ -53,7 +53,6 @@ namespace Hitta
                 var item = (Authority)e.SelectedItem;
 
                 var page = new AuthorityPage(item);
-                NavigationPage.SetHasNavigationBar(page, false);
 
                 Navigation.PushAsync(page);
 

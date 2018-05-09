@@ -8,8 +8,6 @@ namespace Hitta.Models.ViewModels
     {
         public List<Hour> Hours { get; set; }
       
-        
-
         public HourVM(int id)
         {
             Hours = new Hour().GetHours(id);

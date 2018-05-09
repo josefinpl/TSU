@@ -14,8 +14,6 @@ namespace Hitta.Models
         public string Name { get; set; }
         public int Authority_Id { get; set; }
 
-        public string Open1 { get; set; }
-        public string Close1 { get; set; }
 
         private SqlOperations sqlOp;
         private DataTable dt;
@@ -28,22 +26,30 @@ namespace Hitta.Models
             List<Hour> hours = new List<Hour>();
             Hour h;
 
-            string sql = "SELECT * FROM Hour WHERE Authority_ID =" + id;
+            string sql = "SELECT * FROM Hour WHERE Authority_Id =" + id;
             dt = sqlOp.QueryRead(sql);
-
-            foreach (DataRow dr in dt.Rows)
+            try
             {
-                h = new Hour()
+                foreach (DataRow dr in dt.Rows)
                 {
-                    Id = (int)dr["Id"],
-                    Open = (TimeSpan)dr["Open"],
-                    Close = (TimeSpan)dr["Close"],
-                    Name = (string)dr["Name"],
-                    Authority_Id = (int)dr["Authority_Id"],
+                    h = new Hour()
+                    {
+                        Id = (int)dr["Id"],
+                        Open = (TimeSpan)dr["Open"],
+                        Close = (TimeSpan)dr["Close"],
+                        Name = (string)dr["Name"],
+                        Authority_Id = (int)dr["Authority_Id"],
 
-                };
-                hours.Add(h);
+                    };
+                    hours.Add(h);
+                }
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
 
             return hours;
         }

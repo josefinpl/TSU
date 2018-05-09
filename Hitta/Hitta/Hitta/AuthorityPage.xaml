@@ -9,13 +9,25 @@
             <Image Source="{Binding Image}" HeightRequest="100" WidthRequest="100" ></Image>
 
             <StackLayout>
-                <Label Text="{i18n:Translate Name}" FontSize="Medium"></Label>
-                <Label Text="{Binding Name}"></Label>
+                <Label Text="{i18n:Translate Name}" FontSize="Medium" TextColor="Black"></Label>
+                <Label Text="{Binding Name}" TextColor="Black"></Label>
             </StackLayout>
 
             <StackLayout>
-                <Label Text="{i18n:Translate Description}" FontSize="Medium"></Label>
-                <Label Text="{Binding Description}"></Label>
+                <Label Text="{i18n:Translate Description}" FontSize="Medium" TextColor="Black"></Label>
+                <Label Text="{Binding Description}" TextColor="Black"></Label>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Address" FontSize="Medium" TextColor="Black"></Label>
+                
+                <Label Text="{Binding Address1}" TextColor="Black"></Label>
+                
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Zipcode1}" TextColor="Black"></Label>
+                    <Label Text="{Binding City1}" TextColor="Black"></Label>
+                </StackLayout>
+                
             </StackLayout>
 
             <StackLayout>
@@ -62,12 +74,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <StackLayout>
-                <Label Text="Address" FontSize="Medium"></Label>
-                <Label Text="{Binding Address1}"></Label>
-                <Label Text="{Binding City1}"></Label>
-                <Label Text="{Binding Zipcode1}"></Label>
-            </StackLayout>
+          
 
 
         </StackLayout>

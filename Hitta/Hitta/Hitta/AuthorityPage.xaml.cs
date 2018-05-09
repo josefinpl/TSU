@@ -22,11 +22,11 @@ namespace Hitta
         {
             InitializeComponent();
 
-            hvm = new HourVM(auth.Id);
+            //hvm = new HourVM(auth.Id);
             nvm = new NumberVM(auth.Id);
             avm = new AddressVM(auth.Address_Id);
 
-            AuthorityView.ItemsSource = hvm.Hours;
+            //AuthorityView.ItemsSource = hvm.Hours;
             AuthorityNumber.ItemsSource = nvm.Numbers;
 
             auth.Address1 = avm.Address.Address1;

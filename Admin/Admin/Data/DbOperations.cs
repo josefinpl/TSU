@@ -268,7 +268,7 @@ namespace Admin.Data
 
         public IEnumerable<AuthorityVM> ListAuthorities()
         {
-            var authorities = db.Authority.Include(u => u.Address).Include(u => u.Category).Select(x => new AuthorityVM
+            var authorities = db.Authority.Include(u => u.Address).Include(u => u.Category).OrderBy(x => x.Name).Select(x => new AuthorityVM
             {
                 Id = x.Id,
                 Name = x.Name,
