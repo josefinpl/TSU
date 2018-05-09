@@ -33,7 +33,7 @@ namespace Hitta.Models
             List<Authority> authorities = new List<Authority>();
             Authority a;
 
-            string sql = "SELECT * FROM Authority";
+            string sql = "SELECT * FROM Authority ORDER BY Name ASC";
             dt = sqlOp.QueryRead(sql);
 
             foreach (DataRow dr in dt.Rows)

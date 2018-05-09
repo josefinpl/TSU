@@ -19,7 +19,7 @@
             </StackLayout>
 
             <StackLayout>
-                <Label Text="Address" FontSize="Medium" TextColor="Black"></Label>
+                <Label Text="Adress" FontSize="Medium" TextColor="Black"></Label>
                 
                 <Label Text="{Binding Address1}" TextColor="Black"></Label>
                 
