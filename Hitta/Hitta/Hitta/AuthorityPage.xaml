@@ -8,6 +8,8 @@
 
             <Image Source="{Binding Image}" HeightRequest="100" WidthRequest="100" ></Image>
 
+            <Button Text="Karta" Clicked="btnMap"></Button>
+            
             <StackLayout>
                 <Label Text="{i18n:Translate Name}" FontSize="Medium" TextColor="Black"></Label>
                 <Label Text="{Binding Name}" TextColor="Black"></Label>

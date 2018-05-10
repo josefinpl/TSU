@@ -78,6 +78,8 @@ namespace Hitta
             LabelAuthority.Text = AppResources.Authority;
         }
 
+     
+
     }
 }
 

@@ -36,5 +36,10 @@ namespace Hitta
             BindingContext = auth;
 
         }
+        private void btnMap()
+        {
+            var page = new MapPage();
+            Navigation.PushAsync(page);
+        }
     }
 }
