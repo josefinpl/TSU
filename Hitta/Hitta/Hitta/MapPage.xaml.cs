@@ -18,19 +18,24 @@ namespace Hitta
 		//	InitializeComponent ();
 		//}
 
-        public MapPage()
+        public MapPage(double lat, double lon)
         {
-
-
             var map = new Map(
                 MapSpan.FromCenterAndRadius(
-                        new Position(37, -122), Distance.FromMiles(0.3)))
+                        new Position(lat, lon), Distance.FromMiles(0.3)))
             {
                 IsShowingUser = true,
                 HeightRequest = 100,
                 WidthRequest = 960,
                 VerticalOptions = LayoutOptions.FillAndExpand
             };
+            //var pin = new Pin()
+            //{
+            //    Position = new Position(37, -122),
+            //    Label = "Some Pin!"
+            //};
+            //map.Pins.Add(pin);
+
             var stack = new StackLayout { Spacing = 0 };
             stack.Children.Add(map);
             Content = stack;
