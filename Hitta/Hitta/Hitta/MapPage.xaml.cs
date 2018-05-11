@@ -20,6 +20,8 @@ namespace Hitta
 
         public MapPage()
         {
+
+
             var map = new Map(
                 MapSpan.FromCenterAndRadius(
                         new Position(37, -122), Distance.FromMiles(0.3)))

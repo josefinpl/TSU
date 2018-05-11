@@ -24,6 +24,8 @@ namespace Hitta
         {
             InitializeComponent();
 
+
+
             avm = new AuthorityVM();
 
             foreach (var authority in avm.Authorities)

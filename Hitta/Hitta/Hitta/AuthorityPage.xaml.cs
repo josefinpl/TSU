@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.Geolocator;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 
 namespace Hitta
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AuthorityPage : ContentPage
     {
-        HourVM hvm;
+        //HourVM hvm;
         NumberVM nvm;
         AddressVM avm;
 
@@ -36,10 +39,50 @@ namespace Hitta
             BindingContext = auth;
 
         }
-        private void btnMap()
+
+        bool busy;
+
+        async void btnMap(object sender, EventArgs e)
         {
-            var page = new MapPage();
-            Navigation.PushAsync(page);
+            if (busy)
+                return;
+
+            busy = true;
+            //((Button)sender).IsEnabled = false;
+
+            try
+            {
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                if (status != PermissionStatus.Granted)
+                {
+                    status = await Utils.CheckPermissions(Permission.Location);
+
+                    await DisplayAlert("Results", status.ToString(), "OK");
+                }
+
+                if (status == PermissionStatus.Granted)
+                {
+                   // var results = await CrossGeolocator.Current.GetPositionAsync(TimeSpan.FromSeconds(10));
+                    var page = new MapPage();
+                    await Navigation.PushAsync(page);
+                    //LabelGeolocation.Text = "Lat: " + results.Latitude + " Long: " + results.Longitude;
+                }
+                else if (status != PermissionStatus.Unknown)
+                {
+                    await DisplayAlert("Location Denied", "Can not continue, try again.", "OK");
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+            //((Button)sender).IsEnabled = true;
+
+
+            busy = false;
+
+
         }
     }
 }
