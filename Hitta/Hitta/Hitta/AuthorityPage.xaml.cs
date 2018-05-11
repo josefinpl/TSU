@@ -17,7 +17,7 @@ namespace Hitta
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AuthorityPage : ContentPage
     {
-        //HourVM hvm;
+        HourVM hvm;
         NumberVM nvm;
         AddressVM avm;
 
@@ -25,11 +25,11 @@ namespace Hitta
         {
             InitializeComponent();
 
-            //hvm = new HourVM(auth.Id);
+            hvm = new HourVM(auth.Id);
             nvm = new NumberVM(auth.Id);
             avm = new AddressVM(auth.Address_Id);
 
-            //AuthorityView.ItemsSource = hvm.Hours;
+            AuthorityView.ItemsSource = hvm.Hours;
             AuthorityNumber.ItemsSource = nvm.Numbers;
 
             auth.Address1 = avm.Address.Address1;
@@ -65,7 +65,6 @@ namespace Hitta
                    // var results = await CrossGeolocator.Current.GetPositionAsync(TimeSpan.FromSeconds(10));
                     var page = new MapPage();
                     await Navigation.PushAsync(page);
-                    //LabelGeolocation.Text = "Lat: " + results.Latitude + " Long: " + results.Longitude;
                 }
                 else if (status != PermissionStatus.Unknown)
                 {
