@@ -23,6 +23,7 @@ namespace Hitta.Droid
 
             base.OnCreate(bundle);
 
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
 

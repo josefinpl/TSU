@@ -62,7 +62,14 @@ namespace Hitta
 
                 if (status == PermissionStatus.Granted)
                 {
-                    var results = await CrossGeolocator.Current.GetPositionAsync();
+
+                    var locator = CrossGeolocator.Current;
+                    
+                    //labelGPS.Text = "Getting gps...";
+
+                    var results = await locator.GetPositionAsync();
+
+                   // var results = await CrossGeolocator.Current.GetPositionAsync();
                     var page = new MapPage(results.Latitude, results.Longitude);
                     await Navigation.PushAsync(page);
                 }
@@ -83,5 +90,6 @@ namespace Hitta
 
 
         }
+
     }
 }
