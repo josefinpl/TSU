@@ -29,12 +29,12 @@ namespace Hitta
                 WidthRequest = 960,
                 VerticalOptions = LayoutOptions.FillAndExpand
             };
-            //var pin = new Pin()
-            //{
-            //    Position = new Position(37, -122),
-            //    Label = "Some Pin!"
-            //};
-            //map.Pins.Add(pin);
+            var pin = new Pin()
+            {
+                Position = new Position(lat, lon),
+                Label = "Some Pin!"
+            };
+            map.Pins.Add(pin);
 
             var stack = new StackLayout { Spacing = 0 };
             stack.Children.Add(map);
