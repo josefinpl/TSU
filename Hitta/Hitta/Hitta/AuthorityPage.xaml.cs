@@ -36,6 +36,8 @@ namespace Hitta
             auth.City1 = avm.Address.City;
             auth.Zipcode1 = avm.Address.Zipcode;
 
+            auth.MapAddress = auth.Address1 + ", " + auth.Zipcode1.ToString() + " " + auth.City1;
+
             BindingContext = auth;
 
         }
@@ -62,10 +64,19 @@ namespace Hitta
 
                 if (status == PermissionStatus.Granted)
                 {
+                    var mapAddress = ((Button)sender).BindingContext.ToString();
 
+                    var place = await CrossGeolocator.Current.GetPositionsForAddressAsync(mapAddress);
+
+                    foreach (var p in place)
+                    {
+                        var page = new MapPage(p.Latitude, p.Longitude);
+                        await Navigation.PushAsync(page);
+                    }
+                   
                    // var results = await CrossGeolocator.Current.GetPositionAsync();
-                    var page = new MapPage(63.175849, 14.635330);
-                    await Navigation.PushAsync(page);
+                    
+                    
                 }
                 else if (status != PermissionStatus.Unknown)
                 {
@@ -84,6 +95,7 @@ namespace Hitta
 
 
         }
+
 
     }
 }

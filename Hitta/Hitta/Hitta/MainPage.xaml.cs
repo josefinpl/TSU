@@ -30,7 +30,11 @@ namespace Hitta
 
             foreach (var authority in avm.Authorities)
             {
-                authority.Image = ImageSource.FromStream(() => new MemoryStream(authority.Logo));
+                if(authority.Logo != null)
+                {
+                    authority.Image = ImageSource.FromStream(() => new MemoryStream(authority.Logo));
+
+                }
             }
 
             AuthorityView.ItemsSource = avm.Authorities;

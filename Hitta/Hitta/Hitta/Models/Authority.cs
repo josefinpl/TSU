@@ -16,10 +16,14 @@ namespace Hitta.Models
         public int Address_Id { get; set; }
         public int Category_Id { get; set; }
         public byte[] Logo { get; set; }
+
         public ImageSource Image { get; set; }
+
         public string Address1 { get; set; }
         public string City1 { get; set; }  
         public int? Zipcode1 { get; set; }   
+
+        public string MapAddress { get; set; }
         
 
         private SqlOperations sqlOp;
@@ -45,8 +49,12 @@ namespace Hitta.Models
                     Description = (string)dr["Description"],
                     Address_Id = (int)dr["Address_Id"],
                     Category_Id = (int)dr["Category_Id"],
-                    Logo = (byte[])dr["Logo"]
                 };
+
+                if(dr["Logo"] != null)
+                {
+                    a.Logo = (byte[])dr["Logo"];
+                }
                 authorities.Add(a);
             }
 
