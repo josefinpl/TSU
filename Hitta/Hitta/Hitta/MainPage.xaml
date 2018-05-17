@@ -43,6 +43,7 @@
                     <StackLayout BackgroundColor="#eee"
 						Orientation="Vertical">
                         <StackLayout Orientation="Horizontal">
+                            
                             <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50" />
                             <Label Text="{Binding Name}"
 								TextColor="#f35e20"/>

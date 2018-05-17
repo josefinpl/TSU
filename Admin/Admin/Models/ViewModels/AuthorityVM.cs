@@ -20,8 +20,8 @@ namespace Admin.Models.ViewModels
         [Required(ErrorMessage = "Ange en beskrivning")]
         public string Description { get; set; }
 
-        public Nullable<int> Address_Id { get; set; }
-        public Nullable<int> Category_Id { get; set; }
+        public int? Address_Id { get; set; }
+        public int? Category_Id { get; set; }
         public string CategoryName { get; set; }
 
         public byte[] Logo { get; set; }
