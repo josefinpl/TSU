@@ -6,6 +6,8 @@ using System.Web;
 using System.Data.Entity;
 using Admin.Models.db;
 using System.Web.ModelBinding;
+using System.IO;
+using System.Drawing;
 
 namespace Admin.Data
 {
@@ -57,9 +59,16 @@ namespace Admin.Data
                 Name = model.Name,
                 Description = model.Description,
                 Category_Id = model.Category_Id,
-                Address_Id = SetAddress(model)
+                Address_Id = SetAddress(model),               
+                
             };
-
+            MemoryStream mStream = new MemoryStream();
+            
+            var img = Resource1.placeholder;
+            img.Save(mStream, img.RawFormat);        
+            a.Logo = mStream.ToArray();
+            
+            
             db.Authority.Add(a);
             db.SaveChanges();
 
@@ -101,9 +110,10 @@ namespace Admin.Data
                 };
                 db.Hour.Add(hour);
             }
-
+            authority.RightSize=true;
             if (image != null)
             {
+                
                 authority.Logo = new byte[image.ContentLength];
                 if (image.ContentLength > 500000)
                 {
