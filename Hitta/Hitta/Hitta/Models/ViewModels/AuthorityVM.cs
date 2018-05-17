@@ -7,10 +7,11 @@ namespace Hitta.Models.ViewModels
     public class AuthorityVM
     {
         public List<Authority> Authorities { get; set; }
-
+        
         public AuthorityVM()
         {
             Authorities = new Authority().GetAuthorities();
+
         }
     }
 }

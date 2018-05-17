@@ -1,4 +1,5 @@
 ﻿using Hitta.Data;
+using Hitta.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,10 +25,12 @@ namespace Hitta.Models
         public int? Zipcode1 { get; set; }   
 
         public string MapAddress { get; set; }
-        
+        public MapVM MapVM { get; set; }
 
         private SqlOperations sqlOp;
         private DataTable dt;
+
+        Authority auth;
 
         public List<Authority> GetAuthorities()
         {
@@ -49,18 +52,40 @@ namespace Hitta.Models
                     Description = (string)dr["Description"],
                     Address_Id = (int)dr["Address_Id"],
                     Category_Id = (int)dr["Category_Id"],
+                    Logo = (byte[])dr["Logo"]
                 };
-
-                if(dr["Logo"] != null)
-                {
-                    a.Logo = (byte[])dr["Logo"];
-                }
                 authorities.Add(a);
             }
 
+
+
             return authorities;
         }
+        public Authority GetAuthority(string id)
+        {
+            dt = new DataTable();
+            sqlOp = new SqlOperations();
 
+            string sql = "SELECT * FROM Authority WHERE Id =" + id;
+            dt = sqlOp.QueryRead(sql);
+            
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                auth = new Authority()
+                {
+                    Id = (int)dr["Id"],
+                    Name = (string)dr["Name"],
+                    Description = (string)dr["Description"],
+                    Address_Id = (int)dr["Address_Id"],
+                    Category_Id = (int)dr["Category_Id"],
+                    Logo = (byte[])dr["Logo"]
+                };
+                
+            }
+
+            return auth;
+        }
 
     }
 }

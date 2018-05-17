@@ -20,14 +20,19 @@ namespace Hitta
         HourVM hvm;
         NumberVM nvm;
         AddressVM avm;
+        MapVM mvm;
+        Authority authority;
 
         public AuthorityPage(Authority auth)
         {
             InitializeComponent();
 
+            auth.MapAddress = auth.Address1 + ", " + auth.Zipcode1.ToString() + " " + auth.City1;
+
             hvm = new HourVM(auth.Id);
             nvm = new NumberVM(auth.Id);
             avm = new AddressVM(auth.Address_Id);
+            mvm = new MapVM(auth.MapAddress, auth);
 
             AuthorityView.ItemsSource = hvm.Hours;
             AuthorityNumber.ItemsSource = nvm.Numbers;
@@ -36,7 +41,7 @@ namespace Hitta
             auth.City1 = avm.Address.City;
             auth.Zipcode1 = avm.Address.Zipcode;
 
-            auth.MapAddress = auth.Address1 + ", " + auth.Zipcode1.ToString() + " " + auth.City1;
+            auth.MapVM = mvm;
 
             BindingContext = auth;
 
@@ -64,13 +69,20 @@ namespace Hitta
 
                 if (status == PermissionStatus.Granted)
                 {
-                    var mapAddress = ((Button)sender).BindingContext.ToString();
+                    var maps = ((Button)sender).BindingContext.ToString();
+                    authority = new Authority();                 
+                    authority = authority.GetAuthority(maps);
 
-                    var place = await CrossGeolocator.Current.GetPositionsForAddressAsync(mapAddress);
+                    avm = new AddressVM(authority.Address_Id);
+                    authority.Address1 = avm.Address.Address1;
+                    authority.City1 = avm.Address.City;
+                    authority.Zipcode1 = avm.Address.Zipcode;
+                    authority.MapAddress = authority.Address1 + ", " + authority.Zipcode1.ToString() + " " + authority.City1;
+                    var place = await CrossGeolocator.Current.GetPositionsForAddressAsync(authority.MapAddress);
 
                     foreach (var p in place)
                     {
-                        var page = new MapPage(p.Latitude, p.Longitude);
+                        var page = new MapPage(p.Latitude, p.Longitude, authority);
                         await Navigation.PushAsync(page);
                     }
                    

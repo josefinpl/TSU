@@ -8,7 +8,7 @@
 
             <Image Source="{Binding Image}" HeightRequest="100" WidthRequest="100" ></Image>
 
-            <Button Text="Karta" Clicked="btnMap" BindingContext="{Binding MapAddress}" ></Button>
+            <Button Text="Karta" Clicked="btnMap" BindingContext="{Binding Id}" ></Button>
             
             <StackLayout>
                 <Label Text="{i18n:Translate Name}" FontSize="Medium" TextColor="Black"></Label>
@@ -45,11 +45,11 @@
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding Name}"
 								TextColor="#f35e20"/>
-                                    <!--<Label Text="{Binding Open, StringFormat='{}{0:hh\\:mm}'}}"
+                                    <Label Text="{Binding Open, StringFormat='{}{0:hh\\:mm}'}}"
 								TextColor="#f35e20"/>
                                     <Label Text=" - "/>
                                     <Label Text="{Binding Close, StringFormat='{}{0:hh\\:mm}'}}"
-								TextColor="#f35e20"/>-->
+								TextColor="#f35e20"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

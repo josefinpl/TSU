@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hitta.Models;
+using Hitta.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +20,7 @@ namespace Hitta
 		//	InitializeComponent ();
 		//}
 
-        public MapPage(double lat, double lon)
+        public MapPage(double lat, double lon, Authority auth)
         {
             var map = new Map(
                 MapSpan.FromCenterAndRadius(
@@ -32,8 +34,9 @@ namespace Hitta
             var pin = new Pin()
             {
                 Position = new Position(lat, lon),
-                Label = "Some Pin!"
-            };
+                Label = auth.Name,
+                Address = auth.MapAddress
+        };
             map.Pins.Add(pin);
 
             var stack = new StackLayout { Spacing = 0 };
