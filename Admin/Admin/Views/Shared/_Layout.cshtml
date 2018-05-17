@@ -17,24 +17,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Start", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
             </div>
             @if (Session["Id"] != null)
             {
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Logga ut", "Logout", "Home")</li>
-                    </ul>
-                </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @Html.ActionLink("Start", "Admin", "ListAuthorities", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Logga ut", "Logout", "Home")</li>
+                </ul>
+
+            </div>
             }
             else
             {
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-
-                        <li>@Html.ActionLink("Logga in", "Index", "Home")</li>
-
-                    </ul>
+                    
                 </div>
             }
 

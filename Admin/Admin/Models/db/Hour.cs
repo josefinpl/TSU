@@ -15,8 +15,8 @@ namespace Admin.Models.db
     public partial class Hour
     {
         public int Id { get; set; }
-        public Nullable<System.TimeSpan> Open { get; set; }
-        public Nullable<System.TimeSpan> Close { get; set; }
+        public string Open { get; set; }
+        public string Close { get; set; }
         public string Name { get; set; }
         public Nullable<int> Authority_Id { get; set; }
     

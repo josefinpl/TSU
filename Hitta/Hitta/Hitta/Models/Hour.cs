@@ -9,8 +9,8 @@ namespace Hitta.Models
     public class Hour
     {
         public int Id { get; set; }
-        public TimeSpan Open { get; set; }
-        public TimeSpan Close { get; set; }
+        public string Open { get; set; }
+        public string Close { get; set; }
         public string Name { get; set; }
         public int Authority_Id { get; set; }
 
@@ -35,8 +35,8 @@ namespace Hitta.Models
                     h = new Hour()
                     {
                         Id = (int)dr["Id"],
-                        Open = (TimeSpan)dr["Open"],
-                        Close = (TimeSpan)dr["Close"],
+                        Open = (string)dr["Open"],
+                        Close = (string)dr["Close"],
                         Name = (string)dr["Name"],
                         Authority_Id = (int)dr["Authority_Id"],
 

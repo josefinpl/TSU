@@ -15,7 +15,7 @@ namespace Admin.Controllers
     public class HomeController : BaseController
     {
         DbOperations dbOps = new DbOperations();
-        tusjoseEntities db = new tusjoseEntities();
+        TSUEntities db = new TSUEntities();
 
         public ActionResult Index()
         {

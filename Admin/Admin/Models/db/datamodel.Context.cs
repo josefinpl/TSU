@@ -13,10 +13,10 @@ namespace Admin.Models.db
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class tusjoseEntities : DbContext
+    public partial class TSUEntities : DbContext
     {
-        public tusjoseEntities()
-            : base("name=tusjoseEntities")
+        public TSUEntities()
+            : base("name=TSUEntities")
         {
         }
     

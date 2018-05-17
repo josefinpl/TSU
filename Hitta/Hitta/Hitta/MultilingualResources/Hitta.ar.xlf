@@ -25,7 +25,7 @@
         </trans-unit>
         <trans-unit id="Name" translate="yes" xml:space="preserve">
           <source>Name</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Name</target>
+          <target state="translated">اسم</target>
         </trans-unit>
         <trans-unit id="OpenHours" translate="yes" xml:space="preserve">
           <source>Business hours</source>
@@ -34,6 +34,10 @@
         <trans-unit id="PhoneNumber" translate="yes" xml:space="preserve">
           <source>Phone number</source>
           <target state="translated">رقم الهاتف</target>
+        </trans-unit>
+        <trans-unit id="Address" translate="yes" xml:space="preserve">
+          <source>Address</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">العنوان</target>
         </trans-unit>
       </group>
     </body>

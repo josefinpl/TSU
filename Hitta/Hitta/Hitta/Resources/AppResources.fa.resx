@@ -34,4 +34,7 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>شماره تلفن</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>آدرس</value>
+  </data>
 </root>

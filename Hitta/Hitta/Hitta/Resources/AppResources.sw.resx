@@ -34,4 +34,7 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>Namba ya simu</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Anwan</value>
+  </data>
 </root>

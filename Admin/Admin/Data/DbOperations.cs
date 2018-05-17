@@ -14,7 +14,7 @@ namespace Admin.Data
     public class DbOperations
     {
 
-        private tusjoseEntities db = new tusjoseEntities();
+        private TSUEntities db = new TSUEntities();
 
         public AuthorityVM GetAuthority(int? id)
         {
@@ -315,7 +315,7 @@ namespace Admin.Data
             foreach (var item in addresses)
             {
                 if (a.Address1.Trim() == item.Address1.Trim()
-                     && a.Zipcode == item.Zipcode)
+                     && a.Zipcode == item.Zipcode && a.City.Trim() == item.City.Trim())
                 {
                     exists = true;
                     a = item;

@@ -35,6 +35,10 @@
           <source>Phone number</source>
           <target state="translated">Telefonnummer</target>
         </trans-unit>
+        <trans-unit id="Address" translate="yes" xml:space="preserve">
+          <source>Address</source>
+          <target state="translated">Adress</target>
+        </trans-unit>
       </group>
     </body>
   </file>

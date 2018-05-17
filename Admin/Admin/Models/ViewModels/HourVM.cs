@@ -13,12 +13,10 @@ namespace Admin.Models.ViewModels
         public int Id { get; set; }
 
         [DisplayName("Öppnar")]
-        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
-        public Nullable<System.TimeSpan> Open { get; set; }
+        public string Open { get; set; }
 
         [DisplayName("Stänger")]
-        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
-        public Nullable<System.TimeSpan> Close { get; set; }
+        public string Close { get; set; }
 
         [DisplayName("Beskrivning")]
         public string Name { get; set; }

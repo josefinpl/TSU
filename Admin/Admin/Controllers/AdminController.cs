@@ -16,7 +16,7 @@ namespace Admin.Controllers
     public class AdminController : BaseController
     {
         private DbOperations dbo = new DbOperations();
-        private tusjoseEntities db = new tusjoseEntities();
+        private TSUEntities db = new TSUEntities();
 
         // GET: Admin
         public ActionResult ListAuthorities()

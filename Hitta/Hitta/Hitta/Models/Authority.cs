@@ -25,7 +25,6 @@ namespace Hitta.Models
         public int? Zipcode1 { get; set; }   
 
         public string MapAddress { get; set; }
-        public MapVM MapVM { get; set; }
 
         private SqlOperations sqlOp;
         private DataTable dt;

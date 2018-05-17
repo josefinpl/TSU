@@ -26,12 +26,15 @@
     <value>الوصف</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>اسم</value>
   </data>
   <data name="OpenHours" xml:space="preserve">
     <value>ساعات العمل</value>
   </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>رقم الهاتف</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>العنوان</value>
   </data>
 </root>

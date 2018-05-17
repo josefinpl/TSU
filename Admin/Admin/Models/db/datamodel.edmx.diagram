@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="19b61b4cad0f457e8da87b21e6bf71a1" Name="Diagram1">
-        <EntityTypeShape EntityType="tusjoseModel.Access" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="tusjoseModel.Address" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="tusjoseModel.Authority" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="tusjoseModel.Category" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="tusjoseModel.Hour" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="tusjoseModel.Number" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="tusjoseModel.User" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+      <Diagram DiagramId="a65a9f004f7b4c8c9e6b59d99b584925" Name="Diagram1">
+        <EntityTypeShape EntityType="tusjoseModel.Access" Width="1.5" PointX="3.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.Address" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.Authority" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.Category" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.Hour" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.Number" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tusjoseModel.User" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
         <AssociationConnector Association="tusjoseModel.FK_User_Access" ManuallyRouted="false" />
         <AssociationConnector Association="tusjoseModel.FK_Authority_Address" ManuallyRouted="false" />
         <AssociationConnector Association="tusjoseModel.FK_User_Address" ManuallyRouted="false" />
         <AssociationConnector Association="tusjoseModel.FK_Authority_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="tusjoseModel.FK_Hour_Authority" />
-        <AssociationConnector Association="tusjoseModel.FK_Number_Authority" />
+        <AssociationConnector Association="tusjoseModel.FK_Hour_Authority" ManuallyRouted="false" />
+        <AssociationConnector Association="tusjoseModel.FK_Number_Authority" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -20,7 +20,6 @@ namespace Hitta
         HourVM hvm;
         NumberVM nvm;
         AddressVM avm;
-        MapVM mvm;
         Authority authority;
 
         public AuthorityPage(Authority auth)
@@ -32,20 +31,28 @@ namespace Hitta
             hvm = new HourVM(auth.Id);
             nvm = new NumberVM(auth.Id);
             avm = new AddressVM(auth.Address_Id);
-            mvm = new MapVM(auth.MapAddress, auth);
 
             AuthorityView.ItemsSource = hvm.Hours;
             AuthorityNumber.ItemsSource = nvm.Numbers;
+
+            int i = hvm.Hours.Count;
+            int heightRowList = 90;
+            i = (hvm.Hours.Count * heightRowList);
+            AuthorityView.HeightRequest = i;
+
+            int n = nvm.Numbers.Count;
+            int heightRowsList = 90;
+            n = (nvm.Numbers.Count * heightRowsList);
+            AuthorityNumber.HeightRequest = n;
 
             auth.Address1 = avm.Address.Address1;
             auth.City1 = avm.Address.City;
             auth.Zipcode1 = avm.Address.Zipcode;
 
-            auth.MapVM = mvm;
-
             BindingContext = auth;
 
         }
+
 
         bool busy;
 
@@ -55,7 +62,6 @@ namespace Hitta
                 return;
 
             busy = true;
-            //((Button)sender).IsEnabled = false;
 
             try
             {
@@ -63,8 +69,6 @@ namespace Hitta
                 if (status != PermissionStatus.Granted)
                 {
                     status = await Utils.CheckPermissions(Permission.Location);
-
-                    await DisplayAlert("Results", status.ToString(), "OK");
                 }
 
                 if (status == PermissionStatus.Granted)
@@ -85,9 +89,6 @@ namespace Hitta
                         var page = new MapPage(p.Latitude, p.Longitude, authority);
                         await Navigation.PushAsync(page);
                     }
-                   
-                   // var results = await CrossGeolocator.Current.GetPositionAsync();
-                    
                     
                 }
                 else if (status != PermissionStatus.Unknown)
@@ -99,9 +100,6 @@ namespace Hitta
             {
 
             }
-
-            //((Button)sender).IsEnabled = true;
-
 
             busy = false;
 
