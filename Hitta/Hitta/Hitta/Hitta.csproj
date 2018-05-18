@@ -47,6 +47,11 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Resource1.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\AppResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -59,6 +64,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="MapPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

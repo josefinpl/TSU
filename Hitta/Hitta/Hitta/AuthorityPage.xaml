@@ -5,82 +5,100 @@
              x:Class="Hitta.AuthorityPage">
     <ContentPage.Content>
         <ScrollView>
-            
-        <StackLayout Padding="20" Spacing="20">
 
-            <Image Source="{Binding Image}" HeightRequest="100" WidthRequest="100" ></Image>
-
-            <Button Text="Karta" Clicked="btnMap" BindingContext="{Binding Id}" ></Button>
-            
-            <StackLayout>
-                <Label Text="{i18n:Translate Name}" FontSize="Medium" TextColor="Black"></Label>
-                <Label Text="{Binding Name}" TextColor="Black"></Label>
-            </StackLayout>
-
-            <StackLayout>
-                <Label Text="{i18n:Translate Description}" FontSize="Medium" TextColor="Black"></Label>
-                <Label Text="{Binding Description}" TextColor="Black"></Label>
-            </StackLayout>
-
-            <StackLayout>
-                    <Label Text="{i18n:Translate Address}" FontSize="Medium" TextColor="Black"></Label>
-                
-                <Label Text="{Binding Address1}" TextColor="Black"></Label>
-                
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Zipcode1}" TextColor="Black"></Label>
-                    <Label Text="{Binding City1}" TextColor="Black"></Label>
+            <StackLayout Padding="20" Spacing="20">
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Image Source="icon2.png" StyleId="Voice" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
+                        </Image.GestureRecognizers>
+                    </Image>
                 </StackLayout>
-                
+
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Image Source="maps.png" StyleId="Maps" BindingContext="{Binding Id}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+
+
+                <!--<Button Text="Karta" Clicked="btnMap" BindingContext="{Binding Id}" ></Button>-->
+
+                <StackLayout>
+                    <Label Text="{i18n:Translate Name}" FontSize="Medium" TextColor="Black"></Label>
+                    <StackLayout Orientation="Horizontal" Padding="0,10,0,0">
+                        <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50" Margin="0,0,10,0"></Image>
+                        <Label Text="{Binding Name}" TextColor="Black" VerticalOptions="CenterAndExpand"></Label>
+                    </StackLayout>
+                    
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="{i18n:Translate Description}" FontSize="Medium" TextColor="Black"></Label>
+                    <Label Text="{Binding Description}" TextColor="Black"></Label>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="{i18n:Translate Address}" FontSize="Medium" TextColor="Black"></Label>
+
+                    <Label Text="{Binding Address1}" TextColor="Black"></Label>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Zipcode1}" TextColor="Black"></Label>
+                        <Label Text="{Binding City1}" TextColor="Black"></Label>
+                    </StackLayout>
+
+                </StackLayout>
+
+                <StackLayout>
+                    <ListView x:Name="AuthorityView">
+                        <ListView.Header>
+                            <ContentView Padding="0,5">
+                                <Label FontSize="Medium" TextColor="Black" Text="{i18n:Translate OpenHours}"></Label>
+                            </ContentView>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell IsEnabled="False">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Name}"
+								TextColor="#f35e20"/>
+                                        <Label Text="{Binding Open}"
+								TextColor="#f35e20"/>
+                                        <Label Text=" - "/>
+                                        <Label Text="{Binding Close}"
+								TextColor="#f35e20"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <ListView x:Name="AuthorityNumber">
+                        <ListView.Header>
+                            <ContentView Padding="0,5">
+                                <Label FontSize="Medium" TextColor="Black" Text="{i18n:Translate PhoneNumber}"></Label>
+                            </ContentView>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell IsEnabled="False">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Name}"
+								TextColor="#f35e20"/>
+                                        <Label Text="{Binding Number1}"
+								TextColor="#f35e20"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+
             </StackLayout>
-
-            <StackLayout>
-                <ListView x:Name="AuthorityView">
-                    <ListView.Header>
-                        <ContentView Padding="0,5">
-                            <Label FontSize="Medium" TextColor="Black" Text="{i18n:Translate OpenHours}"></Label>
-                        </ContentView>
-                    </ListView.Header>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell IsEnabled="False">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Name}"
-								TextColor="#f35e20"/>
-                                    <Label Text="{Binding Open}"
-								TextColor="#f35e20"/>
-                                    <Label Text=" - "/>
-                                    <Label Text="{Binding Close}"
-								TextColor="#f35e20"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-
-                <ListView x:Name="AuthorityNumber">
-                    <ListView.Header>
-                        <ContentView Padding="0,5">
-                            <Label FontSize="Medium" TextColor="Black" Text="{i18n:Translate PhoneNumber}"></Label>
-                        </ContentView>
-                    </ListView.Header>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell IsEnabled="False">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Name}"
-								TextColor="#f35e20"/>
-                                    <Label Text="{Binding Number1}"
-								TextColor="#f35e20"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-
-
-        </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

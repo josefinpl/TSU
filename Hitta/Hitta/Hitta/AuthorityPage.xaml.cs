@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 using Plugin.Geolocator;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using System.IO;
 
 namespace Hitta
 {
@@ -54,57 +55,113 @@ namespace Hitta
         }
 
 
-        bool busy;
-
-        async void btnMap(object sender, EventArgs e)
+        async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
-            if (busy)
-                return;
+            var imageSender = (Image)sender;
 
-            busy = true;
+            ((Image)sender).IsEnabled = false;
 
-            try
+            if(imageSender.StyleId == "Voice")
             {
-                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
-                if (status != PermissionStatus.Granted)
+                // Do something
+                await DisplayAlert("Alert", "Tap gesture recoganised", "OK");
+            }
+            else if (imageSender.StyleId == "Maps")
+            {
+                try
                 {
-                    status = await Utils.CheckPermissions(Permission.Location);
-                }
-
-                if (status == PermissionStatus.Granted)
-                {
-                    var maps = ((Button)sender).BindingContext.ToString();
-                    authority = new Authority();                 
-                    authority = authority.GetAuthority(maps);
-
-                    avm = new AddressVM(authority.Address_Id);
-                    authority.Address1 = avm.Address.Address1;
-                    authority.City1 = avm.Address.City;
-                    authority.Zipcode1 = avm.Address.Zipcode;
-                    authority.MapAddress = authority.Address1 + ", " + authority.Zipcode1.ToString() + " " + authority.City1;
-                    var place = await CrossGeolocator.Current.GetPositionsForAddressAsync(authority.MapAddress);
-
-                    foreach (var p in place)
+                    var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                    if (status != PermissionStatus.Granted)
                     {
-                        var page = new MapPage(p.Latitude, p.Longitude, authority);
-                        await Navigation.PushAsync(page);
+                        status = await Utils.CheckPermissions(Permission.Location);
                     }
-                    
+
+                    if (status == PermissionStatus.Granted)
+                    {
+                        var maps = ((Image)sender).BindingContext.ToString();
+                        authority = new Authority();
+                        authority = authority.GetAuthority(maps);
+
+                        avm = new AddressVM(authority.Address_Id);
+                        authority.Address1 = avm.Address.Address1;
+                        authority.City1 = avm.Address.City;
+                        authority.Zipcode1 = avm.Address.Zipcode;
+                        authority.MapAddress = authority.Address1 + ", " + authority.Zipcode1.ToString() + " " + authority.City1;
+                        var place = await CrossGeolocator.Current.GetPositionsForAddressAsync(authority.MapAddress);
+
+                        foreach (var p in place)
+                        {
+                            var page = new MapPage(p.Latitude, p.Longitude, authority);
+                            await Navigation.PushAsync(page);
+                        }
+
+                    }
+                    else if (status != PermissionStatus.Unknown)
+                    {
+                        await DisplayAlert("Location Denied", "Can not continue, try again.", "OK");
+                    }
                 }
-                else if (status != PermissionStatus.Unknown)
+                catch (Exception)
                 {
-                    await DisplayAlert("Location Denied", "Can not continue, try again.", "OK");
+
                 }
             }
-            catch (Exception)
-            {
 
-            }
-
-            busy = false;
-
+            ((Image)sender).IsEnabled = true;
 
         }
+
+        //bool busy;
+
+        //async void btnMap(object sender, EventArgs e)
+        //{
+        //    if (busy)
+        //        return;
+
+        //    busy = true;
+
+        //    try
+        //    {
+        //        var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+        //        if (status != PermissionStatus.Granted)
+        //        {
+        //            status = await Utils.CheckPermissions(Permission.Location);
+        //        }
+
+        //        if (status == PermissionStatus.Granted)
+        //        {
+        //            var maps = ((Button)sender).BindingContext.ToString();
+        //            authority = new Authority();                 
+        //            authority = authority.GetAuthority(maps);
+
+        //            avm = new AddressVM(authority.Address_Id);
+        //            authority.Address1 = avm.Address.Address1;
+        //            authority.City1 = avm.Address.City;
+        //            authority.Zipcode1 = avm.Address.Zipcode;
+        //            authority.MapAddress = authority.Address1 + ", " + authority.Zipcode1.ToString() + " " + authority.City1;
+        //            var place = await CrossGeolocator.Current.GetPositionsForAddressAsync(authority.MapAddress);
+
+        //            foreach (var p in place)
+        //            {
+        //                var page = new MapPage(p.Latitude, p.Longitude, authority);
+        //                await Navigation.PushAsync(page);
+        //            }
+
+        //        }
+        //        else if (status != PermissionStatus.Unknown)
+        //        {
+        //            await DisplayAlert("Location Denied", "Can not continue, try again.", "OK");
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //    }
+
+        //    busy = false;
+
+
+        //}
 
 
     }
