@@ -118,7 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\icon1.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Iran" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\iran.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Kenya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\kenya.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="langicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\langicon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Saudi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\saudi.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Sweden" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\sweden.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Tigrinya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\tigrinya.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\uk.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

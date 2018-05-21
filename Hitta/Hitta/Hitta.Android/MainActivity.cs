@@ -14,7 +14,8 @@ namespace Hitta.Droid
     [Activity(Label = "Hitta", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-       
+
+        internal static MainActivity Instance { get; private set; }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -22,6 +23,7 @@ namespace Hitta.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+            Instance = this;
 
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);

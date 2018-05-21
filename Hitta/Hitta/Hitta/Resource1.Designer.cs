@@ -63,9 +63,69 @@ namespace Hitta {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] icon1 {
+        internal static byte[] Iran {
             get {
-                object obj = ResourceManager.GetObject("icon1", resourceCulture);
+                object obj = ResourceManager.GetObject("Iran", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Kenya {
+            get {
+                object obj = ResourceManager.GetObject("Kenya", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] langicon {
+            get {
+                object obj = ResourceManager.GetObject("langicon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Saudi {
+            get {
+                object obj = ResourceManager.GetObject("Saudi", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Sweden {
+            get {
+                object obj = ResourceManager.GetObject("Sweden", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Tigrinya {
+            get {
+                object obj = ResourceManager.GetObject("Tigrinya", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UK {
+            get {
+                object obj = ResourceManager.GetObject("UK", resourceCulture);
                 return ((byte[])(obj));
             }
         }

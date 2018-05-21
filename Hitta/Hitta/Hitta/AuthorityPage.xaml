@@ -7,48 +7,44 @@
         <ScrollView>
 
             <StackLayout Padding="20" Spacing="20">
-                <StackLayout HorizontalOptions="EndAndExpand">
-                    <Image Source="icon2.png" StyleId="Voice" >
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
-
-                <StackLayout HorizontalOptions="StartAndExpand">
-                    <Image Source="maps.png" StyleId="Maps" BindingContext="{Binding Id}">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
-
-
-                <!--<Button Text="Karta" Clicked="btnMap" BindingContext="{Binding Id}" ></Button>-->
-
                 <StackLayout>
                     <Label Text="{i18n:Translate Name}" FontSize="Medium" TextColor="Black"></Label>
                     <StackLayout Orientation="Horizontal" Padding="0,10,0,0">
                         <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50" Margin="0,0,10,0"></Image>
                         <Label Text="{Binding Name}" TextColor="Black" VerticalOptions="CenterAndExpand"></Label>
                     </StackLayout>
-                    
+
                 </StackLayout>
 
                 <StackLayout>
-                    <Label Text="{i18n:Translate Description}" FontSize="Medium" TextColor="Black"></Label>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{i18n:Translate Description}" FontSize="Medium" TextColor="Black"></Label>
+                        <Image Source="icon2.png" StyleId="Voice" Margin="10,0,0,0" BindingContext="{Binding Id}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+
                     <Label Text="{Binding Description}" TextColor="Black"></Label>
+
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="{i18n:Translate Address}" FontSize="Medium" TextColor="Black"></Label>
 
-                    <Label Text="{Binding Address1}" TextColor="Black"></Label>
+                    <Grid>
+                        <Label Text="{Binding Address1}" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
+                        <Label Text="{Binding Zipcode1}" TextColor="Black" Grid.Column="0" Grid.Row="1" HorizontalTextAlignment="Start"></Label>
+                        <Label Text="{Binding City1}" TextColor="Black" Grid.Column="0" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
 
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding Zipcode1}" TextColor="Black"></Label>
-                        <Label Text="{Binding City1}" TextColor="Black"></Label>
-                    </StackLayout>
+                        <Image Source="maps.png" StyleId="Maps" BindingContext="{Binding Id}" HeightRequest="40" WidthRequest="40" Margin="30,0,0,0" Grid.Column="1" Grid.RowSpan="2">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </Grid>
 
                 </StackLayout>
 

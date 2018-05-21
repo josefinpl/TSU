@@ -24,13 +24,65 @@ namespace Hitta
         {
             InitializeComponent();
 
+            var culture = CrossMultilingual.Current.DeviceCultureInfo;
 
+            if (culture.Name.Contains("sv"))
+            {
+                if (culture.Name == "sv" ||culture.Name == "sv-SE" || culture.Name == "sv-FI" || culture.Name == "sv-AX")
+                {
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Sweden));
+                }
+            }
+            else if (culture.Name.Contains("ar"))
+            {
+                if (culture.Name == "ar" || culture.Name == "ar-AE" || culture.Name == "ar-BH" || culture.Name == "ar-DZ" || culture.Name == "ar-EG"
+               || culture.Name == "ar-IQ" || culture.Name == "ar-JO" || culture.Name == "ar-KW" || culture.Name == "ar-LB" || culture.Name == "ar-LY"
+               || culture.Name == "ar-MA" || culture.Name == "ar-OM" || culture.Name == "ar-QA" || culture.Name == "ar-SA"
+               || culture.Name == "ar-SY" || culture.Name == "ar-TN" || culture.Name == "ar-YE")
+                {
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Saudi));
+                }
+            }
+            else if (culture.Name.Contains("en"))
+            {
+                if (culture.Name == "en" || culture.Name == "en-AU" || culture.Name == "en-BZ" || culture.Name == "en-CA" || culture.Name == "en-CB" ||
+                culture.Name == "en-GB" || culture.Name == "en-IE" || culture.Name == "en-JM" || culture.Name == "en-NZ" ||
+                culture.Name == "en-PH" || culture.Name == "en-TT" || culture.Name == "en-US" || culture.Name == "en-ZA" || culture.Name == "en-ZW")
+                {
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.UK));
+                }
+            }
+            else if (culture.Name.Contains("fa"))
+            {
+                if (culture.Name == "fa" || culture.Name == "fa-IR")
+                {
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Iran));
+                }
+            }
+            else if (culture.Name.Contains("sw"))
+            {
+               if (culture.Name == "sw" || culture.Name == "sw-KE")
+                {
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Kenya));
+                }
+            }
+            else if (culture.Name.Contains("ti"))
+            {
+               if (culture.Name == "ti" || culture.Name == "ti-ER" || culture.Name == "ti-ET")
+                {
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Tigrinya));
+                }
+            }
+            else
+            {
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.UK));
+            }
 
             avm = new AuthorityVM();
 
             foreach (var authority in avm.Authorities)
             {
-                if(authority.Logo != null)
+                if (authority.Logo != null)
                 {
                     authority.Image = ImageSource.FromStream(() => new MemoryStream(authority.Logo));
 
@@ -39,6 +91,9 @@ namespace Hitta
 
             AuthorityView.ItemsSource = avm.Authorities;
 
+            ImgLang.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.langicon));
+
+
 
             Languages = new ObservableCollection<Language>()
             {
@@ -46,12 +101,13 @@ namespace Hitta
                 new Language { DisplayName =  "English", ShortName = "en" },
                 new Language { DisplayName =  "Fârsi - Persian", ShortName = "fa" },
                 new Language { DisplayName =  "Kiswahili - Swahili", ShortName = "sw" },
-                new Language { DisplayName =  "Svenska - Swedish", ShortName = "sv" },
+                new Language { DisplayName = "Svenska - Swedish", ShortName = "sv" },
                 new Language { DisplayName =  "ትግርኛ - Tigrinya", ShortName = "ti" }
 
             };
 
             BindingContext = this;
+
             PickerLanguages.SelectedIndexChanged += PickerLanguages_SelectedIndexChanged;
 
             AuthorityView.ItemSelected += (object sender, SelectedItemChangedEventArgs e) =>
@@ -79,12 +135,42 @@ namespace Hitta
             {
             }
 
+            if (language.ShortName == "sv")
+            {
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Sweden));
+            }
+            else if (language.ShortName == "ar")
+            {
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Saudi));
+            }
+            else if (language.ShortName == "en")
+            {
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.UK));
+            }
+            else if (language.ShortName == "fa")
+            {
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Iran));
+            }
+            else if (language.ShortName == "sw")
+            {
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Kenya));
+            }
+            else if (language.ShortName == "ti")
+            {
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Tigrinya));
+            }
+            else
+            {
+                Img.Source = null;
+            }
+
+
             LabelLanguage.Text = AppResources.Language;
             LabelHello.Text = AppResources.Hello;
             LabelAuthority.Text = AppResources.Authority;
         }
 
-     
+
 
     }
 }

@@ -16,9 +16,12 @@ namespace Hitta
 		{
 			InitializeComponent();
 
-            var culture = new CultureInfo("sv");
+            //var culture = new CultureInfo("sv");
+            //AppResources.Culture = culture;
+            //CrossMultilingual.Current.CurrentCultureInfo = culture;
+
+            var culture = CrossMultilingual.Current.DeviceCultureInfo;
             AppResources.Culture = culture;
-            CrossMultilingual.Current.CurrentCultureInfo = culture;
 
             var Main = new MainPage();
             NavigationPage.SetHasNavigationBar(Main, false);

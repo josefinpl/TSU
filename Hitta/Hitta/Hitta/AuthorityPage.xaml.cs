@@ -63,8 +63,12 @@ namespace Hitta
 
             if(imageSender.StyleId == "Voice")
             {
-                // Do something
-                await DisplayAlert("Alert", "Tap gesture recoganised", "OK");
+                var id = ((Image)sender).BindingContext.ToString();
+                authority = new Authority();
+                authority = authority.GetAuthority(id);
+
+                DependencyService.Get<ITextToSpeech>().Speak(authority.Description);
+
             }
             else if (imageSender.StyleId == "Maps")
             {

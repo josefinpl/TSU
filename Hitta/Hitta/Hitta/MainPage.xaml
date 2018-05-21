@@ -6,55 +6,56 @@
              x:Class="Hitta.MainPage">
 
     <ContentPage.Content>
-    <StackLayout Padding="20" Spacing="20">
-        <Label Text="{i18n:Translate Hello}" 
+        <StackLayout Padding="20" Spacing="20">
+            <Label Text="{i18n:Translate Hello}" 
                LineBreakMode="WordWrap"
                x:Name="LabelHello"
                HorizontalOptions="Center"
                FontSize="Large"
                TextColor="Black"
                Margin="0,20,0,0"/>
-        
-        <StackLayout Padding="20" Margin="60,20,60,0">
-            
-            <Label Text="{i18n:Translate Language}" 
-               LineBreakMode="WordWrap"
-               TextColor="Black"
-               x:Name="LabelLanguage"/>
 
-            <Picker ItemsSource="{Binding Languages}"
+            <StackLayout Padding="20">
+
+                <Label Text="{i18n:Translate Language}" LineBreakMode="WordWrap" TextColor="Black" x:Name="LabelLanguage" FontSize="Medium"/>
+
+                <Grid>
+                    <Picker ItemsSource="{Binding Languages}"
                 ItemDisplayBinding="{Binding DisplayName}"
                 TextColor="Black"
-                x:Name="PickerLanguages"/>
+                x:Name="PickerLanguages" Grid.Column="0" Grid.Row="0" HorizontalOptions="Fill"/>
+                    <Image x:Name="Img" HeightRequest="30" WidthRequest="30" Margin="0,0,10,0" Grid.Column="1" Grid.Row="0" HorizontalOptions="Start"></Image>
+                    <Image x:Name="ImgLang" HeightRequest="30" WidthRequest="30" Margin="0,0,10,0" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center"></Image>
 
-        </StackLayout>
-        
+                </Grid>
+
+            </StackLayout>
 
 
-        <ListView  x:Name="AuthorityView" Margin="10">
+
+            <ListView  x:Name="AuthorityView" Margin="10">
                 <ListView.Header>
                     <ContentView Padding="0,5">
                         <Label FontSize="Medium" TextColor="Black" Text="{i18n:Translate Authority}" x:Name="LabelAuthority"></Label>
                     </ContentView>
                 </ListView.Header>
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell x:Name="Authority">
-                    <StackLayout BackgroundColor="#eee"
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell x:Name="Authority">
+                            <StackLayout BackgroundColor="#eee"
 						Orientation="Vertical">
-                        <StackLayout Orientation="Horizontal">
-                            
-                            <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50" />
-                            <Label Text="{Binding Name}"
-								TextColor="#f35e20"/>
-                            </StackLayout>
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                                <StackLayout Orientation="Horizontal">
 
-    </StackLayout>
+                                    <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50" />
+                                    <Label Text="{Binding Name}" TextColor="#f35e20" FontSize="Medium"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
     </ContentPage.Content>
 
 </ContentPage>

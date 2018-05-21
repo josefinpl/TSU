@@ -3087,10 +3087,10 @@ namespace Hitta.Droid
 			public const int icon = 2130837793;
 			
 			// aapt resource value: 0x7f020122
-			public const int icon1 = 2130837794;
+			public const int icon2 = 2130837794;
 			
 			// aapt resource value: 0x7f020123
-			public const int icon2 = 2130837795;
+			public const int langicon = 2130837795;
 			
 			// aapt resource value: 0x7f020124
 			public const int maps = 2130837796;
