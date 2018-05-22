@@ -24,8 +24,8 @@
                 ItemDisplayBinding="{Binding DisplayName}"
                 TextColor="Black"
                 x:Name="PickerLanguages" Grid.Column="0" Grid.Row="0" HorizontalOptions="Fill"/>
-                    <Image x:Name="Img" HeightRequest="30" WidthRequest="30" Margin="0,0,10,0" Grid.Column="1" Grid.Row="0" HorizontalOptions="Start"></Image>
-                    <Image x:Name="ImgLang" HeightRequest="30" WidthRequest="30" Margin="0,0,10,0" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center"></Image>
+                    <Image x:Name="Img" HeightRequest="30" WidthRequest="30" Grid.Column="1" Grid.Row="0" HorizontalOptions="Start"></Image>
+                    <Image x:Name="ImgLang" HeightRequest="30" WidthRequest="30" Margin="0,0,60,0" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center"></Image>
 
                 </Grid>
 
