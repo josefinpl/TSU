@@ -19,7 +19,7 @@
                 <StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="{i18n:Translate Description}" FontSize="Medium" TextColor="Black"></Label>
-                        <Image Source="icon2.png" StyleId="Voice" Margin="10,0,0,0" BindingContext="{Binding Id}">
+                        <Image Source="icon2.png" StyleId="Voice" Margin="10,0,0,0" BindingContext="{Binding Id}" HeightRequest="30" WidthRequest="30">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
                             </Image.GestureRecognizers>
@@ -58,14 +58,17 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell IsEnabled="False">
-                                    <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Vertical">
                                         <Label Text="{Binding Name}"
+								TextColor="Black"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Open}"
 								TextColor="#f35e20"/>
-                                        <Label Text="{Binding Open}"
+                                            <Label Text=" - "/>
+                                            <Label Text="{Binding Close}"
 								TextColor="#f35e20"/>
-                                        <Label Text=" - "/>
-                                        <Label Text="{Binding Close}"
-								TextColor="#f35e20"/>
+                                        </StackLayout>
+                                        
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
@@ -83,7 +86,7 @@
                                 <ViewCell IsEnabled="False">
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}"
-								TextColor="#f35e20"/>
+								TextColor="Black"/>
                                         <Label Text="{Binding Number1}"
 								TextColor="#f35e20"/>
                                     </StackLayout>
