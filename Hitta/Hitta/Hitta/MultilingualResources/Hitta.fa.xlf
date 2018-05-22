@@ -39,6 +39,10 @@
           <source>Address</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">آدرس</target>
         </trans-unit>
+        <trans-unit id="Map" translate="yes" xml:space="preserve">
+          <source>Map</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">نگاشت</target>
+        </trans-unit>
       </group>
     </body>
   </file>

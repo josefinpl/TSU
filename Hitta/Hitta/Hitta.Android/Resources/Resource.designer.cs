@@ -3195,7 +3195,7 @@ namespace Hitta.Droid
 			public const int notify_panel_notification_icon_bg = 2130837827;
 			
 			// aapt resource value: 0x7f020144
-			public const int speaker = 2130837828;
+			public const int speaker1 = 2130837828;
 			
 			// aapt resource value: 0x7f020145
 			public const int tooltip_frame_dark = 2130837829;
