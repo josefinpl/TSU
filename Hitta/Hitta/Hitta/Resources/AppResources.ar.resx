@@ -40,4 +40,7 @@
   <data name="Map" xml:space="preserve">
     <value>خريطة</value>
   </data>
+  <data name="Help" xml:space="preserve">
+    <value>الطلب من شخص ما لتوجيه مسار</value>
+  </data>
 </root>

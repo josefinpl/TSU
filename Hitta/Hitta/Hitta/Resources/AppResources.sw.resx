@@ -26,7 +26,7 @@
     <value>Maelezo</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Jina</value>
   </data>
   <data name="OpenHours" xml:space="preserve">
     <value>Saa za biashara:</value>
@@ -39,5 +39,8 @@
   </data>
   <data name="Map" xml:space="preserve">
     <value>Ramani</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Uliza mtu kwa mwongozo wa njia</value>
   </data>
 </root>

@@ -26,7 +26,7 @@
     <value>መግለጺ</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>ስም:</value>
   </data>
   <data name="OpenHours" xml:space="preserve">
     <value>Business hours</value>
@@ -39,5 +39,8 @@
   </data>
   <data name="Map" xml:space="preserve">
     <value>ካርታ</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Ask someone for route guidance</value>
   </data>
 </root>

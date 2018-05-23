@@ -37,12 +37,12 @@ namespace Hitta
             AuthorityNumber.ItemsSource = nvm.Numbers;
 
             int i = hvm.Hours.Count;
-            int heightRowList = 120;
+            int heightRowList = 100;
             i = (hvm.Hours.Count * heightRowList);
             AuthorityView.HeightRequest = i;
 
             int n = nvm.Numbers.Count;
-            int heightRowsList = 120;
+            int heightRowsList = 100;
             n = (nvm.Numbers.Count * heightRowsList);
             AuthorityNumber.HeightRequest = n;
 

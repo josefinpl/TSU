@@ -40,4 +40,7 @@
   <data name="Map" xml:space="preserve">
     <value>Map</value>
   </data>
+  <data name="Help" xml:space="preserve">
+    <value>Ask someone for route guidance</value>
+  </data>
 </root>

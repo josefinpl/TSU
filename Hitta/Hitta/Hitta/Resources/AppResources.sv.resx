@@ -40,4 +40,7 @@
   <data name="Map" xml:space="preserve">
     <value>Karta</value>
   </data>
+  <data name="Help" xml:space="preserve">
+    <value>Be någon om vägvisning</value>
+  </data>
 </root>
