@@ -10,6 +10,6 @@
 	<uses-permission android:name="android.permission.INTERNET" />
 	<application android:label="Hitta.Android">
     <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyD_OluBPzEI49xNzSvOIJdMGoQt9BExbaM" />
-    <!--<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBJQKUHrBMb8T4hkZawKXaFeIUaitVIEBo" />-->
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBJQKUHrBMb8T4hkZawKXaFeIUaitVIEBo" />
 	</application>
 </manifest>
