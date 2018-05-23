@@ -17,17 +17,15 @@
 
             <StackLayout Padding="20">
 
-                <Label Text="{i18n:Translate Language}" LineBreakMode="WordWrap" TextColor="Black" x:Name="LabelLanguage" FontSize="Medium"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{i18n:Translate Language}" LineBreakMode="WordWrap" TextColor="Black" x:Name="LabelLanguage" FontSize="Medium" />
+                    <Image x:Name="Img" HeightRequest="30" WidthRequest="30"  Margin="0,0,0,20"></Image>
+                </StackLayout>
 
-                <Grid>
-                    <Picker ItemsSource="{Binding Languages}"
-                ItemDisplayBinding="{Binding DisplayName}"
-                TextColor="Black"
-                x:Name="PickerLanguages" Grid.Column="0" Grid.Row="0" HorizontalOptions="Fill"/>
-                    <Image x:Name="Img" HeightRequest="30" WidthRequest="30" Grid.Column="1" Grid.Row="0" HorizontalOptions="Start"></Image>
-                    <Image x:Name="ImgLang" HeightRequest="30" WidthRequest="30" Margin="0,0,60,0" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center"></Image>
-
-                </Grid>
+                <StackLayout Orientation="Horizontal">
+                    <Picker ItemsSource="{Binding Languages}" ItemDisplayBinding="{Binding DisplayName}" TextColor="Black" x:Name="PickerLanguages" WidthRequest="200"/>
+                    <Image x:Name="ImgLang" HeightRequest="30" WidthRequest="30" ></Image>
+                </StackLayout>
 
             </StackLayout>
 
