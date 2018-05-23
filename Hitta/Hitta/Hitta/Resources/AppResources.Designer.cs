@@ -106,6 +106,36 @@ namespace Hitta.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Iran {
+            get {
+                object obj = ResourceManager.GetObject("Iran", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Kenya {
+            get {
+                object obj = ResourceManager.GetObject("Kenya", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] langicon {
+            get {
+                object obj = ResourceManager.GetObject("langicon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose language.
         /// </summary>
         public static string Language {
@@ -147,6 +177,46 @@ namespace Hitta.Resources {
         public static string PhoneNumber {
             get {
                 return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Saudi {
+            get {
+                object obj = ResourceManager.GetObject("Saudi", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Sweden {
+            get {
+                object obj = ResourceManager.GetObject("Sweden", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Tigrinya {
+            get {
+                object obj = ResourceManager.GetObject("Tigrinya", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] UK {
+            get {
+                object obj = ResourceManager.GetObject("UK", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

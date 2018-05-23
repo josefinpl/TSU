@@ -30,7 +30,7 @@ namespace Hitta
             {
                 if (culture.Name == "sv" ||culture.Name == "sv-SE" || culture.Name == "sv-FI" || culture.Name == "sv-AX")
                 {
-                    Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Sweden));
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Sweden));
                 }
             }
             else if (culture.Name.Contains("ar"))
@@ -40,7 +40,7 @@ namespace Hitta
                || culture.Name == "ar-MA" || culture.Name == "ar-OM" || culture.Name == "ar-QA" || culture.Name == "ar-SA"
                || culture.Name == "ar-SY" || culture.Name == "ar-TN" || culture.Name == "ar-YE")
                 {
-                    Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Saudi));
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Saudi));
                 }
             }
             else if (culture.Name.Contains("en"))
@@ -49,33 +49,33 @@ namespace Hitta
                 culture.Name == "en-GB" || culture.Name == "en-IE" || culture.Name == "en-JM" || culture.Name == "en-NZ" ||
                 culture.Name == "en-PH" || culture.Name == "en-TT" || culture.Name == "en-US" || culture.Name == "en-ZA" || culture.Name == "en-ZW")
                 {
-                    Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.UK));
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.UK));
                 }
             }
             else if (culture.Name.Contains("fa"))
             {
                 if (culture.Name == "fa" || culture.Name == "fa-IR")
                 {
-                    Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Iran));
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Iran));
                 }
             }
             else if (culture.Name.Contains("sw"))
             {
                if (culture.Name == "sw" || culture.Name == "sw-KE")
                 {
-                    Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Kenya));
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Kenya));
                 }
             }
             else if (culture.Name.Contains("ti"))
             {
                if (culture.Name == "ti" || culture.Name == "ti-ER" || culture.Name == "ti-ET")
                 {
-                    Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Tigrinya));
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Tigrinya));
                 }
             }
             else
             {
-                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.UK));
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.UK));
             }
 
             avm = new AuthorityVM();
@@ -91,7 +91,7 @@ namespace Hitta
 
             AuthorityView.ItemsSource = avm.Authorities;
 
-            ImgLang.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.langicon));
+            ImgLang.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.langicon));
 
 
 
@@ -137,27 +137,27 @@ namespace Hitta
 
             if (language.ShortName == "sv")
             {
-                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Sweden));
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Sweden));
             }
             else if (language.ShortName == "ar")
             {
-                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Saudi));
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Saudi));
             }
             else if (language.ShortName == "en")
             {
-                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.UK));
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.UK));
             }
             else if (language.ShortName == "fa")
             {
-                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Iran));
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Iran));
             }
             else if (language.ShortName == "sw")
             {
-                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Kenya));
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Kenya));
             }
             else if (language.ShortName == "ti")
             {
-                Img.Source = ImageSource.FromStream(() => new MemoryStream(Resource1.Tigrinya));
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Tigrinya));
             }
             else
             {
