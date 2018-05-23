@@ -37,4 +37,7 @@
   <data name="Address" xml:space="preserve">
     <value>العنوان</value>
   </data>
+  <data name="Map" xml:space="preserve">
+    <value>خريطة</value>
+  </data>
 </root>

@@ -37,4 +37,7 @@
   <data name="Address" xml:space="preserve">
     <value>ኣድራሻ:</value>
   </data>
+  <data name="Map" xml:space="preserve">
+    <value>ካርታ</value>
+  </data>
 </root>

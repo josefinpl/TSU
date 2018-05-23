@@ -1,5 +1,7 @@
 ﻿using Hitta.Resources;
 using Plugin.Multilingual;
+using Plugin.TextToSpeech;
+using Plugin.TextToSpeech.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,13 +14,11 @@ namespace Hitta
 {
 	public partial class App : Application
 	{
-		public App ()
+        //static CrossLocale? locale = null;
+
+        public App ()
 		{
 			InitializeComponent();
-
-            //var culture = new CultureInfo("sv");
-            //AppResources.Culture = culture;
-            //CrossMultilingual.Current.CurrentCultureInfo = culture;
 
             var culture = CrossMultilingual.Current.DeviceCultureInfo;
             AppResources.Culture = culture;
@@ -28,10 +28,9 @@ namespace Hitta
 
             MainPage = new NavigationPage(Main);
 
-           // MainPage = new Hitta.MainPage();
         }
 
-		protected override void OnStart ()
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}

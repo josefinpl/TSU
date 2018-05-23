@@ -133,6 +133,9 @@
   <data name="Language" xml:space="preserve">
     <value>Choose language</value>
   </data>
+  <data name="Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>

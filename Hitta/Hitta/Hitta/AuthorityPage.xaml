@@ -19,7 +19,7 @@
                 <StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="{i18n:Translate Description}" FontSize="Medium" TextColor="Black"></Label>
-                        <Image Source="icon2.png" StyleId="Voice" Margin="10,0,0,0" BindingContext="{Binding Id}">
+                        <Image Source="speaker1.png" StyleId="Voice" BindingContext="{Binding Id}">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
                             </Image.GestureRecognizers>
@@ -31,14 +31,17 @@
                 </StackLayout>
 
                 <StackLayout>
-                    <Label Text="{i18n:Translate Address}" FontSize="Medium" TextColor="Black"></Label>
 
                     <Grid>
-                        <Label Text="{Binding Address1}" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
-                        <Label Text="{Binding Zipcode1}" TextColor="Black" Grid.Column="0" Grid.Row="1" HorizontalTextAlignment="Start"></Label>
-                        <Label Text="{Binding City1}" TextColor="Black" Grid.Column="0" Grid.Row="1" HorizontalTextAlignment="Center"></Label>
+                        <Label Text="{i18n:Translate Address}" FontSize="Medium" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
 
-                        <Image Source="maps.png" StyleId="Maps" BindingContext="{Binding Id}" HeightRequest="40" WidthRequest="40" Margin="30,0,0,0" Grid.Column="1" Grid.RowSpan="2">
+                        <Label Text="{Binding Address1}" TextColor="Black" Grid.Column="0" Grid.Row="1"></Label>
+                        <Label Text="{Binding Zipcode1}" TextColor="Black" Grid.Column="0" Grid.Row="2" HorizontalTextAlignment="Start"></Label>
+                        <Label Text="{Binding City1}" TextColor="Black" Grid.Column="0" Grid.Row="2" HorizontalTextAlignment="Center"></Label>
+
+                        <Label Text="{i18n:Translate Map}" FontSize="Medium" TextColor="Black" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center"></Label>
+
+                        <Image Source="maps.png" StyleId="Maps" BindingContext="{Binding Id}" HeightRequest="40" WidthRequest="40" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" HorizontalOptions="Center">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" />
                             </Image.GestureRecognizers>
@@ -58,14 +61,17 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell IsEnabled="False">
-                                    <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Vertical">
                                         <Label Text="{Binding Name}"
+								TextColor="Black"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Open}"
 								TextColor="#f35e20"/>
-                                        <Label Text="{Binding Open}"
+                                            <Label Text=" - "/>
+                                            <Label Text="{Binding Close}"
 								TextColor="#f35e20"/>
-                                        <Label Text=" - "/>
-                                        <Label Text="{Binding Close}"
-								TextColor="#f35e20"/>
+                                        </StackLayout>
+
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
@@ -83,7 +89,7 @@
                                 <ViewCell IsEnabled="False">
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}"
-								TextColor="#f35e20"/>
+								TextColor="Black"/>
                                         <Label Text="{Binding Number1}"
 								TextColor="#f35e20"/>
                                     </StackLayout>

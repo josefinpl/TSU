@@ -37,4 +37,7 @@
   <data name="Address" xml:space="preserve">
     <value>Address</value>
   </data>
+  <data name="Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
 </root>

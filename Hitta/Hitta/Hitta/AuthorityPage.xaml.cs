@@ -12,6 +12,8 @@ using Plugin.Geolocator;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System.IO;
+using Plugin.TextToSpeech;
+using Plugin.TextToSpeech.Abstractions;
 
 namespace Hitta
 {
@@ -58,16 +60,42 @@ namespace Hitta
         async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
             var imageSender = (Image)sender;
-
+            
             ((Image)sender).IsEnabled = false;
 
             if(imageSender.StyleId == "Voice")
             {
+                bool sv = false;
+                CrossLocale country;
+
                 var id = ((Image)sender).BindingContext.ToString();
                 authority = new Authority();
                 authority = authority.GetAuthority(id);
 
-                DependencyService.Get<ITextToSpeech>().Speak(authority.Description);
+                var locales = await CrossTextToSpeech.Current.GetInstalledLanguages();
+
+                foreach (var item in locales)
+                {
+                    if(item.ToString() == "sv-SE")
+                    {
+                        sv = true;
+                        country = item;
+                    }
+                }
+
+                if (sv)
+                {
+                    await CrossTextToSpeech.Current.Speak(authority.Description, country);
+                }
+                else
+                {
+                    await CrossTextToSpeech.Current.Speak(authority.Description);
+                }
+
+              //  DependencyService.Get<ITextToSpeech>().Speak(authority.Description, localeen);
+
+                
+
 
             }
             else if (imageSender.StyleId == "Maps")
@@ -114,59 +142,6 @@ namespace Hitta
             ((Image)sender).IsEnabled = true;
 
         }
-
-        //bool busy;
-
-        //async void btnMap(object sender, EventArgs e)
-        //{
-        //    if (busy)
-        //        return;
-
-        //    busy = true;
-
-        //    try
-        //    {
-        //        var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
-        //        if (status != PermissionStatus.Granted)
-        //        {
-        //            status = await Utils.CheckPermissions(Permission.Location);
-        //        }
-
-        //        if (status == PermissionStatus.Granted)
-        //        {
-        //            var maps = ((Button)sender).BindingContext.ToString();
-        //            authority = new Authority();                 
-        //            authority = authority.GetAuthority(maps);
-
-        //            avm = new AddressVM(authority.Address_Id);
-        //            authority.Address1 = avm.Address.Address1;
-        //            authority.City1 = avm.Address.City;
-        //            authority.Zipcode1 = avm.Address.Zipcode;
-        //            authority.MapAddress = authority.Address1 + ", " + authority.Zipcode1.ToString() + " " + authority.City1;
-        //            var place = await CrossGeolocator.Current.GetPositionsForAddressAsync(authority.MapAddress);
-
-        //            foreach (var p in place)
-        //            {
-        //                var page = new MapPage(p.Latitude, p.Longitude, authority);
-        //                await Navigation.PushAsync(page);
-        //            }
-
-        //        }
-        //        else if (status != PermissionStatus.Unknown)
-        //        {
-        //            await DisplayAlert("Location Denied", "Can not continue, try again.", "OK");
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //    }
-
-        //    busy = false;
-
-
-        //}
-
 
     }
 }
