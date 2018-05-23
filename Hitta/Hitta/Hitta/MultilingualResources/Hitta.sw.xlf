@@ -25,7 +25,7 @@
         </trans-unit>
         <trans-unit id="Name" translate="yes" xml:space="preserve">
           <source>Name</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Name</target>
+          <target state="translated">Jina</target>
         </trans-unit>
         <trans-unit id="OpenHours" translate="yes" xml:space="preserve">
           <source>Business hours</source>
@@ -42,6 +42,10 @@
         <trans-unit id="Map" translate="yes" xml:space="preserve">
           <source>Map</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Ramani</target>
+        </trans-unit>
+        <trans-unit id="Help" translate="yes" xml:space="preserve">
+          <source>Ask someone for route guidance</source>
+          <target state="translated">Uliza mtu kwa mwongozo wa njia</target>
         </trans-unit>
       </group>
     </body>

@@ -97,6 +97,15 @@ namespace Hitta.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ask someone for route guidance.
+        /// </summary>
+        public static string Help {
+            get {
+                return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose language.
         /// </summary>
         public static string Language {

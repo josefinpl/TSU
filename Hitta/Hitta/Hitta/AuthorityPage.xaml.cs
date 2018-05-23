@@ -29,8 +29,6 @@ namespace Hitta
         {
             InitializeComponent();
 
-            auth.MapAddress = auth.Address1 + ", " + auth.Zipcode1.ToString() + " " + auth.City1;
-
             hvm = new HourVM(auth.Id);
             nvm = new NumberVM(auth.Id);
             avm = new AddressVM(auth.Address_Id);
@@ -39,18 +37,21 @@ namespace Hitta
             AuthorityNumber.ItemsSource = nvm.Numbers;
 
             int i = hvm.Hours.Count;
-            int heightRowList = 90;
+            int heightRowList = 120;
             i = (hvm.Hours.Count * heightRowList);
             AuthorityView.HeightRequest = i;
 
             int n = nvm.Numbers.Count;
-            int heightRowsList = 90;
+            int heightRowsList = 120;
             n = (nvm.Numbers.Count * heightRowsList);
             AuthorityNumber.HeightRequest = n;
 
             auth.Address1 = avm.Address.Address1;
             auth.City1 = avm.Address.City;
             auth.Zipcode1 = avm.Address.Zipcode;
+            auth.MapAddress = auth.Address1 + ", " + auth.Zipcode1.ToString() + " " + auth.City1;
+
+            auth.HelpText = "Hej! Jag försöker hitta till " + auth.Name + ". Skulle du kunna peka mig i rätt riktning? Adressen är " + auth.MapAddress + ".";
 
             BindingContext = auth;
 
@@ -92,10 +93,33 @@ namespace Hitta
                     await CrossTextToSpeech.Current.Speak(authority.Description);
                 }
 
-              //  DependencyService.Get<ITextToSpeech>().Speak(authority.Description, localeen);
+            }
+            else if (imageSender.StyleId == "Help")
+            {
+                bool sv = false;
+                CrossLocale country;
 
-                
+                var helptxt = ((Image)sender).BindingContext.ToString();
 
+                var locales = await CrossTextToSpeech.Current.GetInstalledLanguages();
+
+                foreach (var item in locales)
+                {
+                    if (item.ToString() == "sv-SE")
+                    {
+                        sv = true;
+                        country = item;
+                    }
+                }
+
+                if (sv)
+                {
+                    await CrossTextToSpeech.Current.Speak(helptxt, country);
+                }
+                else
+                {
+                    await CrossTextToSpeech.Current.Speak(helptxt);
+                }
 
             }
             else if (imageSender.StyleId == "Maps")

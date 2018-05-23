@@ -43,6 +43,10 @@
           <source>Map</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Map</target>
         </trans-unit>
+        <trans-unit id="Help" translate="yes" xml:space="preserve">
+          <source>Ask someone for route guidance</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ask someone for route guidance</target>
+        </trans-unit>
       </group>
     </body>
   </file>

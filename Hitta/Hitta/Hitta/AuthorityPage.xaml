@@ -8,38 +8,50 @@
 
             <StackLayout Padding="20" Spacing="20">
                 <StackLayout>
-                    <Label Text="{i18n:Translate Name}" FontSize="Medium" TextColor="Black"></Label>
+                    <Label Text="{i18n:Translate Name}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
                     <StackLayout Orientation="Horizontal" Padding="0,10,0,0">
                         <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50" Margin="0,0,10,0"></Image>
-                        <Label Text="{Binding Name}" TextColor="Black" VerticalOptions="CenterAndExpand"></Label>
+                        <Label Text="{Binding Name}" TextColor="Black" VerticalOptions="CenterAndExpand" FontSize="Medium"></Label>
                     </StackLayout>
 
                 </StackLayout>
 
                 <StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="{i18n:Translate Description}" FontSize="Medium" TextColor="Black"></Label>
-                        <Image Source="speaker1.png" StyleId="Voice" BindingContext="{Binding Id}">
+                        <Label Text="{i18n:Translate Description}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
+                        <Image Source="speaker1.png" StyleId="Voice" BindingContext="{Binding Id}" HeightRequest="25" WidthRequest="25">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
                             </Image.GestureRecognizers>
                         </Image>
                     </StackLayout>
 
-                    <Label Text="{Binding Description}" TextColor="Black"></Label>
+                    <Label Text="{Binding Description}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
 
+                </StackLayout>
+
+                <StackLayout Padding="0,20,0,20">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{i18n:Translate Help}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
+                        <Image Source="speaker1.png" StyleId="Help" BindingContext="{Binding HelpText}" HeightRequest="25" WidthRequest="25">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                    <Label Text="{Binding HelpText}" TextColor="Black" FontAttributes="Italic" FontSize="Medium"></Label>
                 </StackLayout>
 
                 <StackLayout>
 
                     <Grid>
-                        <Label Text="{i18n:Translate Address}" FontSize="Medium" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
+                        <Label Text="{i18n:Translate Address}" FontSize="Medium" FontAttributes="Bold" TextColor="Black" Grid.Column="0" Grid.Row="0"></Label>
 
-                        <Label Text="{Binding Address1}" TextColor="Black" Grid.Column="0" Grid.Row="1"></Label>
-                        <Label Text="{Binding Zipcode1}" TextColor="Black" Grid.Column="0" Grid.Row="2" HorizontalTextAlignment="Start"></Label>
-                        <Label Text="{Binding City1}" TextColor="Black" Grid.Column="0" Grid.Row="2" HorizontalTextAlignment="Center"></Label>
+                        <Label Text="{Binding Address1}" TextColor="Black" FontSize="Medium" Grid.Column="0" Grid.Row="1"></Label>
+                        <Label Text="{Binding Zipcode1}" TextColor="Black" FontSize="Medium" Grid.Column="0" Grid.Row="2" HorizontalTextAlignment="Start"></Label>
+                        <Label Text="{Binding City1}" TextColor="Black" FontSize="Medium" Grid.Column="0" Grid.Row="2" HorizontalTextAlignment="Center"></Label>
 
-                        <Label Text="{i18n:Translate Map}" FontSize="Medium" TextColor="Black" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center"></Label>
+                        <Label Text="{i18n:Translate Map}" FontSize="Medium" TextColor="Black" FontAttributes="Bold" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center"></Label>
 
                         <Image Source="maps.png" StyleId="Maps" BindingContext="{Binding Id}" HeightRequest="50" WidthRequest="50" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalOptions="Center" VerticalOptions="Start">
                             <Image.GestureRecognizers>
@@ -50,27 +62,26 @@
                     </Grid>
 
                 </StackLayout>
-
+                
+                
                 <StackLayout>
                     <ListView x:Name="AuthorityView">
                         <ListView.Header>
                             <ContentView Padding="0,5">
-                                <Label FontSize="Medium" TextColor="Black" Text="{i18n:Translate OpenHours}"></Label>
+                                <Label FontSize="Medium" FontAttributes="Bold" TextColor="Black" Text="{i18n:Translate OpenHours}"></Label>
                             </ContentView>
                         </ListView.Header>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell IsEnabled="False">
-                                    <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}"
-								TextColor="Black"/>
-                                        <StackLayout Orientation="Horizontal">
+								TextColor="Black" FontSize="Medium"/>
                                             <Label Text="{Binding Open}"
-								TextColor="#f35e20"/>
-                                            <Label Text=" - "/>
+								TextColor="Black" FontSize="Medium"/>
+                                            <Label Text=" - " TextColor="Black" />
                                             <Label Text="{Binding Close}"
-								TextColor="#f35e20"/>
-                                        </StackLayout>
+								TextColor="Black" FontSize="Medium"/>
 
                                     </StackLayout>
                                 </ViewCell>
@@ -81,7 +92,7 @@
                     <ListView x:Name="AuthorityNumber">
                         <ListView.Header>
                             <ContentView Padding="0,5">
-                                <Label FontSize="Medium" TextColor="Black" Text="{i18n:Translate PhoneNumber}"></Label>
+                                <Label FontSize="Medium" TextColor="Black" FontAttributes="Bold" Text="{i18n:Translate PhoneNumber}"></Label>
                             </ContentView>
                         </ListView.Header>
                         <ListView.ItemTemplate>
@@ -89,9 +100,9 @@
                                 <ViewCell IsEnabled="False">
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}"
-								TextColor="Black"/>
+								TextColor="Black" FontSize="Medium"/>
                                         <Label Text="{Binding Number1}"
-								TextColor="#f35e20"/>
+								TextColor="Black" FontSize="Medium"/>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>

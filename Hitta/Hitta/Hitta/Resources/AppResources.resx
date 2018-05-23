@@ -130,6 +130,9 @@
     <value>Welcome!</value>
     <comment>Comment!</comment>
   </data>
+  <data name="Help" xml:space="preserve">
+    <value>Ask someone for route guidance</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Choose language</value>
   </data>

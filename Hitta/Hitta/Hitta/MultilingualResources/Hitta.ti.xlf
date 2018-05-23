@@ -25,7 +25,7 @@
         </trans-unit>
         <trans-unit id="Name" translate="yes" xml:space="preserve">
           <source>Name</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Name</target>
+          <target state="translated">ስም:</target>
         </trans-unit>
         <trans-unit id="OpenHours" translate="yes" xml:space="preserve">
           <source>Business hours</source>
@@ -33,15 +33,19 @@
         </trans-unit>
         <trans-unit id="PhoneNumber" translate="yes" xml:space="preserve">
           <source>Phone number</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ቁጽሪ ተሌፎን</target>
+          <target state="translated" state-qualifier="tm-suggestion">ቁጽሪ ተሌፎን</target>
         </trans-unit>
         <trans-unit id="Address" translate="yes" xml:space="preserve">
           <source>Address</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ኣድራሻ:</target>
+          <target state="translated" state-qualifier="tm-suggestion">ኣድራሻ:</target>
         </trans-unit>
         <trans-unit id="Map" translate="yes" xml:space="preserve">
           <source>Map</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ካርታ</target>
+          <target state="translated" state-qualifier="tm-suggestion">ካርታ</target>
+        </trans-unit>
+        <trans-unit id="Help" translate="yes" xml:space="preserve">
+          <source>Ask someone for route guidance</source>
+          <target state="needs-review-translation">Ask someone for route guidance</target>
         </trans-unit>
       </group>
     </body>
