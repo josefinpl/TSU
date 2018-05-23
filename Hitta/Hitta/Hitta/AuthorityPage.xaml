@@ -41,7 +41,7 @@
 
                         <Label Text="{i18n:Translate Map}" FontSize="Medium" TextColor="Black" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center"></Label>
 
-                        <Image Source="maps.png" StyleId="Maps" BindingContext="{Binding Id}" HeightRequest="40" WidthRequest="40" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" HorizontalOptions="Center">
+                        <Image Source="maps.png" StyleId="Maps" BindingContext="{Binding Id}" HeightRequest="50" WidthRequest="50" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalOptions="Center" VerticalOptions="Start">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" />
                             </Image.GestureRecognizers>
