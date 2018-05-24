@@ -14,13 +14,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell x:Name="Authority">
-                                <StackLayout BackgroundColor="#eee" Orientation="Vertical">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50" />
-                                        <Label Text="{Binding Name}" TextColor="#f35e20" FontSize="Medium"/>
-                                    </StackLayout>
+                            <StackLayout BackgroundColor="#eee" Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50" />
+                                    <Label Text="{Binding Name}" TextColor="#f35e20" FontSize="Medium"/>
                                 </StackLayout>
-                        </ViewCell>App
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
