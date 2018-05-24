@@ -27,27 +27,51 @@
                 </StackLayout>
             </StackLayout>
 
-            <ListView  x:Name="AuthorityView" Margin="10">
-                <ListView.Header>
-                    <ContentView Padding="0,5">
-                        <Label FontSize="Medium" TextColor="Black" Text="{i18n:Translate Authority}" x:Name="LabelAuthority"></Label>
-                    </ContentView>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell x:Name="Authority">
-                            <StackLayout BackgroundColor="#eee"
-						Orientation="Vertical">
-                                <StackLayout Orientation="Horizontal">
+            <StackLayout Padding="0,20,0,0">
 
-                                    <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50" />
-                                    <Label Text="{Binding Name}" TextColor="#f35e20" FontSize="Medium"/>
-                                </StackLayout>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                <Frame BorderColor="Black" StyleId="Authority">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
+                    </Frame.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal">
+                        <Image x:Name="ImgAuthority" HeightRequest="30" WidthRequest="30"></Image>
+                        <Label x:Name="LabelAuthority" Text="{i18n:Translate Authority}" TextColor="Black" FontSize="Medium" ></Label>
+                    </StackLayout>
+                </Frame>
+
+                <Frame BorderColor="Black" StyleId="Health">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
+                    </Frame.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal">
+                        <Image x:Name="ImgHealth" HeightRequest="30" WidthRequest="30"></Image>
+                        <Label x:Name="LabelHealth" Text="{i18n:Translate Health}" TextColor="Black" FontSize="Medium" ></Label>
+                    </StackLayout>
+                </Frame>
+
+                <Frame BorderColor="Black" StyleId="School">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
+                    </Frame.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal">
+                        <Image x:Name="ImgSchool" HeightRequest="30" WidthRequest="30"></Image>
+                        <Label x:Name="LabelSchool" Text="{i18n:Translate School}" TextColor="Black" FontSize="Medium" ></Label>
+                    </StackLayout>
+                </Frame>
+
+                <Frame BorderColor="Black" StyleId="Store">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
+                    </Frame.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal">
+                        <Image x:Name="ImgStore" HeightRequest="30" WidthRequest="30"></Image>
+                        <Label x:Name="LabelStore" Text="{i18n:Translate Store}" TextColor="Black" FontSize="Medium"></Label>
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+
+           
 
         </StackLayout>
     </ContentPage.Content>

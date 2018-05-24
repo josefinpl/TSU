@@ -57,10 +57,37 @@ namespace Hitta.Models
                 authorities.Add(a);
             }
 
+            return authorities;
+        }
 
+        public List<Authority> GetTheAuthority(int id)
+        {
+            dt = new DataTable();
+            sqlOp = new SqlOperations();
+
+            List<Authority> authorities = new List<Authority>();
+            Authority a;
+
+            string sql = "SELECT * FROM Authority WHERE Category_Id = " + id + "ORDER BY Name ASC";
+            dt = sqlOp.QueryRead(sql);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                a = new Authority()
+                {
+                    Id = (int)dr["Id"],
+                    Name = (string)dr["Name"],
+                    Description = (string)dr["Description"],
+                    Address_Id = (int)dr["Address_Id"],
+                    Category_Id = (int)dr["Category_Id"],
+                    Logo = (byte[])dr["Logo"]
+                };
+                authorities.Add(a);
+            }
 
             return authorities;
         }
+
         public Authority GetAuthority(string id)
         {
             dt = new DataTable();

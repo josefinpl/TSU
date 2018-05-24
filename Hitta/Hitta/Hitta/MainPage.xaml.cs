@@ -80,19 +80,22 @@ namespace Hitta
 
             avm = new AuthorityVM();
 
-            foreach (var authority in avm.Authorities)
-            {
-                if (authority.Logo != null)
-                {
-                    authority.Image = ImageSource.FromStream(() => new MemoryStream(authority.Logo));
+            //foreach (var authority in avm.Authorities)
+            //{
+            //    if (authority.Logo != null)
+            //    {
+            //        authority.Image = ImageSource.FromStream(() => new MemoryStream(authority.Logo));
 
-                }
-            }
+            //    }
+            //}
 
-            AuthorityView.ItemsSource = avm.Authorities;
+            //AuthorityView.ItemsSource = avm.Authorities;
 
             ImgLang.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.langicon));
-
+            ImgAuthority.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Building));
+            ImgHealth.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Health1));
+            ImgSchool.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.School1));
+            ImgStore.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Food));
 
 
             Languages = new ObservableCollection<Language>()
@@ -110,18 +113,52 @@ namespace Hitta
 
             PickerLanguages.SelectedIndexChanged += PickerLanguages_SelectedIndexChanged;
 
-            AuthorityView.ItemSelected += (object sender, SelectedItemChangedEventArgs e) =>
-            {
-                var item = (Authority)e.SelectedItem;
+            //AuthorityView.ItemSelected += (object sender, SelectedItemChangedEventArgs e) =>
+            //{
+            //    var item = (Authority)e.SelectedItem;
 
-                var page = new AuthorityPage(item);
+            //    var page = new AuthorityPage(item);
 
-                Navigation.PushAsync(page);
+            //    Navigation.PushAsync(page);
 
-            };
+            //};
         }
 
-        private void PickerLanguages_SelectedIndexChanged(object sender, EventArgs e)
+        async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
+        {
+            var frameSender = (Frame)sender;
+
+            ((Frame)sender).IsEnabled = false;
+
+            if(frameSender.StyleId == "Authority")
+            {
+                var page = new ListAuthorities(1);
+
+                await Navigation.PushAsync(page);
+            }
+            else if (frameSender.StyleId == "Health")
+            {
+                var page = new ListAuthorities(2);
+
+                await Navigation.PushAsync(page);
+            }
+            else if (frameSender.StyleId == "School")
+            {
+                var page = new ListAuthorities(3);
+
+                await Navigation.PushAsync(page);
+            }
+            else if (frameSender.StyleId == "Store")
+            {
+                var page = new ListAuthorities(4);
+
+                await Navigation.PushAsync(page);
+            }
+
+            ((Frame)sender).IsEnabled = true;
+        }
+
+            private void PickerLanguages_SelectedIndexChanged(object sender, EventArgs e)
         {
             var language = Languages[PickerLanguages.SelectedIndex];
 
@@ -168,6 +205,9 @@ namespace Hitta
             LabelLanguage.Text = AppResources.Language;
             LabelHello.Text = AppResources.Hello;
             LabelAuthority.Text = AppResources.Authority;
+            LabelHealth.Text = AppResources.Health;
+            LabelSchool.Text = AppResources.School;
+            LabelStore.Text = AppResources.Store;
         }
 
 
