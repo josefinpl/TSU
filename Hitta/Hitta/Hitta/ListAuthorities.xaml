@@ -4,25 +4,23 @@
              xmlns:i18n="clr-namespace:Hitta.Helpers;assembly=Hitta" 
              x:Class="Hitta.ListAuthorities">
     <ContentPage.Content>
-        <StackLayout Padding="20">
+        <StackLayout Padding="10">
             <ListView  x:Name="AuthorityView" Margin="10">
-                <!--<ListView.Header>
+                <ListView.Header>
                     <ContentView Padding="0,5">
-                        <Label FontSize="Medium" TextColor="Black" Text="{i18n:Translate Authority}" x:Name="LabelAuthority"></Label>
+                        <Label FontSize="Large" TextColor="Black" x:Name="LabelAuthority"></Label>
                     </ContentView>
-                </ListView.Header>-->
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell x:Name="Authority">
-                            <StackLayout BackgroundColor="#eee"
-						Orientation="Vertical">
-                                <StackLayout Orientation="Horizontal">
-
-                                    <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50" />
-                                    <Label Text="{Binding Name}" TextColor="#f35e20" FontSize="Medium"/>
+                                <StackLayout BackgroundColor="#eee" Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50" />
+                                        <Label Text="{Binding Name}" TextColor="#f35e20" FontSize="Medium"/>
+                                    </StackLayout>
                                 </StackLayout>
-                            </StackLayout>
-                        </ViewCell>
+                        </ViewCell>App
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

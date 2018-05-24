@@ -1,5 +1,6 @@
 ﻿using Hitta.Models;
 using Hitta.Models.ViewModels;
+using Hitta.Resources;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,82 +16,47 @@ namespace Hitta
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ListAuthorities : ContentPage
 	{
-        List<Authority> aList;
-        Authority a;
+        ListAuthoritiesVM aList;
 
         public ListAuthorities (int category)
 		{
 			InitializeComponent ();
 
-            if(category == 1)
+            aList = new ListAuthoritiesVM(category);
+
+            foreach (var authority in aList.Authorities)
             {
-                aList = new List<Authority>();
-                a = new Authority();
-                aList = a.GetTheAuthority(1);
-
-                foreach (var authority in aList)
+                if (authority.Logo != null)
                 {
-                    if (authority.Logo != null)
-                    {
-                        authority.Image = ImageSource.FromStream(() => new MemoryStream(authority.Logo));
-
-                    }
+                    authority.Image = ImageSource.FromStream(() => new MemoryStream(authority.Logo));
                 }
+            }
 
-                AuthorityView.ItemsSource = aList;
+            if (category == 1)
+            {
+                LabelAuthority.Text = AppResources.Authority;
 
             }
             else if (category == 2)
             {
-                aList = new List<Authority>();
-                a = new Authority();
-                aList = a.GetTheAuthority(2);
+                LabelAuthority.Text = AppResources.Health;
 
-                foreach (var authority in aList)
-                {
-                    if (authority.Logo != null)
-                    {
-                        authority.Image = ImageSource.FromStream(() => new MemoryStream(authority.Logo));
-
-                    }
-                }
-
-                AuthorityView.ItemsSource = aList;
             }
             else if (category == 3)
             {
-                aList = new List<Authority>();
-                a = new Authority();
-                aList = a.GetTheAuthority(3);
+                LabelAuthority.Text = AppResources.School;
 
-                foreach (var authority in aList)
-                {
-                    if (authority.Logo != null)
-                    {
-                        authority.Image = ImageSource.FromStream(() => new MemoryStream(authority.Logo));
-
-                    }
-                }
-
-                AuthorityView.ItemsSource = aList;
             }
             else if (category == 4)
             {
-                aList = new List<Authority>();
-                a = new Authority();
-                aList = a.GetTheAuthority(4);
-
-                foreach (var authority in aList)
-                {
-                    if (authority.Logo != null)
-                    {
-                        authority.Image = ImageSource.FromStream(() => new MemoryStream(authority.Logo));
-
-                    }
-                }
-
-                AuthorityView.ItemsSource = aList;
+                LabelAuthority.Text = AppResources.Store;
             }
+
+            AuthorityView.ItemsSource = aList.Authorities;
+
+            int heightRowsList = 100;
+            var n = (aList.Authorities.Count * heightRowsList);
+            AuthorityView.HeightRequest = n;
 
 
             AuthorityView.ItemSelected += (object sender, SelectedItemChangedEventArgs e) =>
