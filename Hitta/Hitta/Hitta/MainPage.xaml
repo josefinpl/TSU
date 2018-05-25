@@ -34,8 +34,8 @@
                         <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
                     </Frame.GestureRecognizers>
                     <StackLayout Orientation="Horizontal">
-                        <Image x:Name="ImgAuthority" HeightRequest="30" WidthRequest="30"></Image>
-                        <Label x:Name="LabelAuthority" Text="{i18n:Translate Authority}" TextColor="Black" FontSize="Medium" ></Label>
+                        <Image x:Name="ImgAuthority" HeightRequest="40" WidthRequest="40" ></Image>
+                        <Label x:Name="LabelAuthority" Text="{i18n:Translate Authority}" TextColor="Black" FontSize="Medium" Margin="20,0,0,0" VerticalOptions="CenterAndExpand"></Label>
                     </StackLayout>
                 </Frame>
 
@@ -44,8 +44,8 @@
                         <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
                     </Frame.GestureRecognizers>
                     <StackLayout Orientation="Horizontal">
-                        <Image x:Name="ImgHealth" HeightRequest="30" WidthRequest="30"></Image>
-                        <Label x:Name="LabelHealth" Text="{i18n:Translate Health}" TextColor="Black" FontSize="Medium" ></Label>
+                        <Image x:Name="ImgHealth" HeightRequest="40" WidthRequest="40"></Image>
+                        <Label x:Name="LabelHealth" Text="{i18n:Translate Health}" TextColor="Black" FontSize="Medium" Margin="20,0,0,0" VerticalOptions="CenterAndExpand"></Label>
                     </StackLayout>
                 </Frame>
 
@@ -54,8 +54,8 @@
                         <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
                     </Frame.GestureRecognizers>
                     <StackLayout Orientation="Horizontal">
-                        <Image x:Name="ImgSchool" HeightRequest="30" WidthRequest="30"></Image>
-                        <Label x:Name="LabelSchool" Text="{i18n:Translate School}" TextColor="Black" FontSize="Medium" ></Label>
+                        <Image x:Name="ImgSchool" HeightRequest="40" WidthRequest="40"></Image>
+                        <Label x:Name="LabelSchool" Text="{i18n:Translate School}" TextColor="Black" FontSize="Medium" Margin="20,0,0,0" VerticalOptions="CenterAndExpand"></Label>
                     </StackLayout>
                 </Frame>
 
@@ -64,8 +64,8 @@
                         <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  />
                     </Frame.GestureRecognizers>
                     <StackLayout Orientation="Horizontal">
-                        <Image x:Name="ImgStore" HeightRequest="30" WidthRequest="30"></Image>
-                        <Label x:Name="LabelStore" Text="{i18n:Translate Store}" TextColor="Black" FontSize="Medium"></Label>
+                        <Image x:Name="ImgStore" HeightRequest="40" WidthRequest="40"></Image>
+                        <Label x:Name="LabelStore" Text="{i18n:Translate Store}" TextColor="Black" FontSize="Medium" Margin="20,0,0,0" VerticalOptions="CenterAndExpand"></Label>
                     </StackLayout>
                 </Frame>
 

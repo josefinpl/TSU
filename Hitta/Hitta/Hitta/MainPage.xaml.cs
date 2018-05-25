@@ -26,71 +26,6 @@ namespace Hitta
 
             var culture = CrossMultilingual.Current.DeviceCultureInfo;
 
-            if (culture.Name.Contains("sv"))
-            {
-                if (culture.Name == "sv" ||culture.Name == "sv-SE" || culture.Name == "sv-FI" || culture.Name == "sv-AX")
-                {
-                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Sweden));
-                }
-            }
-            else if (culture.Name.Contains("ar"))
-            {
-                if (culture.Name == "ar" || culture.Name == "ar-AE" || culture.Name == "ar-BH" || culture.Name == "ar-DZ" || culture.Name == "ar-EG"
-               || culture.Name == "ar-IQ" || culture.Name == "ar-JO" || culture.Name == "ar-KW" || culture.Name == "ar-LB" || culture.Name == "ar-LY"
-               || culture.Name == "ar-MA" || culture.Name == "ar-OM" || culture.Name == "ar-QA" || culture.Name == "ar-SA"
-               || culture.Name == "ar-SY" || culture.Name == "ar-TN" || culture.Name == "ar-YE")
-                {
-                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Saudi));
-                }
-            }
-            else if (culture.Name.Contains("en"))
-            {
-                if (culture.Name == "en" || culture.Name == "en-AU" || culture.Name == "en-BZ" || culture.Name == "en-CA" || culture.Name == "en-CB" ||
-                culture.Name == "en-GB" || culture.Name == "en-IE" || culture.Name == "en-JM" || culture.Name == "en-NZ" ||
-                culture.Name == "en-PH" || culture.Name == "en-TT" || culture.Name == "en-US" || culture.Name == "en-ZA" || culture.Name == "en-ZW")
-                {
-                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.UK));
-                }
-            }
-            else if (culture.Name.Contains("fa"))
-            {
-                if (culture.Name == "fa" || culture.Name == "fa-IR")
-                {
-                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Iran));
-                }
-            }
-            else if (culture.Name.Contains("sw"))
-            {
-               if (culture.Name == "sw" || culture.Name == "sw-KE")
-                {
-                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Kenya));
-                }
-            }
-            else if (culture.Name.Contains("ti"))
-            {
-               if (culture.Name == "ti" || culture.Name == "ti-ER" || culture.Name == "ti-ET")
-                {
-                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Tigrinya));
-                }
-            }
-            else
-            {
-                Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.UK));
-            }
-
-            avm = new AuthorityVM();
-
-            //foreach (var authority in avm.Authorities)
-            //{
-            //    if (authority.Logo != null)
-            //    {
-            //        authority.Image = ImageSource.FromStream(() => new MemoryStream(authority.Logo));
-
-            //    }
-            //}
-
-            //AuthorityView.ItemsSource = avm.Authorities;
-
             ImgLang.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.langicon));
             ImgAuthority.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Building));
             ImgHealth.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Health1));
@@ -109,19 +44,72 @@ namespace Hitta
 
             };
 
+            if (culture.Name.Contains("sv"))
+            {
+                if (culture.Name == "sv" || culture.Name == "sv-SE" || culture.Name == "sv-FI" || culture.Name == "sv-AX")
+                {
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Sweden));
+                    PickerLanguages.Title = "Språk";
+                }
+            }
+            else if (culture.Name.Contains("ar"))
+            {
+                if (culture.Name == "ar" || culture.Name == "ar-AE" || culture.Name == "ar-BH" || culture.Name == "ar-DZ" || culture.Name == "ar-EG"
+               || culture.Name == "ar-IQ" || culture.Name == "ar-JO" || culture.Name == "ar-KW" || culture.Name == "ar-LB" || culture.Name == "ar-LY"
+               || culture.Name == "ar-MA" || culture.Name == "ar-OM" || culture.Name == "ar-QA" || culture.Name == "ar-SA"
+               || culture.Name == "ar-SY" || culture.Name == "ar-TN" || culture.Name == "ar-YE")
+                {
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Saudi));
+                    PickerLanguages.Title = "لغة";
+                }
+            }
+            else if (culture.Name.Contains("en"))
+            {
+                if (culture.Name == "en" || culture.Name == "en-AU" || culture.Name == "en-BZ" || culture.Name == "en-CA" || culture.Name == "en-CB" ||
+                culture.Name == "en-GB" || culture.Name == "en-IE" || culture.Name == "en-JM" || culture.Name == "en-NZ" ||
+                culture.Name == "en-PH" || culture.Name == "en-TT" || culture.Name == "en-US" || culture.Name == "en-ZA" || culture.Name == "en-ZW")
+                {
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.UK));
+                    PickerLanguages.Title = "Language";
+
+                }
+            }
+            else if (culture.Name.Contains("fa"))
+            {
+                if (culture.Name == "fa" || culture.Name == "fa-IR")
+                {
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Iran));
+                    PickerLanguages.Title = "زبان";
+                }
+            }
+            else if (culture.Name.Contains("sw"))
+            {
+                if (culture.Name == "sw" || culture.Name == "sw-KE")
+                {
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Kenya));
+                    PickerLanguages.Title = "Lugha";
+                }
+            }
+            else if (culture.Name.Contains("ti"))
+            {
+                if (culture.Name == "ti" || culture.Name == "ti-ER" || culture.Name == "ti-ET")
+                {
+                    Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.Tigrinya));
+                    PickerLanguages.Title = "Language";
+                }
+            }
+            else
+            {
+                Img.Source = ImageSource.FromStream(() => new MemoryStream(AppResources.UK));
+                PickerLanguages.Title = "Language";
+
+            }
+
+
             BindingContext = this;
 
             PickerLanguages.SelectedIndexChanged += PickerLanguages_SelectedIndexChanged;
 
-            //AuthorityView.ItemSelected += (object sender, SelectedItemChangedEventArgs e) =>
-            //{
-            //    var item = (Authority)e.SelectedItem;
-
-            //    var page = new AuthorityPage(item);
-
-            //    Navigation.PushAsync(page);
-
-            //};
         }
 
         async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
@@ -130,7 +118,7 @@ namespace Hitta
 
             ((Frame)sender).IsEnabled = false;
 
-            if(frameSender.StyleId == "Authority")
+            if (frameSender.StyleId == "Authority")
             {
                 var page = new ListAuthorities(1);
 
@@ -158,7 +146,7 @@ namespace Hitta
             ((Frame)sender).IsEnabled = true;
         }
 
-            private void PickerLanguages_SelectedIndexChanged(object sender, EventArgs e)
+        private void PickerLanguages_SelectedIndexChanged(object sender, EventArgs e)
         {
             var language = Languages[PickerLanguages.SelectedIndex];
 
