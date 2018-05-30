@@ -85,7 +85,7 @@
         </trans-unit>
         <trans-unit id="Store" translate="yes" xml:space="preserve">
           <source>Food store</source>
-          <target state="new">Food store</target>
+          <target state="translated">Duka la chakula</target>
         </trans-unit>
         <trans-unit id="Building" translate="yes" xml:space="preserve" extype="System.Resources.ResXFileRef, System.Windows.Forms">
           <source>..\images\building.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</source>

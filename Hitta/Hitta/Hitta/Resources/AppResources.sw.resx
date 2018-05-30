@@ -70,6 +70,9 @@
   <data name="School" xml:space="preserve">
     <value>Shule</value>
   </data>
+  <data name="Store" xml:space="preserve">
+    <value>Duka la chakula</value>
+  </data>
   <data name="Building" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\building.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

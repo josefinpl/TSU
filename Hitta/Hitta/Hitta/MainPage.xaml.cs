@@ -18,7 +18,7 @@ namespace Hitta
     public partial class MainPage : ContentPage
     {
         public ObservableCollection<Language> Languages { get; }
-        AuthorityVM avm;
+        //AuthorityVM avm;
 
         public MainPage()
         {
