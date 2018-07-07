@@ -23,7 +23,7 @@ namespace Admin.Data
             {
                 Id = x.Id,
                 Name = x.Name,
-                Description = x.Description,
+                //Description = x.Description,
                 Logo = x.Logo,
                 StreetAddress = x.Address.Address1,
                 Zipcode = x.Address.Zipcode,
@@ -57,7 +57,7 @@ namespace Admin.Data
             Authority a = new Authority
             {
                 Name = model.Name,
-                Description = model.Description,
+                //Description = model.Description,
                 Category_Id = model.Category_Id,
                 Address_Id = SetAddress(model),               
                 
@@ -81,7 +81,7 @@ namespace Admin.Data
             {
                 Id = authority.Id,
                 Name = authority.Name,
-                Description = authority.Description.Trim(),
+                //Description = authority.Description.Trim(),
                 Logo = authority.Logo,
                 Category_Id = authority.Category_Id,
                 Address_Id = SetAddress(authority)
@@ -282,7 +282,7 @@ namespace Admin.Data
             {
                 Id = x.Id,
                 Name = x.Name,
-                Description = x.Description,
+                //Description = x.Description,
                 CategoryName = x.Category.Name,
                 Logo = x.Logo,
                 StreetAddress = x.Address.Address1,
