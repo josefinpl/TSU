@@ -16,9 +16,9 @@ namespace Admin.Models.ViewModels
         [Required(ErrorMessage = "Ange ett namn")]
         public string Name { get; set; }
 
-        [DisplayName("Beskrivning")]
-        [Required(ErrorMessage = "Ange en beskrivning")]
-        public string Description { get; set; }
+        //[DisplayName("Beskrivning")]
+        //[Required(ErrorMessage = "Ange en beskrivning")]
+        //public string Description { get; set; }
 
         public int? Address_Id { get; set; }
         public int? Category_Id { get; set; }
